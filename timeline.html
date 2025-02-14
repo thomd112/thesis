@@ -3,68 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeline</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-
-    
+    <title>Madhubani Art</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { display: flex; height: 100vh; font-family: Satoshi medium;}
+        .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; align-items: center; justify-content: center; }
+        .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
+        .sticky-container { position: sticky;  ; z-index: 10; display: flex; justify-content: space-between; }
+        .sticky-top { top: 0; }
+        .sticky-bottom { bottom: 0; }
+        .sticky-text { padding: 10px; background: #7e1134; cursor: pointer; transition: underline 0.3s; text-decoration: none; color: rgb(242, 232, 232); display: inline-block; }
+        .sticky-text:hover { color: rgb(247, 244, 160); }
+        .content { height: 200vh; padding-top: 80px; }
+    </style>
 </head>
-
-<style>
-
-.horizontal-container{
-    display:flex;
-    margin-top: 50px;
-    flex-direction: row;
-    margin-bottom: 50px;
-    margin-left: 60px;
-    margin-right: 40px;
-    justify-content: space-evenly;
-    padding: 20px;
-    max-width: 90vw;
-}
-
-
-</style>
 <body>
+    <div class="left">Add drawing here</div>
+    <div class="right">
+        <div class="sticky-container sticky-top">
+            <a href="main.html" class="sticky-text">ABOUT</a>
+            <a href="timeline.html" class="sticky-text">TIMELINE</a>
+            <a href="page3.html" class="sticky-text">PROCESS</a>
+            <a href="page4.html" class="sticky-text">TYPES</a>
+        </div>
 
-    <br>
-    <br>
+        <div class="content">
+           
 
 
-
-    <div class="horizontal-container">
-     
-     
-        <div class="item">Lenged of King Ranak: Originated in the Mithila region of India, dating back to the 8th or 7th century BCE - <br><br><em>One</em></div>
-      
-        <div class="item">its origins in the Stone Age, its discovery in the 1930s, and its commercialization in the 1960s<br><br><em>Two</em></div>
-       
-        <div class="item">Legend says that King Janak of Mithila commissioned the paintings to celebrate his daughter Sita's wedding to Prince Rama.<br><br><em>Three</em></div>
-
-        <div class="item">In 1934, British Colonial Officer William G. Archer discovered Madhubani paintings on the walls of homes in Bihar.<br><br><em>Four</em></div>
-
+            <div><h1 style="font-size: 100px;">TIMELINE</h1></div>
+        <br>
+        <br>
+        <div><p>This is the timeline of Madhubani Art </p></div>
+         
         
-        <div class="item">Archer wrote an article in Marg magazine comparing Madhubani paintings to the work of Picasso and Miro, which helped bring the art form to international attention. <br><br><em>1949</em></div>
-
-        <div class="item"> Madhubani painting received national attention when Sita Devi and Jagdamba Devi were awarded national awards by the President of India.  <br><br><em>1975</em></div>
-
-        <div class="item">  Madhubani painting was used in a conservation effort to protect trees in Bihar from deforestation.  <br><br><em>2012</em></div>
-
-
-  
- 
+        </div>
+        <div class="sticky-container sticky-bottom">
+            <a href="symbols.html" class="sticky-text">SYMBOLS</a>
+            <a href="page6.html" class="sticky-text">COLOURS</a>
+            <a href="page7.html" class="sticky-text">RESOURCES</a>
+            <a href="page8.html" class="sticky-text">PLAY</a>
+        </div>
     </div>
-
-
-
-
-
-
-
-
-
-</body>  
+</body>
 </html>
