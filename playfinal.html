@@ -1,20 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Sketches</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
-  <script src="sketch.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Madhubani Art</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { display: flex; height: 100vh; font-family: Satoshi medium;}
+        .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; align-items: center; justify-content: center; }
+        .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
+        .sticky-container { position: sticky;  ; z-index: 10; display: flex; justify-content: space-between; }
+        .sticky-top { top: 0; }
+        .sticky-bottom { bottom: 0; }
+        .sticky-text { padding: 10px; background: #7e1134;  text-decoration: none; color: rgb(242, 232, 232); opacity:0.5 ;display: inline-block; }
+        .sticky-text:hover { opacity:1; cursor: grab;}
+        .content { height: 200vh; padding-top: 80px; }
+        .line-container {
+    position: relative;
+    width: 12px; /* Adjust spacing between lines */
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.line {
+    width: 3px; /* Line thickness */
+    height: 100%;
+    background: cornsilk; /* Line color */
+}
+        
+
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Interactive Sketches</h1>
-    <p>Drag and drop the elements to create your composition!</p>
-  </header>
-  <main>
-    <div id="canvas-container"></div>
-  </main>
+    <div class="left">Add drawing here</div>
+    <div class="right">
+        <div class="sticky-container sticky-top">
+            <a href="main.html" class="sticky-text">ABOUT</a>
+            <a href="timeline.html" class="sticky-text">TIMELINE</a>
+            <a href="process.html" class="sticky-text">PROCESS</a>
+            <a href="types.html" class="sticky-text">TYPES</a>
+        </div>
+
+        <div class="content">
+           
+
+
+            <div><h1 style="font-size: 100px;">PLAY</h1></div>
+        <br>
+        <br>
+
+       
+
+
+    <h1>customise this webpage
+    </h1>
+<h2>choose border</h2>
+
+
+
+
+
+        </div>
+        <div class="sticky-container sticky-bottom">
+            <a href="symbols.html" class="sticky-text">SYMBOLS</a>
+            <a href="naturalcolour.html" class="sticky-text">COLOURS</a>
+            <a href="resources.html" class="sticky-text">RESOURCES</a>
+            <a href="playfinal.html" class="sticky-text">PLAY</a>
+        </div>
+    </div>
+
+
+
+
+
+
+   
+
+
+
+
 </body>
 </html>

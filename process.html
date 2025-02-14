@@ -4,54 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Testing</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+    <title>Madhubani Art</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { display: flex; height: 100vh; font-family: Satoshi medium;}
+        .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; align-items: center; justify-content: center; }
+        .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
+        .sticky-container { position: sticky;  ; z-index: 10; display: flex; justify-content: space-between; }
+        .sticky-top { top: 0; }
+        .sticky-bottom { bottom: 0; }
+        .sticky-text { padding: 10px; background: #7e1134;  text-decoration: none; color: rgb(242, 232, 232); opacity:0.5 ;display: inline-block; }
+        .sticky-text:hover { opacity:1; cursor: grab;}
+        .content { height: 200vh; padding-top: 80px; }
+        .line-container {
+    position: relative;
+    width: 12px; /* Adjust spacing between lines */
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
 
+.line {
+    width: 3px; /* Line thickness */
+    height: 100%;
+    background: cornsilk; /* Line color */
+}
+        
+
+    </style>
 </head>
-
-
 <body>
-    <main> 
-        <h3 style="color:orange;">मधुबनी कला</h3>  
-        <h3 style="color:orange;">Process, Artisans Tools</h3> 
-    </main>
+    <div class="left">Add drawing here</div>
+    <div class="right">
+        <div class="sticky-container sticky-top">
+            <a href="main.html" class="sticky-text">ABOUT</a>
+            <a href="timeline.html" class="sticky-text">TIMELINE</a>
+            <a href="process.html" class="sticky-text">PROCESS</a>
+            <a href="types.html" class="sticky-text">TYPES</a>
+        </div>
 
-<p>Handmade Paper: Traditionally, the paper is crafted from sustainable natural fibers such as cotton rags, jute, or mulberry bark. These materials are chosen for their durability and compatibility with natural pigments.
-    Canvas and Cloth Base: In some cases, cloth is preferred over paper. The cloth is treated with a coating of cow dung mixed with mud. This preparation provides a textured surface, ensuring better pigment adherence and enhancing the visual depth of the artwork. </p>
+        <div class="content">
+           
 
 
-    2. Pulp Preparation
-    Soaking Natural Fibers: The chosen fibers, like cotton rags or jute scraps, are soaked in water for several hours or even days. This softens the fibers and makes them pliable for further processing.
-    Pounding the Fibers: The softened fibers are pounded manually or using tools to create a uniform, fine pulp. This step ensures the paper has an even texture.
-    Boiling: The pulp is boiled with water and natural adhesives, such as gum arabic or starch, to enhance strength and elasticity. The boiling process also sterilizes the materials, ensuring a longer lifespan for the final product.
-    3. Sheet Formation
-    Spreading the Pulp: The prepared pulp is poured over a fine mesh screen or mold, which acts as a framework for forming the sheet. The pulp is carefully spread out by hand or with a flat tool to ensure an even thickness.
-    Removing Excess Water: The screen is gently shaken or pressed to allow excess water to drain. This leaves behind a thin layer of fibrous material, forming the base of the handmade paper.
-    Layering (if needed): For thicker sheets, additional layers of pulp may be applied and spread evenly.
-    4. Drying
-    Pressing the Wet Paper: The sheet is lightly pressed between absorbent cloths or wooden frames to remove more moisture and flatten the paper.
-    Sun Drying: The pressed sheets are laid out in a sunny, open area to dry completely. This natural drying process gives the paper its characteristic texture and strength.
-    Final Trimming: Once dry, the edges of the paper are trimmed to give it a neat, usable shape.
-    5. Surface Preparation
-    Coating for Brightness: The dried paper is often coated with a white paste made from lime or chalk, mixed with natural binders like gum arabic. This layer brightens the surface, ensuring the vibrant natural pigments used in Madhubani art stand out clearly.
-    Burnishing for Smoothness: After the coating dries, the surface is polished using a smooth stone, shell, or glass. This process, called burnishing, enhances the texture and ensures an even application of paint.</p>
+            <div><h1 style="font-size: 100px;">PROCESS</h1></div>
+        <br>
+        <br>
 
-    <p>◉ Over 5000 registered Madhubani painting artists make various hand painted products for livelihood. Some of the products are:-
-        Paintings
-        Sarees
-        Kurtis
-        Dupattas
-        Stoles
-        Bedsheets
-        Cushion Covers
-        Handbags
-        Purses
-        Trays
-        Coasters</p>
- 
-    <script src="assets/js/script.js"></script>
+       
+
+
+    <h1>Add the process</h1>
+
+
+
+
+
+
+        </div>
+        <div class="sticky-container sticky-bottom">
+            <a href="symbols.html" class="sticky-text">SYMBOLS</a>
+            <a href="naturalcolour.html" class="sticky-text">COLOURS</a>
+            <a href="resources.html" class="sticky-text">RESOURCES</a>
+            <a href="playfinal.html" class="sticky-text">PLAY</a>
+        </div>
+    </div>
+
+
+
+
+
+
+   
+
+
+
+
 </body>
 </html>
