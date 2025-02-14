@@ -3,64 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madhubani Art</title>
-    <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <title>Madhubani Art</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { display: flex; height: 100vh; font-family: Satoshi medium; }
+        .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; align-items: center; justify-content: center; }
+        .right { 
+            width: 50%; 
+            height: 100vh;  
+            overflow: hidden; 
+            position: relative; 
+            padding: 20px; 
+            background: #7e1134; 
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            justify-content: space-between;
+        }
+        .sticky-container { position: sticky; z-index: 10; display: flex; justify-content: space-between; }
+        .sticky-top { top: 0; }
+        .sticky-bottom { bottom: 0; }
+        .sticky-text { padding: 10px; background: #7e1134;  text-decoration: none; color: rgb(242, 232, 232); opacity:0.5 ;display: inline-block; }
+        .sticky-text:hover { opacity:1; cursor: grab;}
+        .content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+    </style>
 </head>
 <body>
-
-    <div class="rectangle"></div>
+    <div class="left">Add drawing here</div>
     
-  
+    <div class="right">
+        <div class="sticky-container sticky-top">
+            <a href="main.html" class="sticky-text">ABOUT</a>
+            <a href="timeline.html" class="sticky-text">TIMELINE</a>
+            <a href="page3.html" class="sticky-text">PROCESS</a>
+            <a href="page4.html" class="sticky-text">TYPES</a>
+        </div>
 
-
-    <main>
-       
-
-       
-<h3>Madhubani art</h3>
-
-         
-          <h3><em>A traditional art style from Bihar, India</em></h3>
-          <ul>
-           <li><a href="main.html">About</a></li>
-            <li><a href="timeline.html">Time Line</a></li>
-            <li><a href="#about">Types</a></li>
-            <li><a href="process.html">Process</a></li>
-            <li><a href=symbols.html>Symbols</a></li>
-            <li><a href="naturalcolour.html">Colors</a></li>
-            <li><a href="#about">Artists</a></li>
-            <li><a href="#about">Play</a></li> 
+        <div class="content">
+            <audio controls>
+                <source src="Madhubani.mp3" type="audio/mpeg">
+            </audio>   
+            
+            <div><h1 style="font-size: 100px;">MADHUBANI ART</h1></div>
+            <br>
+            <br>
+          
+            <div><p>Madhubani or Mithila painting is a folk art of the Mithila region.</p></div>
+            <div><p>The Mithila region includes the north of Bihar and the eastern Terai of Nepal.</p></div>
+            <div><p><em>mah-doo-bah-nee</em></p></div>
+        <br>
             
 
-          </ul>
 
-          <!-- <li><a href="#about">Resources</a></li>
-         <li><a href="#about">Play</a></li> -->
+        </div>
+
+        <div class="sticky-container sticky-bottom">
+            <a href="symbols.html" class="sticky-text">SYMBOLS</a>
+            <a href="page6.html" class="sticky-text">COLOURS</a>
+            <a href="page7.html" class="sticky-text">RESOURCES</a>
+            <a href="page8.html" class="sticky-text">PLAY</a>
+        </div>
+    </div>
+</body>
+</html>
 
 
-<!-- <p>Introduction</p>
+       
 
-          <p>◉ Madhubani or Mithila painting is a folk art of the Mithila region. The Mithila region includes the north of Bihar and the eastern Terai of Nepal.
 
-            Madhubani paintings are traditionally done by women painters from the Mithila region. They live in a small society, and every mother teaches her daughter the art of making Madhubani paintings.
-            
-           Since ancient times, women of the Mithila region have painted the walls and floors of their homes with Madhubani paintings to celebrate occasions such as religious festivals, births, and marriages.</p>
-           <p>◉ The paintings on the walls are known as Bhitti Chitra and the paintings on the floor are known as Aripana.</p>
 
-   <p> ◉ Paintings were typically done on walls during holidays, religious celebrations, and other significant life events like marriage, birth, and the Upanayanam.</p>
-   <p>◉ Over 5000 registered Madhubani painting artists make various hand painted products for livelihood. Some of the products are:-
-    Paintings
-    Sarees
-    Kurtis
-    Dupattas
-    Stoles
-    Bedsheets
-    Cushion Covers
-    Handbags
-    Purses
-    Trays
-    Coasters</p> -->
 
 
 
