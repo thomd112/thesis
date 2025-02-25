@@ -9,22 +9,22 @@
         body { display: flex; height: 100vh; font-family: Satoshi medium; }
         .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; transition: background-color 0.5s ease; }
         .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
-        .color-container { display: grid; grid-template-columns: repeat(5, 60px); gap: 10px; margin-bottom: 20px; }
-        .color-box { width: 50px; height: 50px; cursor: pointer; border: 2px solid #7e1134; transition: transform 0.3s; }
+        .color-container { display: grid; grid-template-columns: repeat(5, 60px); gap: 10px; margin-bottom: 70px; }
+        .color-box { width: 100px; height: 100px; cursor: pointer; border: 2px solid #7e1134; transition: transform 0.3s; }
         .color-box:hover { transform: scale(1.1); }
         .color-info { text-align: center; }
-        .color-name { font-size: 24px; font-weight: bold; }
-        .color-subtitle { font-size: 16px; color: #630202; }
+        .color-name { font-size: 24px; font-weight: bold; color: #CD814E;}
+        .color-subtitle { font-size: 16px; color: #000000; }
         .sticky-container { position: sticky; display: flex; justify-content: space-between; z-index: 10; }
         .sticky-top { top: 0; }
         .sticky-bottom { bottom: 0; }
         .sticky-text { padding: 10px; background: #7e1134; text-decoration: none; color: rgb(242, 232, 232); opacity: 0.5; display: inline-block; }
         .sticky-text:hover { opacity: 1; cursor: grab; }
-        .content { height: 200vh; padding-top: 80px; }
+        .content { height: 100vh; padding-top: 80px; }
     </style>
 </head>
 <body>
-    <div class="left" id="left-section">
+    <div class="right" id="right-section">
         <div class="color-container">
             <div class="color-box" style="background-color: black;" data-color="black"></div>
             <div class="color-box" style="background-color: white;" data-color="white"></div>
@@ -38,7 +38,7 @@
             <div class="color-box" style="background-color: yellow;" data-color="yellow"></div>
         </div>
         <div class="color-info">
-            <div class="color-name" id="colorName">Choose the colour</div>
+            <div class="color-name" id="colorName">Each colour you click will turn to the colour of the background and will be highlighted in the painitng on the left. </div>
             <div class="color-subtitle" id="colorSubtitle">Madhubani Art is famous for its natural paints. Learn how each color is made.</div>
         </div>
     </div>
@@ -64,7 +64,7 @@
         const colorBoxes = document.querySelectorAll('.color-box');
         const colorName = document.getElementById('colorName');
         const colorSubtitle = document.getElementById('colorSubtitle');
-        const leftSection = document.getElementById('left-section');
+        const rightSection = document.getElementById('right-section');
         
         const colorSubtitles = {
             black: "The black color is made by mixing soot with cow dung. Black is used for borders and outlines.",
@@ -82,7 +82,7 @@
         colorBoxes.forEach(box => {
             box.addEventListener('click', () => {
                 const color = box.getAttribute('data-color');
-                leftSection.style.backgroundColor = color;
+                rightSection.style.backgroundColor = color;
                 colorName.textContent = color.charAt(0).toUpperCase() + color.slice(1);
                 colorSubtitle.textContent = colorSubtitles[color];
             });
