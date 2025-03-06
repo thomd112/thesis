@@ -3,300 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Madhubani Art</title>
     <style>
+        body {
+            background-color: #7e1134;
+            margin: 0;
+            font-family: Satoshi medium;
+        }
 
+        .title {
+            font-size: 15em;
+            font-family: Mithila-Beta6;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            white-space: nowrap;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            animation-delay: 1s;
+            color: cornsilk;
+        }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
+        .title span {
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
 
-/* 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { display: flex; height: 100vh; font-family: Satoshi medium; }
-        .left { width: 50%; background: #0a6d1e; color: #7e1134; display: flex; align-items: center; justify-content: center; }
-        .right { 
-            width: 50%; 
-            height: 100vh;  
-            overflow: hidden; 
-            position: relative; 
-            padding: 20px; 
-            background: #0a6d1e; 
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            justify-content: space-between;
-            line-height: 1.2;
-           
-        } */
-        
-        body{background-color: #7e1134;}
+        .title span:hover {
+            color: cornsilk;
+            transform: scale(1.6);
+        }
 
-       .title  {font-size: 15em;
-  font-family: Mithila-Beta6;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  letter-spacing: -0.02em; 
-  display: inline-block; 
-   white-space: nowrap;  
-   opacity: 0; 
-  animation: fadeIn 1s ease-in forwards;
-  animation-delay: 1s;} 
+        .titletwo {
+            font-family: Satoshi light;
+            font-size: 40px;
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            letter-spacing: -0.02em;
+            display: inline-block;
+            white-space: nowrap;
+            opacity: 0;
+            animation: fadeIntwo 2s ease-in forwards;
+            animation-delay: 2s;
+            color: cornsilk;
+        }
 
-  @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+        @keyframes fadeIntwo {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-  .title span {
-  display: inline-block;
-  transition: color 0.3s ease, transform 0.3s ease; 
-}
+      
+        .menu {
+            font-family: Satoshi;
+            font-size: 20px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: cornsilk;
+        }
 
-.title span:hover {
-  color: cornsilk;
-  transform: scale(1.6); 
-}
+        .dropdown {
+          font-family: Satoshi;
+            position: absolute;
+            top: 120px;
+            right: 20px;
+            display: none;
+            width: 200px;
+            background-color: #7e1134;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+        }
 
-.titletwo{
-    font-family:Satoshi light;
-    font-size: 40px;
-  position: absolute;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  letter-spacing: -0.02em; 
-  display: inline-block; 
-   white-space: nowrap; 
-opacity:0;
-animation: fadeIntwo 2s ease-in forwards;
-animation-delay: 2s;
+        .dropdown-content a {
+            color: cornsilk;
+            padding: 12px;
+            text-decoration: none;
+            display: block;
+            font-family: Satoshi medium;
+            font-size: 20px;
+        }
 
-} 
+        .dropdown-content a:hover {
+            background-color: #f85d15;
+        }
 
-
-@keyframes fadeIntwo {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.menu{
-    font-family: Mithila-Beta6;
-    font-size: 300px;
-   float: left;
-
-}
-
-.dropdown {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-}
-
-.dropbtn {
- font-family: Satoshi;
-  width: 10vw;
-  height: 10vh;
-  position: fixed;
-  top: 0;
-  right: 0;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-  background-color: #7e1134;
-  color: #f1f1f1;
-}
-
-
-.dropdown-content {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #7e1134;
-  z-index: 1;
-  overflow-y: auto;
-}
-
-.dropdown-content a {
-  color: cornsilk;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-family: Satoshi medium;
-}
-
-.dropdown-content a:hover {
-  background-color: #f85d15;
-}
-
-.show {
-  display: block;
-}
-
-
-
-
-
-
-
+        /* Show dropdown when active */
+        .show {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
-
-
-
-
-
-
-
     <div class="title">
- 
-        <p id ="title"></p><span>म</span><span>धु</span><span>ब</span><span>नी</span><span>क</span><span>ला</span></p>
-  
-      </div>
-
+        <p id="title"></p><span>म</span><span>धु</span><span>ब</span><span>नी</span><span>क</span><span>ला</span></p>
+    </div>
 
     <div class="titletwo">
- 
-        <p>Madhubani Art </p>
-      
-      </div>
+        <p>Madhubani Art</p>
+    </div>
 
-     
-      <div class="dropdown">
-        <button class="dropbtn">Menu</button>
+    <!-- Menu acting as a dropdown trigger -->
+    <div class="menu">Menu</div>
+
+    <!-- Dropdown menu -->
+    <div class="dropdown">
         <div class="dropdown-content">
-          <a href="#">About</a>
-          <a href="#">Timeline</a>
-          <a href="#">Process</a>
-          <a href="#">Types</a>
-          <a href="#">Symbols</a>
-          <a href="#">Colours</a>
-          <a href="#">Play</a>
-          <a href="#">Resources</a>
-        </div>
-      </div>
-     
-
-
-      
-      
-    
-    <div class="right">
-        
-        </div>
-
-        <div class="content">
-           
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
-
-
-<!-- <div class ="menu">
-    ......
-</div> -->
-
-
-
-
-           
-
-        <div class="sticky-container sticky-bottom">
-           
+            <a href="#">About</a>
+            <a href="#">Timeline</a>
+            <a href="#">Process</a>
+            <a href="#">Types</a>
+            <a href="#">Symbols</a>
+            <a href="#">Colours</a>
+            <a href="#">Play</a>
+            <a href="#">Resources</a>
         </div>
     </div>
-</body>
 
-<script>
- 
-  const dropbtn = document.querySelector('.dropbtn');
-  const dropdownContent = document.querySelector('.dropdown-content');
+    <script>
+        const menu = document.querySelector('.menu');
+        const dropdown = document.querySelector('.dropdown');
 
-  dropbtn.addEventListener('click', () => {
-    dropdownContent.classList.toggle('show');
-  });
+        menu.addEventListener('click', () => {
+            dropdown.classList.toggle('show');
+        });
 
-  window.addEventListener('click', (event) => {
-    if (!event.target.matches('.dropbtn')) {
-      if (dropdownContent.classList.contains('show')) {
-        dropdownContent.classList.remove('show');
-      }
-    }
-  });
-</script>
-       
-
-
-
-
-
-
-
-
-
-
+        // Hide dropdown when clicking outside
+        window.addEventListener('click', (event) => {
+            if (!menu.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
 
 </body>
-
-
-
 </html>
