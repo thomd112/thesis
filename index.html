@@ -9,22 +9,23 @@
             background-color: #7e1134;
             margin: 0;
             font-family: Satoshi medium;
+            overflow: hidden;
         }
 
         .title {
             font-size: 15em;
             font-family: Mithila-Beta6;
             position: absolute;
-            top: 40%;
+            top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
             margin: 0;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.18em;
             display: inline-block;
             white-space: nowrap;
             opacity: 0;
             animation: fadeIn 1s ease-in forwards;
-            animation-delay: 1s;
+            animation-delay: 0.5s;
             color: cornsilk;
         }
 
@@ -36,16 +37,30 @@
         .title span {
             display: inline-block;
             transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
         }
 
         .title span:hover {
             color: cornsilk;
-            transform: scale(1.6);
+            transform: scale(1.4);
+        }
+
+        .madhubani-image {
+      
+            position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures images fully cover the screen */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
         }
 
         .titletwo {
             font-family: Satoshi light;
-            font-size: 40px;
+            font-size: 30px;
             position: absolute;
             top: 65%;
             left: 50%;
@@ -65,7 +80,6 @@
             to { opacity: 1; }
         }
 
-      
         .menu {
             font-family: Satoshi;
             font-size: 20px;
@@ -76,8 +90,18 @@
             color: cornsilk;
         }
 
+        .name {
+            font-family: Satoshi;
+            font-size: 20px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            color: cornsilk;
+        }
+
         .dropdown {
-          font-family: Satoshi;
+            font-family: Satoshi;
             position: absolute;
             top: 120px;
             right: 20px;
@@ -112,15 +136,24 @@
 <body>
 
     <div class="title">
-        <p id="title"></p><span>म</span><span>धु</span><span>ब</span><span>नी</span><span>क</span><span>ला</span></p>
+        <p id="title"></p>
+        <span data-image="imgs/wallpainting.jpg">म</span>
+        <span data-image="imgs/009.jpg">धु</span>
+        <span data-image="imgs/003.jpg">ब</span>
+        <span data-image="imgs/image.jpeg">नी</span>
+        <span data-image="imgs/deepa.jpg">क</span>
+        <span data-image="imgs/001.jpg">ला</span>
     </div>
 
     <div class="titletwo">
         <p>Madhubani Art</p>
     </div>
 
+    <img src="" alt="Madhubani Art" class="madhubani-image" id="madhubaniImage">
+
     <!-- Menu acting as a dropdown trigger -->
     <div class="menu">Menu</div>
+    <div class="name">Name of the website</div>
 
     <!-- Dropdown menu -->
     <div class="dropdown">
@@ -139,6 +172,8 @@
     <script>
         const menu = document.querySelector('.menu');
         const dropdown = document.querySelector('.dropdown');
+        const titleLetters = document.querySelectorAll('.title span');
+        const madhubaniImage = document.getElementById('madhubaniImage');
 
         menu.addEventListener('click', () => {
             dropdown.classList.toggle('show');
@@ -150,6 +185,38 @@
                 dropdown.classList.remove('show');
             }
         });
+
+        // // Show different images next to hovered letters
+        // titleLetters.forEach(letter => {
+        //     letter.addEventListener('mouseenter', (event) => {
+        //         const imageSrc = letter.getAttribute('data-image');
+        //         madhubaniImage.src = imageSrc;
+        //         madhubaniImage.style.opacity = 1;
+
+        //         // Position image near hovered letter
+        //         const rect = event.target.getBoundingClientRect();
+        //         madhubaniImage.style.left = `${rect.left + window.scrollX + 50}px`;
+        //         madhubaniImage.style.top = `${rect.top + window.scrollY}px`;
+        //     });
+
+        //     letter.addEventListener('mouseleave', () => {
+        //         madhubaniImage.style.opacity = 0;
+        //     });
+        // });
+
+
+
+        titleLetters.forEach(letter => {
+    letter.addEventListener('mouseenter', () => {
+        const imageSrc = letter.getAttribute('data-image');
+        madhubaniImage.src = imageSrc;
+        madhubaniImage.style.opacity = 1;
+    });
+
+    letter.addEventListener('mouseleave', () => {
+        madhubaniImage.style.opacity = 0;
+    });
+});
     </script>
 
 </body>
