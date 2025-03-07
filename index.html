@@ -212,25 +212,38 @@
             transition: transform 0.3s ease, color 0.3s ease;
             display: inline-block;
             position: relative;
+            padding: 5px 10px;
         }
 
+        /* Dual line hover effect */
+        .dropdown-content a::before,
         .dropdown-content a::after {
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 0;
-            width: 0;
             height: 2px;
             background-color: cornsilk;
-            transition: width 0.3s ease;
+            transition: width 0.4s ease;
+            width: 0;
+        }
+
+        .dropdown-content a::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
+
+        .dropdown-content a::after {
+            right: 50%;
+            transform: translateX(100%);
         }
 
         .dropdown-content a:hover {
             transform: translateY(-2px);
         }
 
+        .dropdown-content a:hover::before,
         .dropdown-content a:hover::after {
-            width: 100%;
+            width: 50%;
         }
 
         .audio-container {
@@ -299,14 +312,14 @@
     <!-- Full-screen dropdown menu -->
     <div class="dropdown">
         <div class="dropdown-content">
-            <a href="main.html">About</a>
-            <a href="timeline.html">Timeline</a>
-            <a href="process.html">Process</a>
-            <a href="types.html">Types</a>
-            <a href="symbols.html">Symbols</a>
-            <a href="naturalcolour.html">Colours</a>
-            <a href="playfinal.html">Play</a>
-            <a href="resources.html">Resources</a>
+            <a href="#">About</a>
+            <a href="#">Timeline</a>
+            <a href="#">Process</a>
+            <a href="#">Types</a>
+            <a href="#">Symbols</a>
+            <a href="#">Colours</a>
+            <a href="#">Play</a>
+            <a href="#">Resources</a>
         </div>
     </div>
 
