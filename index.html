@@ -78,10 +78,8 @@
             to { opacity: 1; }
         }
 
-
-
-.description{
-  font-family: Satoshi light, sans-serif;
+        .description{
+            font-family: Satoshi light, sans-serif;
             font-size: 20px;
             position: absolute;
             top: 80%;
@@ -91,11 +89,7 @@
             max-width: 100%;
             line-height: 1.2;
             text-align: left;
-
-}
-
-
-
+        }
 
         /* Menu Styles */
         .menu, .name {
@@ -153,22 +147,20 @@
         }
 
         .audio-container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
 
-.audio-icon {
-    width: 40px; /* Adjust size as needed */
-    height: 40px;
-    transition: transform 0.3s ease;
-}
+        .audio-icon {
+            width: 40px; /* Adjust size as needed */
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
 
-.audio-icon:hover {
-    transform: scale(1.2);
-}
-
-        
+        .audio-icon:hover {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
@@ -186,30 +178,25 @@
         <p>Madhubani Art</p>
     </div>
 
-<div class="description">
+    <div class="description">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="audio-container">
+            <img src="imgs/speak.png" id="customPlayButton" class="audio-icon">
+            <audio id="customAudio">
+                <source src="imgs/Madhubani.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-<br>
-<br>
-<br>
-<br>
-  <div class="audio-container">
-    <img src="imgs/speak.png" id="customPlayButton" class="audio-icon">
-    <audio id="customAudio">
-        <source src="imgs/Madhubani.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-</div>
-
-<br>
-  <p> mah-doo-bah-nee</p>
-  <p>Madhubani or Mithila painting is a folk art of the Mithila region.<br>
-    The Mithila region includes the north of Bihar and the eastern Terai of Nepal.<br></p>
-</div>
-
-
-
-
-    <img src="" alt="Madhubani Art" class="madhubani-image" id="madhubaniImage">
+        <br>
+        <p> mah-doo-bah-nee</p>
+        <p>Madhubani or Mithila painting is a folk art of the Mithila region.<br>
+        The Mithila region includes the north of Bihar and the eastern Terai of Nepal.<br></p>
+    </div>
 
     <!-- Menu acting as a dropdown trigger -->
     <div class="menu">Menu</div>
@@ -230,48 +217,81 @@
     </div>
 
     <script>
-        const menu = document.querySelector('.menu');
-        const dropdown = document.querySelector('.dropdown');
-        const titleLetters = document.querySelectorAll('.title span');
-        const madhubaniImage = document.getElementById('madhubaniImage');
+        document.addEventListener("DOMContentLoaded", () => {
+            const menu = document.querySelector(".menu");
+            const dropdown = document.querySelector(".dropdown");
+            const titleLetters = document.querySelectorAll(".title span");
+            const audio = document.getElementById("customAudio");
+            const playButton = document.getElementById("customPlayButton");
+            let pageLoaded = false;
 
-        menu.addEventListener('click', () => {
-            dropdown.classList.toggle('show');
-        });
+            // Set page as loaded after animations complete
+            setTimeout(() => {
+                pageLoaded = true;
+            }, 2000);
 
-        // Hide dropdown when clicking outside
-        window.addEventListener('click', (event) => {
-            if (!menu.contains(event.target) && !dropdown.contains(event.target)) {
-                dropdown.classList.remove('show');
-            }
-        });
+            // Hover effect on title letters to show images
+            titleLetters.forEach(letter => {
+                letter.addEventListener("mouseenter", () => {
+                    if (pageLoaded) {
+                        const imageSrc = letter.getAttribute("data-image");
+                        showImage(imageSrc);
+                    }
+                });
 
-        titleLetters.forEach(letter => {
-            letter.addEventListener('mouseenter', () => {
-                const imageSrc = letter.getAttribute('data-image');
-                madhubaniImage.src = imageSrc;
-                madhubaniImage.style.opacity = 1;
+                letter.addEventListener("mouseleave", () => {
+                    hideImage();
+                });
             });
 
-            letter.addEventListener('mouseleave', () => {
-                madhubaniImage.style.opacity = 0;
+            // Menu dropdown toggle
+            menu.addEventListener("click", () => {
+                dropdown.classList.toggle("show");
+            });
+
+            // Hide dropdown when clicking outside
+            window.addEventListener("click", (event) => {
+                if (!menu.contains(event.target) && !dropdown.contains(event.target)) {
+                    dropdown.classList.remove("show");
+                }
+            });
+
+            // Audio play/pause functionality
+            playButton.addEventListener("click", () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.src = "imgs/speak.png"; // Change icon if needed
+                } else {
+                    audio.pause();
+                    playButton.src = "imgs/speak.png"; // Change back to play icon
+                }
             });
         });
 
-        const audio = document.getElementById("customAudio");
-const playButton = document.getElementById("customPlayButton");
+        function showImage(src) {
+            // Remove any existing images first
+            hideImage();
+            
+            // Create and show the new image
+            let img = document.createElement("img");
+            img.src = src;
+            img.classList.add("madhubani-image");
+            document.body.appendChild(img);
+            
+            // Trigger reflow before changing opacity for animation to work
+            img.offsetHeight;
+            
+            // Make image visible
+            img.style.opacity = "1";
+        }
 
-// Toggle play/pause when clicking the icon
-playButton.addEventListener("click", () => {
-    if (audio.paused) {
-        audio.play();
-        playButton.src = "imgs/speak.png"; // Change to pause icon
-    } else {
-        audio.pause();
-        playButton.src = "imgs/speak.png"; // Change back to play icon
-    }
-});
-
+        function hideImage() {
+            const images = document.querySelectorAll(".madhubani-image");
+            images.forEach(img => {
+                img.style.opacity = "0";
+                setTimeout(() => img.remove(), 300); // Remove after fade-out
+            });
+        }
     </script>
 
 </body>
