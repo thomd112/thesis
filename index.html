@@ -8,25 +8,24 @@
         body {
             background-color: #7e1134;
             margin: 0;
-            font-family: Satoshi medium;
+            font-family: light, sans-serif;
             overflow: hidden;
+            color: cornsilk;
         }
 
+        /* Title Styles */
         .title {
-            font-size: 15em;
+            font-size: 12em;
             font-family: Mithila-Beta6;
             position: absolute;
-            top: 30%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -50%);
-            margin: 0;
             letter-spacing: -0.18em;
-            display: inline-block;
             white-space: nowrap;
             opacity: 0;
             animation: fadeIn 1s ease-in forwards;
             animation-delay: 0.5s;
-            color: cornsilk;
         }
 
         @keyframes fadeIn {
@@ -45,34 +44,33 @@
             transform: scale(1.4);
         }
 
+        /* Madhubani Image Styles */
         .madhubani-image {
-      
             position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;  
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
         }
 
+        /* Subtitle Styles */
         .titletwo {
-            font-family: Satoshi light;
-            font-size: 30px;
+            font-family: Satoshi light, sans-serif;
+            font-size: 40px;
             position: absolute;
-            top: 65%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            margin: 0;
-            letter-spacing: -0.02em;
-            display: inline-block;
-            white-space: nowrap;
             opacity: 0;
             animation: fadeIntwo 2s ease-in forwards;
             animation-delay: 2s;
-            color: cornsilk;
+            max-width: 90%;
+            line-height: 1.6;
+            text-align: center;
         }
 
         @keyframes fadeIntwo {
@@ -80,28 +78,50 @@
             to { opacity: 1; }
         }
 
-        .menu {
-            font-family: Satoshi;
+
+
+.description{
+  font-family: Satoshi light, sans-serif;
+            font-size: 20px;
+            position: absolute;
+            top: 80%;
+            left: 24%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            max-width: 100%;
+            line-height: 1.2;
+            text-align: left;
+
+}
+
+
+
+
+        /* Menu Styles */
+        .menu, .name {
+            font-family: Satoshi, sans-serif;
             font-size: 20px;
             position: absolute;
             top: 20px;
-            right: 20px;
             cursor: pointer;
             color: cornsilk;
+        }
+
+        .menu {
+            right: 20px;
+        }
+
+        .menu:hover {
+            text-decoration: underline;
         }
 
         .name {
-            font-family: Satoshi;
-            font-size: 20px;
-            position: absolute;
-            top: 20px;
             left: 20px;
-            cursor: pointer;
-            color: cornsilk;
         }
 
+        /* Dropdown Styles */
         .dropdown {
-            font-family: Satoshi;
+            font-family: Satoshi, sans-serif;
             position: absolute;
             top: 120px;
             right: 20px;
@@ -119,24 +139,41 @@
             padding: 12px;
             text-decoration: none;
             display: block;
-            font-family: Satoshi medium;
+            font-family: Satoshi medium, sans-serif;
             font-size: 20px;
         }
 
         .dropdown-content a:hover {
-            background-color: #f85d15;
+            text-decoration: underline;
         }
 
         /* Show dropdown when active */
         .show {
             display: block;
         }
+
+        .audio-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.audio-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.audio-icon:hover {
+    transform: scale(1.2);
+}
+
+        
     </style>
 </head>
 <body>
 
     <div class="title">
-        <p id="title"></p>
         <span data-image="imgs/wallpainting.jpg">म</span>
         <span data-image="imgs/009.jpg">धु</span>
         <span data-image="imgs/003.jpg">ब</span>
@@ -148,6 +185,26 @@
     <div class="titletwo">
         <p>Madhubani Art</p>
     </div>
+
+<div class="description">
+
+
+  <div class="audio-container">
+    <img src="imgs/speak.png" id="customPlayButton" class="audio-icon">
+    <audio id="customAudio">
+        <source src="imgs/Madhubani.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+
+  <p> mah-doo-bah-nee</p>
+  <p>Madhubani or Mithila painting is a folk art of the Mithila region.<br>
+    The Mithila region includes the north of Bihar and the eastern Terai of Nepal.<br></p>
+</div>
+
+
+
 
     <img src="" alt="Madhubani Art" class="madhubani-image" id="madhubaniImage">
 
@@ -186,37 +243,32 @@
             }
         });
 
-        // // Show different images next to hovered letters
-        // titleLetters.forEach(letter => {
-        //     letter.addEventListener('mouseenter', (event) => {
-        //         const imageSrc = letter.getAttribute('data-image');
-        //         madhubaniImage.src = imageSrc;
-        //         madhubaniImage.style.opacity = 1;
-
-        //         // Position image near hovered letter
-        //         const rect = event.target.getBoundingClientRect();
-        //         madhubaniImage.style.left = `${rect.left + window.scrollX + 50}px`;
-        //         madhubaniImage.style.top = `${rect.top + window.scrollY}px`;
-        //     });
-
-        //     letter.addEventListener('mouseleave', () => {
-        //         madhubaniImage.style.opacity = 0;
-        //     });
-        // });
-
-
-
         titleLetters.forEach(letter => {
-    letter.addEventListener('mouseenter', () => {
-        const imageSrc = letter.getAttribute('data-image');
-        madhubaniImage.src = imageSrc;
-        madhubaniImage.style.opacity = 1;
-    });
+            letter.addEventListener('mouseenter', () => {
+                const imageSrc = letter.getAttribute('data-image');
+                madhubaniImage.src = imageSrc;
+                madhubaniImage.style.opacity = 1;
+            });
 
-    letter.addEventListener('mouseleave', () => {
-        madhubaniImage.style.opacity = 0;
-    });
+            letter.addEventListener('mouseleave', () => {
+                madhubaniImage.style.opacity = 0;
+            });
+        });
+
+        const audio = document.getElementById("customAudio");
+const playButton = document.getElementById("customPlayButton");
+
+// Toggle play/pause when clicking the icon
+playButton.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+        playButton.src = "imgs/speak.png"; // Change to pause icon
+    } else {
+        audio.pause();
+        playButton.src = "imgs/speak.png"; // Change back to play icon
+    }
 });
+
     </script>
 
 </body>
