@@ -79,11 +79,11 @@
         }
 
         .description{
-            font-family: Satoshi light, sans-serif;
-            font-size: 20px;
+          font-family: Satoshi light, sans-serif;
+            font-size: 15px;
             position: absolute;
             top: 80%;
-            left: 24%;
+            left: 18%;
             transform: translate(-50%, -50%);
             opacity: 1;
             max-width: 100%;
@@ -105,31 +105,91 @@
             box-sizing: border-box;
         }
 
-        .name {
-            font-family: Satoshi, sans-serif;
-            font-size: 20px;
-            color: cornsilk;
-        }
+        .name a {
+          font-family: Satoshi, sans-serif;
+    color: cornsilk;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+.name a::before,
+.name a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    height: 2px;
+    background-color: cornsilk;
+    transition: width 0.4s ease;
+    width: 0;
+}
+
+.name a::before {
+    left: 50%;
+    transform: translateX(-100%);
+}
+
+.name a::after {
+    right: 50%;
+    transform: translateX(100%);
+}
+
+.name a:hover::before,
+.name a:hover::after {
+    width: 50%;
+}
+
+
+
+
+
+
+
 
         .menu-container {
             position: relative;
         }
 
         .menu-button {
-            font-family: Satoshi, sans-serif;
-            font-size: 20px;
-            cursor: pointer;
-            color: cornsilk;
-            background: none;
-            border: none;
-            display: flex;
-            align-items: center;
-            padding: 0;
-        }
+    font-family: Satoshi, sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    color: cornsilk;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    position: relative;
+}
 
-        .menu-button:hover {
-            text-decoration: underline;
-        }
+.menu-button::before,
+.menu-button::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    height: 2px;
+    background-color: cornsilk;
+    transition: width 0.4s ease;
+    width: 0;
+}
+
+.menu-button::before {
+    left: 50%;
+    transform: translateX(-100%);
+}
+
+.menu-button::after {
+    right: 50%;
+    transform: translateX(100%);
+}
+
+.menu-button:hover::before,
+.menu-button:hover::after {
+    width: 50%;
+}
+
 
         .menu-icon {
             width: 24px;
@@ -207,7 +267,7 @@
         .dropdown-content a {
             color: cornsilk;
             text-decoration: none;
-            font-family: Satoshi medium, sans-serif;
+            font-family: Satoshi, sans-serif;
             font-size: 32px;
             transition: transform 0.3s ease, color 0.3s ease;
             display: inline-block;
@@ -265,7 +325,14 @@
 </head>
 <body>
     <div class="header">
-        <div class="name">The Madhubani Canvas</div>
+        <!-- <div class="name">The Madhubani Canvas</div> -->
+
+
+        <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
+      
+
+
+
         <div class="menu-container">
             <button class="menu-button">
                 Menu
@@ -290,6 +357,10 @@
     </div>
 
     <div class="description">
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>

@@ -1,175 +1,741 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madhubani Art Timeline</title>
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { display: flex; height: 100vh; font-family: Satoshi medium;}
-        .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; align-items: center; justify-content: center; }
-        .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
-        .sticky-container { position: sticky;  ; z-index: 10; display: flex; justify-content: space-between; }
-        .sticky-top { top: 0; }
-        .sticky-bottom { bottom: 0; }
-        .sticky-text { padding: 10px; background: #7e1134;  text-decoration: none; color: rgb(242, 232, 232); opacity:0.5 ;display: inline-block; }
-        .sticky-text:hover { opacity:1; cursor: grab;}
-        .content { height: 200vh; padding-top: 80px; }
-        .line-container {
-    position: relative;
-    width: 12px; /* Adjust spacing between lines */
-    height: 100vh;
-    display: flex;
-    justify-content: space-between;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Timeline Content */
-        .content { padding-top: 80px; text-align: center; }
-
-        .timeline-container {
-            display: grid;
-            grid-template-columns: 1fr 3px 1fr; /* Left text | Center Line | Right text */
-            align-items: center;
-            gap: 50px;
-            max-width: 900px;
-            /* margin: auto; */
-            padding-top: 20px;
-            color: cornsilk;
+        body {
+            display: flex;
+            height: 100vh;
+            font-family: 'Satoshi medium', sans-serif; /* Use quotes */
         }
 
-        .line-container {
-            position: relative;
+        .left {
+            width: 50%;
+            position: relative; /* Required for absolute positioning of images */
+            overflow: hidden; /* Prevent images from overflowing */
+            background-image: url('imgs/wallimage.jpg');
+        }
+
+        .left img {
+            width: 100%;
             height: 100%;
+            object-fit: cover; /* Maintain aspect ratio and cover the container */
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0; /* Initially hide all images */
+            transition: opacity 0.5s ease;
+        }
+
+        .left img.active {
+            opacity: 1; /* Make the active image visible */
+        }
+
+        .right {
+            width: 50%;
+            overflow-y: scroll;
+            position: relative;
+            padding: 20px;
+            background: #7e1134;
+            height: 100vh;
+        }
+
+        .content {
+            padding-top: 80px;
+            text-align: center;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: cornsilk;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        /* Timeline items */
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        /* Circles on timeline */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #7e1134;
+            border: 4px solid cornsilk;
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Left side items */
+        .left-item {
+            left: 0;
+            text-align: right;
+        }
+
+        /* Right side items */
+        .right-item {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* Adjust circles position for right items */
+        .right-item::after {
+            left: -10px;
+        }
+
+        /* Timeline content */
+        .timeline-content {
+            padding: 20px;
+            /* background-color: rgba(0, 0, 0, 0.2); */
+            position: relative;
+            border-radius: 6px;
+            color: cornsilk;
+            text-align: left;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            margin-bottom: 15px;
+        }
+
+        .timeline-content a {
+            color: cornsilk;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .timeline-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Menu Styles from main page */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            
+        }
+
+        /* .name {
+            font-family: 'Satoshi', sans-serif; 
+            font-size: 20px;
+            color: #7e1134;
+            
+        } */
+        .name a {
+          font-family: Satoshi, sans-serif;
+    color: cornsilk;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+.name a::before,
+.name a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    height: 2px;
+    background-color: cornsilk;
+    transition: width 0.4s ease;
+    width: 0;
+}
+
+.name a::before {
+    left: 50%;
+    transform: translateX(-100%);
+}
+
+.name a::after {
+    right: 50%;
+    transform: translateX(100%);
+}
+
+.name a:hover::before,
+.name a:hover::after {
+    width: 50%;
+}
+
+
+
+
+        
+
+        .menu-container {
+            position: relative;
+        }
+
+        .menu-button {
+            font-family: 'Satoshi', sans-serif; /* Use quotes */
+            font-size: 20px;
+            cursor: pointer;
+            color: cornsilk;
+            background: none;
+            border: none;
             display: flex;
             align-items: center;
+            padding: 0;
+        }
+
+        .menu-button:hover {
+            text-decoration: underline;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+            position: relative;
+        }
+
+        .menu-icon::before,
+        .menu-icon::after,
+        .menu-icon span {
+            background-color: cornsilk;
+            content: '';
+            display: block;
+            height: 2px;
+            position: absolute;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before {
+            top: 5px;
+        }
+
+        .menu-icon span {
+            top: 11px;
+        }
+
+        .menu-icon::after {
+            top: 17px;
+        }
+
+        .menu-button.active .menu-icon::before {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .menu-button.active .menu-icon span {
+            opacity: 0;
+        }
+
+        .menu-button.active .menu-icon::after {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(126, 17, 52, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            z-index: 900;
+        }
+
+        .dropdown.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content a {
             color: cornsilk;
+            text-decoration: none;
+            font-family: 'Satoshi medium', sans-serif; /* Use quotes */
+            font-size: 32px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding: 5px 10px;
         }
 
-        .line {
-            width: 3px;
-            height: 100%;
-            background: cornsilk;
+        /* Dual line hover effect */
+        .dropdown-content a::before,
+        .dropdown-content a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
         }
 
-        .timeline-text {
-            padding: 20px;
-            max-width: 90%;
-            text-align:left;
+        .dropdown-content a::before {
+            left: 50%;
+            transform: translateX(-100%);
         }
 
-        .timeline-text p { margin-bottom: 15px; }
+        .dropdown-content a::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .timeline-container {
-                grid-template-columns: 1fr;
+        .dropdown-content a:hover {
+            transform: translateY(-2px);
+        }
+
+        .dropdown-content a:hover::before,
+        .dropdown-content a:hover::after {
+            width: 50%;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+                height: auto;
             }
-            .line-container { display: none; }
+
+            .left {
+                width: 100%;
+                height: 300px;
+            }
+
+            .right {
+                width: 100%;
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .timeline-container::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .left-item,
+            .right-item {
+                left: 0;
+                text-align: left;
+            }
         }
+
+        .timeline-item.active::after {
+    background-color: rgb(255, 221, 0); /* Change color when active */
+}
+
     </style>
 </head>
+
 <body>
+
+  
     <div class="left">
-        <!-- <img src="wallpainting.jpg" alt = "Railway Station"width="300" height="200"> -->
-        <img src="imgs/khobarone.jpg" alt="Kohbar image" width="600" height="500">
-        <img src="imgs/trainstation.jpg" alt = "Railway Station"width="300" height="200">
-        <!-- <img src="wallpaintingtwo.jpg" alt = "Railway Station"width="300" height="200"> -->
-      </div>
+        <img src="imgs/khobarone.jpg" alt="Kohbar image" data-image="khobarone.jpg">
+        <img src="imgs/trainstation.jpg" alt="Railway Station" data-image="trainstation.jpg">
+        <img src="imgs/wallimage.jpg" alt="Wall Image" data-image="img/wallimage.jpg">
+        <img src="imgs/009.jpg" alt="Wall Image" data-image="009.jpg">
+        <img src="imgs/003.jpg" alt="Wall Image" data-image="003.jpg">
+        <img src="imgs/001.jpg" alt="Wall Image" data-image="001.jpg">
+        <img src="imgs/deepa.jpg" alt="Wall Image" data-image="deepa.jpg">
+    </div>
+
     <div class="right">
-        <div class="sticky-container sticky-top">
-            <a href="main.html" class="sticky-text">About</a>
-            <a href="timeline.html" class="sticky-text">Timeline</a>
-            <a href="process.html" class="sticky-text">Process</a>
-            <a href="types.html" class="sticky-text">Types</a>
+        <!-- Added header with menu from main page -->
+        <div class="header">
+            <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
+
+            <div class="menu-container">
+                <button class="menu-button">
+                    Menu
+                    <div class="menu-icon">
+                        <span></span>
+                    </div>
+                </button>
+            </div>
         </div>
 
         <div class="content">
-            <h1 style="font-size: 50px;color:cornsilk">TIMELINE</h1>
-            <p style="color: cornsilk">This is the timeline of Madhubani Art.</p> 
+            <h1 style="font-size: 40px; color: cornsilk;">TIMELINE ↓</h1>
+            <p style="color: cornsilk; margin-bottom: 30px;">This is the timeline of Madhubani Art.</p>
 
             <div class="timeline-container">
+                <!-- Year 1 - Left -->
+                <div class="timeline-item left-item" data-image="khobarone.jpg">
+                    <div class="timeline-content">
+                        <h3>8th or 7th century BCE</h3>
+                        <p>Mithila is historically associated with the ancient kingdom of Videha, with its capital at Janakpur. King Janak of
+                            Mithila commissions artists to capture moments of his daughter Sita's wedding to Lord Ram, believed to be the origin
+                            of this 2500-year-old folk art.</p>
+                    </div>
 
-                
-                <div class="timeline-text">
-                    <a href="imgs/khobarone.jpg">Year One</a><p>◉ The paintings on the walls are known as Bhitti Chitra and the paintings on the floor are known as Aripana.</p>
-                </div>
-                <div class="line-container"><div class="line"></div></div>
-                <div class="timeline-text">
-                    <a href="imgs/trainstation.jpg">Year Two</a>
-                   
-                    <p>Paintings were typically done on walls during holidays, religious celebrations, and other significant life events like marriage, birth, and the Upanayanam.</p>
-                </div>
 
-                <div class="timeline-text">
-                    <h3>Year 3</h3>
-                    <p>Madhubani paintings are traditionally done by women painters from the Mithila region.</p>
-                </div>
-                <div class="line-container"><div class="line"></div></div>
-                <div class="timeline-text">
-                    <h3>Year 4</h3>
-                    <p>They live in a small society, and every mother teaches her daughter the art of making Madhubani paintings.</p>
-                </div>
 
-                <div class="timeline-text">
-                    <h3>Year 5</h3>
-                    <p>Legend of King Ranak: Originated in the Mithila region of India, dating back to the 8th or 7th century BCE.</p>
-                </div>
-                <div class="line-container"><div class="line"></div></div>
-                <div class="timeline-text">
-                    <h3>Year 6</h3>
-                    <p>Was traditionally drawn on walls of homes, known as bhitti chitra (wall paintings).</p>
-                </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-                <div class="timeline-text">
-                    <h3>Year 7</h3>
-                    <p>In 1934, British Colonial Officer William G. Archer discovered Madhubani paintings on the walls of homes in Bihar.</p>
-                </div>
-                <div class="line-container"><div class="line"></div></div>
-                <div class="timeline-text">
-                    <h3>Year 8</h3>
-                    <p>Archer wrote an article in Marg magazine comparing Madhubani paintings to the work of Picasso and Miro.</p>
-                </div>
 
-                <div class="timeline-text">
-                    <h3>Year 9</h3>
-                    <p>UNESCO Madhubani art on trains to spread awareness.</p>
-                </div>
-                <div class="line-container"><div class="line"></div></div>
-                <div class="timeline-text">
-                    <h3>Year 10</h3>
-                    <p>Museum in Japan featuring artwork and conserving art style.</p>
-                </div>
 
-                <div class="timeline-text">
-                    <h3>Year 11</h3>
-                    <p>Since ancient times, women of the Mithila region have painted the walls and floors of their homes with Madhubani paintings to celebrate occasions such as religious festivals, births, and marriages.</p>
+
+
+
                 </div>
-                <div class="line-container"><div class="line"></div></div>
-                <div class="timeline-text">
-                    <h3>Year 12</h3>
-                    <p>Madhubani painting received national attention when Sita Devi and Jagdamba Devi were awarded national awards by the President of India.</p>
+                <!-- Year 2 - Right -->
+                <div class="timeline-item right-item" data-image="trainstation.jpg">
+                    <div class="timeline-content">
+                        <h3>12th century CE</h3>
+
+                        <p> Vidyapati, also known as Vidyapati Thakur, was a renowned 14th-15th century Indian poet, writer, and philosopher.
+                            Vidyapati's poetry, particularly his work “Kirtipataka,” describes the Mithila painting as part of the Shringara Rasa
+                            (aesthetic of love and beauty), suggesting an early association between the art form and tantric themes.</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- Year 3 - Left -->
+                <div class="timeline-item left-item" data-image="009.png">
+                    <div class="timeline-content">
+                        <h3>January 15, 1934</h3>
+
+                        <p>Severe earthquakes struck Northern Bihar and Nepal, leading to the “discovery” of Madhubani paintings by British
+                            colonial officer William G. Archer.
+                            In January 1934, W.G. Archer said he had 'discovered' an exciting ancient wall painting in which he saw modern
+                            beauty paralleled with contemporary Western art.</p>
+                    </div>
+                    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
                 </div>
 
-                <div class="timeline-text">
-                    <h3>Year 13</h3>
-                    <p>Madhubani painting was used in a conservation effort to protect trees in Bihar from deforestation.</p>
+                <!-- Year 4 - Right -->
+                <div class="timeline-item right-item" data-image="003.jpg">
+                    <div class="timeline-content">
+                        <h3>1962</h3>
+
+                        <p> Post the 1961-62 famine, Bhaskar Kulkarni, the chief designer of the Union Textile Ministry, visited Jitwarpur.
+                            Impressed by the local artistry, he initiated efforts to promote Madhubani painting.</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- Year 5 - Left -->
+                <div class="timeline-item left-item" data-image="001.jpg">
+                    <div class="timeline-content">
+                        <h3>Late 1960s</h3>
+
+                        <p>Pupul Jayakar, an Indian activist and writer who is part of the All India Handicrafts Board, sends artist Bhaskar
+                            Kulkarni to Mithila to encourage women to replicate their mural paintings on paper from painting on floors and walls
+                            to make a living.</p>
+                    </div>
+                </div>
+                <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+                <!-- Year 6 - Right -->
+                <div class="timeline-item right-item" data-image="2018.jpg">
+                    <div class="timeline-content">
+                        <h3>1960s-1970s</h3>
+                        <p> Madhubani paintings transitioned from wall art to paper and canvas, shifting from domestic to commercial art.</p>
+                    </div>
+                </div>
+                <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+                <!-- Year 7 - Left -->
+                <div class="timeline-item left-item" data-image="wallpainting.jpg">
+                    <div class="timeline-content">
+                        <h3>1975</h3>
+                        <p>Jagdamba Devi received the National Award in 1970 and became the first female artist to receive the Padma Shri.</p>
+                    </div>
+                </div>
+                <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+                <!-- Year 8 - Right -->
+                <div class="timeline-item right-item" data-image="wallpaintingtwo.jpg">
+                    <div class="timeline-content">
+                        <h3>1976</h3>
+                        <p> Sita Devi receives the National Award, further elevating the recognition of Madhubani art.</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- Year 9 - Left -->
+                <div class="timeline-item left-item" data-image="wallimage.jpg">
+                    <div class="timeline-content">
+                        <h3>1981</h3>
+                        <p>Ganga Devi receives the National Award and later gains international recognition for her work.</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- Year 10 - Right -->
+                <div class="timeline-item right-item" data-image="khobarone.jpg">
+                    <div class="timeline-content">
+                        <h2>1982</h2>
+                        <p>The Mithila Museum in Tokamachi, Japan, opened in 1982 and houses one of the world’s largest collections of
+                            Madhubani art. Japanese curator Tokio Hasegawa founded the museum to protect Madhubani art, which he felt was in
+                            danger of being lost to Western influences. Hasegawa invited Madhubani artists to Japan to paint and help establish
+                            the museum. This museum features the artworks of Sita and Ganga Devi.</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- Year 11 - Left -->
+                <div class="timeline-item left-item" data-image="trainstation.jpg">
+                    <div class="timeline-content">
+                        <h3>2003</h3>
+                        <p>The Mithila Art Institute was founded in Madhubani town with support from the Ethnic Arts Foundation of California.
+                            The institute provides a two-year program that trains artists, many of whom come from Jitwarpur.</p>
+                    </div>
+                </div>
+                <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+                <!-- Year 12 - Right -->
+                <div class="timeline-item right-item" data-image="wallimage.jpg">
+                    <div class="timeline-content">
+                        <h3>2016-2018</h3>
+                        <p> UNESCO features Madhubani art on trains to spread awareness.
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- Year 13 - Left -->
+                <div class="timeline-item left-item" data-image="khobarone.jpg">
+                    <div class="timeline-content">
+                        <h3>2020</h3>
+                        <p>The Bihar Chief Minister laid the foundation for 'Mithila Haat,' a project to showcase Jitwarpur as a craft village.
+                            This initiative, supported by the Ministry of Textiles, is estimated to cost ₹9.37 crore (1.2 million).</p>
+                    </div>
                 </div>
             </div>
         </div>
-        
 
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br>
 
-        <div class="sticky-container sticky-bottom">
-            <a href="symbols.html" class="sticky-text">Symbols</a>
-            <a href="naturalcolour.html" class="sticky-text">Colours</a>
-            <a href="resources.html" class="sticky-text">Resources</a>
-            <a href="playfinal.html" class="sticky-text">Play</a>
+
+        <p style="color: cornsilk; margin-left: 250px;">This is the timeline of Madhubani Art.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Added full-screen dropdown menu from main page -->
+    <div class="dropdown">
+        <div class="dropdown-content">
+            <a href="main.html">About</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="process.html">Process</a>
+            <a href="types.html">Types</a>
+            <a href="symbols.html">Symbols</a>
+            <a href="naturalcolour.html">Colours</a>
+            <a href="playfinal.html">Play</a>
+            <a href="resources.html">Resources</a>
         </div>
     </div>
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const menuButton = document.querySelector(".menu-button");
+    const dropdown = document.querySelector(".dropdown");
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    const leftImages = document.querySelector(".left").querySelectorAll("img");
+    const right = document.querySelector(".right");
+
+    // Function to hide all images
+    function hideAllImages() {
+        leftImages.forEach(img => img.classList.remove("active"));
+    }
+
+    // Show the first image on load
+    if (leftImages.length > 0) {
+        hideAllImages();
+        leftImages[0].classList.add("active");
+    }
+
+    // Function to handle the image change and highlight circle based on the timeline item in view
+    function handleTimelineScroll() {
+        timelineItems.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            // Check if the item is in the viewport
+            const isVisible = (rect.top >= 0 && rect.top <= window.innerHeight * 0.75);
+
+            // Add or remove active class based on visibility
+            if (isVisible) {
+                item.classList.add("active");
+                const imageName = item.dataset.image;
+
+                // Find the corresponding image and show it
+                hideAllImages();
+                leftImages.forEach(img => {
+                    if (img.dataset.image === imageName) {
+                        img.classList.add("active");
+                    }
+                });
+            } else {
+                item.classList.remove("active");
+            }
+        });
+    }
+
+    // Menu toggle
+    menuButton.addEventListener("click", () => {
+        menuButton.classList.toggle("active");
+        dropdown.classList.toggle("show");
+    });
+
+    // Add scroll event listener to the right section
+    right.addEventListener("scroll", handleTimelineScroll);
+
+    // Initial check to show the image corresponding to the first visible timeline item
+    handleTimelineScroll();
+});
+
+
+
+
+
+
+
+
+
+    </script>
 </body>
+
 </html>

@@ -7,34 +7,39 @@
     <title>Madhubani Art</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { display: flex; height: 100vh; font-family: Satoshi medium;}
+        body { display: flex; height: 100vh; font-family: Satoshi medium; }
         .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; align-items: center; justify-content: center; }
-        .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
-        .sticky-container { position: sticky;  ; z-index: 10; display: flex; justify-content: space-between; }
+        .right { 
+            width: 50%; 
+            height: 100vh;  
+            overflow: hidden; 
+            position: relative; 
+            padding: 20px; 
+            background: #7e1134; 
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            justify-content: space-between;
+        }
+        .sticky-container { position: sticky; z-index: 10; display: flex; justify-content: space-between; }
         .sticky-top { top: 0; }
         .sticky-bottom { bottom: 0; }
         .sticky-text { padding: 10px; background: #7e1134;  text-decoration: none; color: rgb(242, 232, 232); opacity:0.5 ;display: inline-block; }
         .sticky-text:hover { opacity:1; cursor: grab;}
-        .content { height: 200vh; padding-top: 80px; }
-        .line-container {
-    position: relative;
-    width: 12px; /* Adjust spacing between lines */
-    height: 100vh;
-    display: flex;
-    justify-content: space-between;
-}
-
-.line {
-    width: 3px; /* Line thickness */
-    height: 100%;
-    background: cornsilk; /* Line color */
-}
+        .content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         
+
 
     </style>
 </head>
 <body>
-    <div class="left">Add drawing here</div>
+    <div class="left">
+        <video controls autoplay width="640" height="360">
+          <source src="recording.mp4" type="video/mp4">
+        </video>
+      </div>
+    
+    
     <div class="right">
         <div class="sticky-container sticky-top">
             <a href="main.html" class="sticky-text">About</a>
@@ -44,40 +49,50 @@
         </div>
 
         <div class="content">
+            <audio controls>
+                <source src="Madhubani.mp3" type="audio/mpeg">
+            </audio>   
+            
+
            
 
-
-            <div><h1 style="font-size: 100px;">PLAY</h1></div>
+            <div><h1 style="font-size: 100px;">MADHUBANI ART</h1></div>
+            <br>
+            <br>
+          
+            <div><p>Madhubani or Mithila painting is a folk art of the Mithila region.</p></div>
+            <div><p>The Mithila region includes the north of Bihar and the eastern Terai of Nepal.</p></div>
+            <div><p><em>mah-doo-bah-nee</em></p></div>
+<br>
+            <p>characteristics: 2d figures, double lines no empty spaces, no gaps, border: nature elements or geometrical </p>
         <br>
         <br>
-
-       
-
-
-    <h1>PLAYs</h1>
-
-
-
-
+        <br>
+            
+      
 
 
         </div>
+
         <div class="sticky-container sticky-bottom">
             <a href="symbols.html" class="sticky-text">Symbols</a>
             <a href="naturalcolour.html" class="sticky-text">Colours</a>
             <a href="resources.html" class="sticky-text">Resources</a>
-            <a href="playfinal.html" class="sticky-text">Play</a>
+            <a href="jen.html" class="sticky-text">Play</a>
         </div>
     </div>
-
-    </div>
-
-
+</body>
+</html>
 
 
+       
 
 
-   
+
+
+
+
+
 
 
 
