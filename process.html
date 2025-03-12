@@ -305,27 +305,152 @@
             width: 50%;
         }
 
-        .audio-container {
+        /* Materials Section Styles */
+        .materials-section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .material-item {
+            position: relative;
+            width: 100%;
+            cursor: url('thecursor.png'), pointer;
+            transition: transform 0.3s ease;
+            aspect-ratio: 1;
+        }
+
+        .material-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .material-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid cornsilk;
+            transition: opacity 0.3s ease;
+        }
+
+        .material-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(126, 17, 52, 0.8);
+            color: cornsilk;
+            padding: 10px;
+            text-align: center;
+            font-family: Satoshi, sans-serif;
+            font-size: 18px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .material-item:hover .material-name {
+            background-color: rgba(126, 17, 52, 1);
+        }
+
+        .material-description {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(126, 17, 52, 0.9);
+            color: cornsilk;
+            padding: 15px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for audio controls */
+            justify-content: center;
+            text-align: center;
+            font-family: Satoshi light, sans-serif;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            box-sizing: border-box;
         }
 
-        .audio-icon {
-            width: 40px;
-            height: 40px;
-            transition: transform 0.3s ease;
+        .material-item:hover .material-description {
+            opacity: 1;
         }
 
-        .audio-icon:hover {
-            transform: scale(1.2);
+        .section-title {
+            font-family: 'Mithila-Beta6', sans-serif;
+            color: cornsilk;
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 40px;
+            grid-column: 1 / -1;
+            letter-spacing: -0.05em;
+        }
+
+        .materials-category {
+            grid-column: 1 / -1;
+            font-family: Satoshi, sans-serif;
+            color: cornsilk;
+            font-size: 2em;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .materials-section {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                width: 90%;
+                gap: 20px;
+            }
+            
+            .section-title {
+                font-size: 3em;
+            }
+            
+            .materials-category {
+                font-size: 1.5em;
+            }
+            
+            .material-name {
+                font-size: 14px;
+            }
+            
+            .material-description {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .materials-section {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 2.5em;
+            }
+            
+            .materials-category {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <!-- <div class="name">The Madhubani Canvas</div> -->
-        <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
+        <div class="name"><a href="index.html">The Madhubani Canvas</a></div>
         <div class="menu-container">
             <button class="menu-button">
                 Menu
@@ -336,7 +461,6 @@
         </div>
     </div>
 
-   
     <!-- Full-screen dropdown menu -->
     <div class="dropdown">
         <div class="dropdown-content">
@@ -348,6 +472,78 @@
             <a href="naturalcolour.html">Colours</a>
             <a href="playfinal.html">Play</a>
             <a href="resources.html">Resources</a>
+            
+        </div>
+    </div>
+
+    <!-- Materials Section -->
+    <div class="materials-section">
+        <h1 class="section-title">Madhubani Art Materials</h1>
+        
+        <h2 class="materials-category">Tools</h2>
+        
+        <div class="material-item">
+            <img src="imgs/materials/bamboo.jpg" alt="Bamboo stick" class="material-image">
+            <div class="material-name">Bamboo Stick</div>
+            <div class="material-description">Used to create the intricate black outline of the painting</div>
+        </div>
+        
+        <div class="material-item">
+            <img src="imgs/materials/pencil.jpg" alt="Pencil" class="material-image">
+            <div class="material-name">Pencil</div>
+            <div class="material-description">Used to sketch the rough outline of the painting</div>
+        </div>
+        
+        <div class="material-item">
+            <img src="imgs/materials/nibpen.jpg" alt="Nib pen" class="material-image">
+            <div class="material-name">Nib Pen</div>
+            <div class="material-description">Used to sketch on the outline drawn by the pencil</div>
+        </div>
+        
+        <div class="material-item">
+            <img src="imgs/materials/paintpallete.jpg" alt="Paint pallete" class="material-image">
+            <div class="material-name">Paint Pallete</div>
+            <div class="material-description">Used to mix paints to a required density for painting</div>
+        </div>
+        
+        <div class="material-item">
+            <img src="imgs/materials/clothpiece.jpg" alt="Cloth piece" class="material-image">
+            <div class="material-name">Cloth Piece</div>
+            <div class="material-description">Used to wipe extra color from the brush</div>
+        </div>
+        
+        <div class="material-item">
+            <img src="imgs/materials/paintbrush.jpg" alt="Paintbrush" class="material-image">
+            <div class="material-name">Paintbrush</div>
+            <div class="material-description">Used to paint with different colors over the sketch</div>
+        </div>
+        
+        <h2 class="materials-category">Base Materials</h2>
+        
+        <div class="material-item">
+            <img src="imgs/materials/handmadepaper.jpg" alt="Handmade paper" class="material-image">
+            <div class="material-name">Handmade Paper</div>
+            <div class="material-description">The basic material used for painting</div>
+        </div>
+        
+        <div class="material-item">
+            <img src="imgs/materials/canvas.jpg" alt="Canvas cloth" class="material-image">
+            <div class="material-name">Canvas Cloth</div>
+            <div class="material-description">An alternative base material used for painting</div>
+        </div>
+        
+        <h2 class="materials-category">Colors</h2>
+        
+        <div class="material-item">
+            <img src="imgs/materials/acryliccolors.jpg" alt="Acrylic colors" class="material-image">
+            <div class="material-name">Acrylic Colors</div>
+            <div class="material-description">Used to paint on handmade paper or canvas cloth</div>
+        </div>
+        
+        <div class="material-item">
+            <img src="imgs/materials/naturaldyes.jpg" alt="Natural dyes" class="material-image">
+            <div class="material-name">Natural Dyes</div>
+            <div class="material-description">Used to create the paint, such as ochre and lampblack</div>
         </div>
     </div>
 
@@ -356,8 +552,6 @@
             const menuButton = document.querySelector(".menu-button");
             const dropdown = document.querySelector(".dropdown");
             const titleLetters = document.querySelectorAll(".title span");
-            const audio = document.getElementById("customAudio");
-            const playButton = document.getElementById("customPlayButton");
             let pageLoaded = false;
 
             // Set page as loaded after animations complete
@@ -366,18 +560,20 @@
             }, 3000);
 
             // Hover effect on title letters to show images
-            titleLetters.forEach(letter => {
-                letter.addEventListener("mouseenter", () => {
-                    if (pageLoaded) {
-                        const imageSrc = letter.getAttribute("data-image");
-                        showImage(imageSrc);
-                    }
-                });
+            if (titleLetters) {
+                titleLetters.forEach(letter => {
+                    letter.addEventListener("mouseenter", () => {
+                        if (pageLoaded) {
+                            const imageSrc = letter.getAttribute("data-image");
+                            if (imageSrc) showImage(imageSrc);
+                        }
+                    });
 
-                letter.addEventListener("mouseleave", () => {
-                    hideImage();
+                    letter.addEventListener("mouseleave", () => {
+                        hideImage();
+                    });
                 });
-            });
+            }
 
             // Menu toggle
             menuButton.addEventListener("click", () => {
@@ -396,21 +592,27 @@
                 });
             });
 
-            // Audio play/pause functionality
-            playButton.addEventListener("click", () => {
-                if (audio.paused) {
-                    audio.play();
-                    playButton.src = "imgs/speak.png"; // Change icon if needed
-                } else {
-                    audio.pause();
-                    playButton.src = "imgs/speak.png"; // Change back to play icon
+            // Function to show image (placeholder)
+            function showImage(src) {
+                if (!src) return;
+                let img = document.querySelector('.madhubani-image');
+                if (!img) {
+                    img = document.createElement('img');
+                    img.className = 'madhubani-image';
+                    document.body.appendChild(img);
                 }
-            });
+                img.src = src;
+                img.style.opacity = '1';
+            }
+
+            // Function to hide image
+            function hideImage() {
+                const img = document.querySelector('.madhubani-image');
+                if (img) {
+                    img.style.opacity = '0';
+                }
+            }
         });
-
-        
-
-     
     </script>
 </body>
 </html>

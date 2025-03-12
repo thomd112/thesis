@@ -3,164 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Madhubani Art</title>
+    <title>Hover Grid</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { display: flex; height: 100vh; font-family: Satoshi medium;}
-        .left { width: 50%; background: #ffffff; color: #7e1134; display: flex; align-items: center; justify-content: center;  }
-        .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
-        .sticky-container { position: sticky;  ; z-index: 10; display: flex; justify-content: space-between; }
-        .sticky-top { top: 0; }
-        .sticky-bottom { bottom: 0; }
-        .sticky-text { padding: 10px; background: #7e1134;  text-decoration: none; color: rgb(242, 232, 232); opacity:0.5 ;display: inline-block; }
-        .sticky-text:hover { opacity:1; cursor: grab;}
-        .content { height: 200vh; padding-top: 80px; }
-        .line-container {
-    position: relative;
-    width: 12px; 
-    height: 100vh;
-    display: flex;
-    justify-content: space-between;
-}
-
-    
-
-.left-container{
-    --columns: 4;
-    display: grid; 
-    grid-template-columns: repeat(var(--columns), auto auto);
-            width: 50%; 
-            height: 100vh;
-            grid-auto-rows: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: fixed;
-            left: 0;
-            top: 0;
-            border: solid #9c2929 20px;
-    
-           
-
-            
-
-}
-
-
-
-
-
-.grid-item {
-    background-color: rgb(242, 237, 214); 
-            border: 1px solid #8D0B41; 
-            width: 720px;
-            height: 720px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
+        body {
+            background-color: #7e1134;
+            margin: 0;
+            font-family: sans-serif;
+            color: cornsilk;
+            cursor: pointer;
+            overflow-x: hidden;
         }
 
+        /* Header and Navigation Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
 
+        .name a {
+            font-family: sans-serif;
+            color: cornsilk;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 5px 0;
+        }
 
+        .name a::before,
+        .name a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+        }
 
+        .name a::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
 
+        .name a::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
 
+        .name a:hover::before,
+        .name a:hover::after {
+            width: 50%;
+        }
 
+        .menu-container {
+            position: relative;
+        }
 
+        .menu-button {
+            font-family: sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+            color: cornsilk;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
 
+        .menu-button::before,
+        .menu-button::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+        }
+
+        .menu-button::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
+
+        .menu-button::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
+
+        .menu-button:hover::before,
+        .menu-button:hover::after {
+            width: 50%;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+            position: relative;
+        }
+
+        .menu-icon::before,
+        .menu-icon::after,
+        .menu-icon span {
+            background-color: cornsilk;
+            content: '';
+            display: block;
+            height: 2px;
+            position: absolute;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before {
+            top: 5px;
+        }
+
+        .menu-icon span {
+            top: 11px;
+        }
+
+        .menu-icon::after {
+            top: 17px;
+        }
+
+        .menu-button.active .menu-icon::before {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .menu-button.active .menu-icon span {
+            opacity: 0;
+        }
+
+        .menu-button.active .menu-icon::after {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* Full-screen dropdown menu */
+        .dropdown {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #7e1134;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            z-index: 900;
+        }
+
+        .dropdown.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content a {
+            color: cornsilk;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 32px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .dropdown-content a::before,
+        .dropdown-content a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+        }
+
+        .dropdown-content a::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
+
+        .dropdown-content a::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
+
+        .dropdown-content a:hover {
+            transform: translateY(-2px);
+        }
+
+        .dropdown-content a:hover::before,
+        .dropdown-content a:hover::after {
+            width: 50%;
+        }
+
+        /* Grid Container */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            padding: 80px 20px 20px 20px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Grid Square */
+        .grid-square {
+    position: relative;
+    aspect-ratio: 1;
+    border: 1px solid cornsilk; /* Visible border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.grid-square:hover {
+    border: 3px double #ff69b4;
+}
+
+        /* Text that appears on hover */
+        .hover-text {
+            position: absolute;
+            opacity: 0;
+            color: cornsilk;
+            text-align: center;
+            padding: 10px;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        .grid-square:hover .hover-text {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="left">Add drawing here</div>
-    <div class="right">
-        <div class="sticky-container sticky-top">
-            <a href="main.html" class="sticky-text">About</a>
-            <a href="timeline.html" class="sticky-text">Timeline</a>
-            <a href="process.html" class="sticky-text">Process</a>
-            <a href="types.html" class="sticky-text">Types</a>
-        </div>
-
-        <div class="content">
-        
-          
-
-            <div><h1 style="font-size: 100px;">SYMBOLS</h1></div>
-        <br>
-        <br>
-
-        
-       
-
-
-    <h1>Add the Symbols</h1>
-    <h3>The symbols help us identify what each of these elements mean</h3>
-
-
-    <div class="left-container">
-        <div class="grid-item">Item 1</div>
-        <div class="grid-item">Item 2</div>
-        <div class="grid-item">Item 3</div>
-        <div class="grid-item">Item 1</div>
-        <div class="grid-item">Item 2</div>
-       
-        
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-     
-        <div class="sticky-container sticky-bottom">
-            <a href="symbols.html" class="sticky-text">Symbols</a>
-            <a href="naturalcolour.html" class="sticky-text">Colours</a>
-            <a href="resources.html" class="sticky-text">Resources</a>
-            <a href="playfinal.html" class="sticky-text">Play</a>
+    <!-- Header with Navigation -->
+    <div class="header">
+        <div class="name"><a href="#">The Hover Grid</a></div>
+        <div class="menu-container">
+            <button class="menu-button">
+                Menu
+                <div class="menu-icon">
+                    <span></span>
+                </div>
+            </button>
         </div>
     </div>
 
+    <!-- Full-screen dropdown menu -->
+    <div class="dropdown">
+        <div class="dropdown-content">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Gallery</a>
+            <a href="#">Contact</a>
+        </div>
     </div>
 
+    <!-- Grid Container -->
+    <div class="grid-container">
+        <!-- Row 1 -->
+        <div class="grid-square">
+            <div class="hover-text">Madhubani art originated in the Mithila region of Bihar, India.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">These paintings were traditionally created by women on freshly plastered mud walls.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">The art form features geometric patterns and nature-inspired motifs.</div>
+        </div>
 
+        <!-- Row 2 -->
+        <div class="grid-square">
+            <div class="hover-text">Traditional colors used in Madhubani art come from natural sources like plants and minerals.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">Artists often use bamboo sticks or nib pens to create detailed black outlines.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">Madhubani art has no empty spaces, reflecting the philosophy that nature abhors a vacuum.</div>
+        </div>
 
+        <!-- Row 3 -->
+        <div class="grid-square">
+            <div class="hover-text">This art form gained international recognition in the 1960s after severe drought hit Bihar.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">Common symbols include fish, peacocks, and turtles which represent fertility and good luck.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">The sun and moon are frequently depicted to symbolize cosmic energy.</div>
+        </div>
 
+        <!-- Row 4 -->
+        <div class="grid-square">
+            <div class="hover-text">Five different styles exist within Madhubani art, each associated with different communities.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">Modern artists now use canvas and handmade paper instead of traditional mud walls.</div>
+        </div>
+        <div class="grid-square">
+            <div class="hover-text">Madhubani paintings often depict celebratory occasions like weddings and festivals.</div>
+        </div>
+    </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuButton = document.querySelector(".menu-button");
+            const dropdown = document.querySelector(".dropdown");
 
-   
+            // Menu toggle
+            menuButton.addEventListener("click", () => {
+                menuButton.classList.toggle("active");
+                dropdown.classList.toggle("show");
+                document.body.style.overflow = dropdown.classList.contains("show") ? "hidden" : "";
+            });
 
-
-
-
+            // Close menu when clicking a menu item
+            const menuItems = document.querySelectorAll(".dropdown-content a");
+            menuItems.forEach(item => {
+                item.addEventListener("click", () => {
+                    menuButton.classList.remove("active");
+                    dropdown.classList.remove("show");
+                    document.body.style.overflow = "";
+                });
+            });
+        });
+    </script>
 </body>
 </html>
