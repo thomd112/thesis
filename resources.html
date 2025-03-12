@@ -6,9 +6,244 @@
     <link rel="stylesheet" href="styles.css">
     <title>Madhubani Art</title>
     <style>
+
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Satoshi medium', sans-serif;
+            /* Use quotes */
+        }
+
+        /* Menu Styles from main page */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+
+        }
+
+        .name {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 24px; /* Increased font size */
+            color: #7e1134;
+
+        }
+
+        .name a {
+            font-family: Satoshi, sans-serif;
+            color: cornsilk;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 5px 0;
+            font-style: normal; /* Removed italics */
+        }
+
+        .name a::before,
+        .name a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+        }
+
+        .name a::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
+
+        .name a::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
+
+        .name a:hover::before,
+        .name a:hover::after {
+            width: 50%;
+        }
+
+        .menu-container {
+            position: relative;
+        }
+
+        .menu-button {
+            font-family: Satoshi, sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+            color: cornsilk;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
+
+        .menu-button::before,
+        .menu-button::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+        }
+
+        .menu-button::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
+
+        .menu-button::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
+
+        .menu-button:hover::before,
+        .menu-button:hover::after {
+            width: 50%;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+            position: relative;
+        }
+
+        .menu-icon::before,
+        .menu-icon::after,
+        .menu-icon span {
+            background-color: cornsilk;
+            content: '';
+            display: block;
+            height: 2px;
+            position: absolute;
+            width: 100%;
+            transition: all 0.3s ease;
+
+        }
+
+        .menu-icon::before {
+            top: 5px;
+        }
+
+        .menu-icon span {
+            top: 11px;
+        }
+
+        .menu-icon::after {
+            top: 17px;
+        }
+
+        .menu-button.active .menu-icon::before {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .menu-button.active .menu-icon span {
+            opacity: 0;
+        }
+
+        .menu-button.active .menu-icon::after {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(126, 17, 52, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            z-index: 900;
+        }
+
+        .dropdown.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .dropdown-content a {
+            color: cornsilk;
+            text-decoration: none;
+            font-family: 'Satoshi', sans-serif;
+            /* Use quotes */
+            font-size: 32px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding: 5px 10px;
+            font-style: normal;
+
+        }
+
+        /* Dual line hover effect */
+        .dropdown-content a::before,
+        .dropdown-content a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+
+        }
+
+        .dropdown-content a::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
+
+        .dropdown-content a::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
+
+        .dropdown-content a:hover {
+            transform: translateY(-2px);
+        }
+
+        .dropdown-content a:hover::before,
+        .dropdown-content a:hover::after {
+            width: 50%;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { display: flex; height: 100vh; font-family: Satoshi medium;}
-        .left { width: 50%; background: cornsilk; color: #7e1134; display: flex; align-items: center; justify-content: center; }
+        .left { width: 50%; background: rgb(4, 129, 19); color: #7e1134; display: flex; align-items: center; justify-content: center; }
         .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
         .sticky-container { position: sticky;  ; z-index: 10; display: flex; justify-content: space-between; }
         .sticky-top { top: 0; }
@@ -34,13 +269,51 @@
     </style>
 </head>
 <body>
+
+
+
+
+ 
+    <div class="header">
+        <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
+
+        <div class="menu-container">
+            <button class="menu-button">
+                Menu
+                <div class="menu-icon">
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div class="dropdown">
+    
+                <div class="dropdown-content">
+                    <a href="main.html">About</a>
+                    <a href="timeline.html">Timeline</a>
+                    <a href="process.html">Process</a>
+                    <a href="types.html">Types</a>
+                    <a href="symbols.html">Symbols</a>
+                    <a href="naturalcolour.html">Colours</a>
+                    <a href="playfinal.html">Play</a>
+                    <a href="resources.html">Resources</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
     <div class="left"><img src="imgs/materials.jpg" alt="Materials" width="600px"></div>
     <div class="right">
         <div class="sticky-container sticky-top">
-            <a href="main.html" class="sticky-text">About</a>
-            <a href="timeline.html" class="sticky-text">Timeline</a>
-            <a href="process.html" class="sticky-text">Process</a>
-            <a href="types.html" class="sticky-text">Types</a>
+            
         </div>
 
         <div class="content">
@@ -54,125 +327,13 @@
        
 
 
-    <p>
-
-        Chapter Two: Technical Foundations
-        Material analysis
-        Traditional preparation techniques
-        Color extraction and preparation
-        Brush-making processes
-        Surface preparation
-        Technical nuances of line work
-        
-        
-        lokta paper
-        
-        
-        Handmade paper is prepared by mixing cow dung, neem juice, and multani mitti. This gives the paper a light yellowish appearance that resembles a mud wall. It also enhances the durability of paintings by protecting them from termites and insects.
-        But currently handmade paper of light yellow color is easily available in the market and it is directly used for making Madhubani paintings.
-        
-        
-        How paper is made
-        Take mitti mix with the water leave the mix with solution for a couple hours,
-        Put mud in the fabric cloth and squeeze out liquid and dab/rub liquid on the cloth in the direction of the grain of the paper. How to find grain of the paper. (Cut paper horizontal and vertical to find out. The end that stays straight and does not curl up is that direction.
-        Spread on paper this two/3 times repeatedly depending on the paper thickness.
-        To dry/ can use hairdryer
-        Coffee paper can also be used.
-        
-        
-        Now - smooth paper is used, hopefully handmade paper but also now with convenience, sketchpad paper is also used.
-        
-        
-        
-        
-        Handmade Paper: Traditionally, the paper is crafted from sustainable natural fibers such as cotton rags, jute, or mulberry bark. These materials are chosen for their durability and compatibility with natural pigments.
-        Canvas and Cloth Base: In some cases, cloth is preferred over paper. The cloth is treated with a coating of cow dung mixed with mud. This preparation provides a textured surface, ensuring better pigment adherence and enhancing the visual depth of the artwork.
-        2. Pulp Preparation
-        Soaking Natural Fibers: The chosen fibers, like cotton rags or jute scraps, are soaked in water for several hours or even days. This softens the fibers and makes them pliable for further processing.
-        Pounding the Fibers: The softened fibers are pounded manually or using tools to create a uniform, fine pulp. This step ensures the paper has an even texture.
-        Boiling: The pulp is boiled with water and natural adhesives, such as gum arabic or starch, to enhance strength and elasticity. The boiling process also sterilizes the materials, ensuring a longer lifespan for the final product.
-        3. Sheet Formation
-        Spreading the Pulp: The prepared pulp is poured over a fine mesh screen or mold, which acts as a framework for forming the sheet. The pulp is carefully spread out by hand or with a flat tool to ensure an even thickness.
-        Removing Excess Water: The screen is gently shaken or pressed to allow excess water to drain. This leaves behind a thin layer of fibrous material, forming the base of the handmade paper.
-        Layering (if needed): For thicker sheets, additional layers of pulp may be applied and spread evenly.
-        4. Drying
-        Pressing the Wet Paper: The sheet is lightly pressed between absorbent cloths or wooden frames to remove more moisture and flatten the paper.
-        Sun Drying: The pressed sheets are laid out in a sunny, open area to dry completely. This natural drying process gives the paper its characteristic texture and strength.
-        Final Trimming: Once dry, the edges of the paper are trimmed to give it a neat, usable shape.
-        5. Surface Preparation
-        Coating for Brightness: The dried paper is often coated with a white paste made from lime or chalk, mixed with natural binders like gum arabic. This layer brightens the surface, ensuring the vibrant natural pigments used in Madhubani art stand out clearly.
-        Burnishing for Smoothness: After the coating dries, the surface is polished using a smooth stone, shell, or glass. This process, called burnishing, enhances the texture and ensures an even application of paint.
-        
-        
-        
-        
-        To make the paint stick to the painting medium, artists traditionally mixed natural juices with resin from banana leaves and gum. The paint was applied using homemade brushes made from bamboo sticks and cotton.
-        
-        
-        
-         Bamboo: Used to create the intricate black outline of the painting  
-        
-        
-        
-        
-        Pencil: Used to sketch the rough outline of the painting 
-        
-        
-        Nib Pen: Used to sketch on the outline drawn by the pencil 
-        
-        
-        
-        Paint pallet: Used to mix paints to a required density for painting
-        
-        
-        
-        Cloth piece: Used to wipe extra color from the brush 
-        
-        
-        Paintbrush: - Round, square, flatbush: To create inner outlines for the paint. Used to paint with different colors over the sketch. 
-        
-        Calligraphy Pens: To make inner details of the work. 
-        
-        
-        Acrylic colors: 
-        Used to paint on handmade paper or canvas cloth
-        
-        
-        Natural dyes and pigments: 
-        Used to create the paint, such as ochre and lampblack 
-        `
-        Water+ Mug is used to clean the brush and change colours. 
-        
-        The smaller dots are made with a matchstick head wrapped in cotton 
-        
-        
-        Artists often begin by sketching the design using a bamboo stick3
-        The outline is typically drawn in black, using either a fine-tipped brush or a nib and holders or calligraphy pens. 
-        Colors are applied in layers, starting from light to dark3
-        After the main coloring is complete, artists outline with black soot and cow dung to highlight patterns
-        
-        
-        
-        
-        Borders: Different border widths are created for different sizes. These can range from ½ to 2 inches. The borders are not created by specific measuring instruments but are drawn using ones free hand. 
-        
-        
-        When filling colours in Bharni artworks - One should keep in mind of the 
-        
-        
-        </p>
-
-
 
 
 
 
         </div>
         <div class="sticky-container sticky-bottom">
-            <a href="symbols.html" class="sticky-text">Symbols</a>
-            <a href="naturalcolour.html" class="sticky-text">Colours</a>
-            <a href="resources.html" class="sticky-text">Resources</a>
-            <a href="playfinal.html" class="sticky-text">Play</a>
+            
         </div>
     </div>
 
@@ -189,4 +350,30 @@
 
 
 </body>
+
+
+
+<script>
+    const menuButton = document.querySelector('.menu-button');
+    const dropdown = document.querySelector('.dropdown');
+
+    menuButton.addEventListener('click', () => {
+        menuButton.classList.toggle('active');
+        dropdown.classList.toggle('show');
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </html>
