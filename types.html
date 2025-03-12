@@ -32,21 +32,28 @@
 
         }
 
-        .name {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 24px; /* Increased font size */
-            color: #7e1134;
-
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
         }
 
         .name a {
-            font-family: Satoshi, sans-serif;
-            color: cornsilk;
-            text-decoration: none;
-            position: relative;
-            display: inline-block;
-            padding: 5px 0;
-            font-style: normal; /* Removed italics */
+          font-family: Satoshi, sans-serif;
+          color: cornsilk;
+          text-decoration: none;
+          position: relative;
+          display: inline-block;
+          padding: 5px 0;
+          cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
+          font-style: normal;
         }
 
         .name a::before,
@@ -82,7 +89,7 @@
         .menu-button {
             font-family: Satoshi, sans-serif;
             font-size: 15px;
-            cursor: pointer;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for menu button */
             color: cornsilk;
             background: none;
             border: none;
@@ -135,7 +142,6 @@
             position: absolute;
             width: 100%;
             transition: all 0.3s ease;
-
         }
 
         .menu-icon::before {
@@ -162,14 +168,14 @@
             transform: translateY(-6px) rotate(-45deg);
         }
 
-        /* Dropdown Menu */
+        /* Updated Dropdown Menu */
         .dropdown {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: rgba(126, 17, 52, 0.95);
+            background-color: #7e1134;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -195,14 +201,14 @@
         .dropdown-content a {
             color: cornsilk;
             text-decoration: none;
-            font-family: 'Satoshi', sans-serif;
+            font-family: Satoshi, sans-serif;
             font-size: 32px;
             transition: transform 0.3s ease, color 0.3s ease;
             display: inline-block;
             position: relative;
             padding: 5px 10px;
             font-style: normal;
-
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for dropdown menu links */
         }
 
         /* Dual line hover effect */
@@ -215,7 +221,7 @@
             background-color: cornsilk;
             transition: width 0.4s ease;
             width: 0;
-
+            font-style: normal;
         }
 
         .dropdown-content a::before {
