@@ -12,13 +12,13 @@
             font-family: light, sans-serif;
             overflow: hidden;
             color: cornsilk;
+            cursor: url('thecursor.png'), auto; /* Add custom cursor */
         }
 
         /* Title Styles */
         .title {
-        
             font-size: 12em;
-            font-family:  'Mithila-Beta6';
+            font-family: 'Mithila-Beta6';
             position: absolute;
             top: 35%;
             left: 50%;
@@ -39,6 +39,7 @@
             display: inline-block;
             transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
+            cursor: url('thecursor.png'), pointer; 
         }
 
         .title span:hover {
@@ -109,89 +110,82 @@
 
         .name a {
           font-family: Satoshi, sans-serif;
-    color: cornsilk;
-    text-decoration: none;
-    position: relative;
-    display: inline-block;
-    padding: 5px 0;
-}
+          color: cornsilk;
+          text-decoration: none;
+          position: relative;
+          display: inline-block;
+          padding: 5px 0;
+          cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
+        }
 
-.name a::before,
-.name a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    height: 2px;
-    background-color: cornsilk;
-    transition: width 0.4s ease;
-    width: 0;
-}
+        .name a::before,
+        .name a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+        }
 
-.name a::before {
-    left: 50%;
-    transform: translateX(-100%);
-}
+        .name a::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
 
-.name a::after {
-    right: 50%;
-    transform: translateX(100%);
-}
+        .name a::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
 
-.name a:hover::before,
-.name a:hover::after {
-    width: 50%;
-}
-
-
-
-
-
-
-
+        .name a:hover::before,
+        .name a:hover::after {
+            width: 50%;
+        }
 
         .menu-container {
             position: relative;
         }
 
         .menu-button {
-    font-family: Satoshi, sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    color: cornsilk;
-    background: none;
-    border: none;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    position: relative;
-}
+            font-family: Satoshi, sans-serif;
+            font-size: 15px;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for menu button */
+            color: cornsilk;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
 
-.menu-button::before,
-.menu-button::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    height: 2px;
-    background-color: cornsilk;
-    transition: width 0.4s ease;
-    width: 0;
-}
+        .menu-button::before,
+        .menu-button::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+        }
 
-.menu-button::before {
-    left: 50%;
-    transform: translateX(-100%);
-}
+        .menu-button::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
 
-.menu-button::after {
-    right: 50%;
-    transform: translateX(100%);
-}
+        .menu-button::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
 
-.menu-button:hover::before,
-.menu-button:hover::after {
-    width: 50%;
-}
-
+        .menu-button:hover::before,
+        .menu-button:hover::after {
+            width: 50%;
+        }
 
         .menu-icon {
             width: 24px;
@@ -276,6 +270,7 @@
             position: relative;
             padding: 5px 10px;
             font-style: normal;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for dropdown menu links */
         }
 
         /* Dual line hover effect */
@@ -313,7 +308,7 @@
         .audio-container {
             display: flex;
             align-items: center;
-            cursor: pointer;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for audio controls */
         }
 
         .audio-icon {
@@ -330,13 +325,7 @@
 <body>
     <div class="header">
         <!-- <div class="name">The Madhubani Canvas</div> -->
-
-
         <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
-      
-
-
-
         <div class="menu-container">
             <button class="menu-button">
                 Menu
