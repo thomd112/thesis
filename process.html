@@ -2,22 +2,99 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="path/to/Mithila-Beta6.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Madhubani Art</title>
     <style>
-        * {
+        body {
+            background-color: #7e1134;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: url('thecursor.png'), auto; /* Custom cursor for all elements */
+            font-family: light, sans-serif;
+            overflow: hidden;
+            color: cornsilk;
+            cursor: url('thecursor.png'), auto; /* Add custom cursor */
         }
 
-        body { 
-            font-family: 'Satoshi medium', sans-serif;
+        /* Title Styles */
+        .title {
+            font-size: 12em;
+            font-family: 'Mithila-Beta6';
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            letter-spacing: -0.18em;
+            white-space: nowrap;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            animation-delay: 0.5s;
         }
 
-        /* Menu Styles from main page */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .title span {
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            cursor: url('thecursor.png'), pointer; 
+        }
+
+        .title span:hover {
+            color: cornsilk;
+            transform: scale(1.4);
+        }
+
+        /* Madhubani Image Styles */
+        .madhubani-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        /* Subtitle Styles */
+        .titletwo {
+            font-family: Satoshi light, sans-serif;
+            font-size: 40px;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: fadeIntwo 1s ease-in forwards;
+            animation-delay: 1s;
+            max-width: 90%;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @keyframes fadeIntwo {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .description{
+          font-family: Satoshi light, sans-serif;
+            font-size: 15px;
+            position: absolute;
+            top: 80%;
+            left: 18%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            max-width: 100%;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        /* Menu Styles - Updated */
         .header {
             position: fixed;
             top: 0;
@@ -31,20 +108,14 @@
             box-sizing: border-box;
         }
 
-        .name {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 24px; /* Increased font size */
-            color: #7e1134;
-        }
-
         .name a {
-            font-family: Satoshi, sans-serif;
-            color: cornsilk;
-            text-decoration: none;
-            position: relative;
-            display: inline-block;
-            padding: 5px 0;
-            font-style: normal; /* Removed italics */
+          font-family: Satoshi, sans-serif;
+          color: cornsilk;
+          text-decoration: none;
+          position: relative;
+          display: inline-block;
+          padding: 5px 0;
+          cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
         }
 
         .name a::before,
@@ -159,14 +230,14 @@
             transform: translateY(-6px) rotate(-45deg);
         }
 
-        /* Dropdown Menu */
+        /* Updated Dropdown Menu */
         .dropdown {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: rgba(126, 17, 52, 0.95);
+            background-color: #7e1134;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -192,15 +263,14 @@
         .dropdown-content a {
             color: cornsilk;
             text-decoration: none;
-            font-family: 'Satoshi', sans-serif;
-            /* Use quotes */
+            font-family: Satoshi, sans-serif;
             font-size: 32px;
             transition: transform 0.3s ease, color 0.3s ease;
             display: inline-block;
             position: relative;
             padding: 5px 10px;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
             font-style: normal;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for dropdown menu links */
         }
 
         /* Dual line hover effect */
@@ -213,6 +283,7 @@
             background-color: cornsilk;
             transition: width 0.4s ease;
             width: 0;
+            font-style: normal;
         }
 
         .dropdown-content a::before {
@@ -233,12 +304,28 @@
         .dropdown-content a:hover::after {
             width: 50%;
         }
+
+        .audio-container {
+            display: flex;
+            align-items: center;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for audio controls */
+        }
+
+        .audio-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .audio-icon:hover {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="name"><a href="index.html">The Madhubani Canvas</a></div>
-
+        <!-- <div class="name">The Madhubani Canvas</div> -->
+        <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
         <div class="menu-container">
             <button class="menu-button">
                 Menu
@@ -249,6 +336,8 @@
         </div>
     </div>
 
+   
+    <!-- Full-screen dropdown menu -->
     <div class="dropdown">
         <div class="dropdown-content">
             <a href="main.html">About</a>
@@ -263,13 +352,65 @@
     </div>
 
     <script>
-        const menuButton = document.querySelector('.menu-button');
-        const dropdown = document.querySelector('.dropdown');
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuButton = document.querySelector(".menu-button");
+            const dropdown = document.querySelector(".dropdown");
+            const titleLetters = document.querySelectorAll(".title span");
+            const audio = document.getElementById("customAudio");
+            const playButton = document.getElementById("customPlayButton");
+            let pageLoaded = false;
 
-        menuButton.addEventListener('click', () => {
-            menuButton.classList.toggle('active');
-            dropdown.classList.toggle('show');
+            // Set page as loaded after animations complete
+            setTimeout(() => {
+                pageLoaded = true;
+            }, 3000);
+
+            // Hover effect on title letters to show images
+            titleLetters.forEach(letter => {
+                letter.addEventListener("mouseenter", () => {
+                    if (pageLoaded) {
+                        const imageSrc = letter.getAttribute("data-image");
+                        showImage(imageSrc);
+                    }
+                });
+
+                letter.addEventListener("mouseleave", () => {
+                    hideImage();
+                });
+            });
+
+            // Menu toggle
+            menuButton.addEventListener("click", () => {
+                menuButton.classList.toggle("active");
+                dropdown.classList.toggle("show");
+                document.body.style.overflow = dropdown.classList.contains("show") ? "hidden" : "";
+            });
+
+            // Close menu when clicking a menu item
+            const menuItems = document.querySelectorAll(".dropdown-content a");
+            menuItems.forEach(item => {
+                item.addEventListener("click", () => {
+                    menuButton.classList.remove("active");
+                    dropdown.classList.remove("show");
+                    document.body.style.overflow = "";
+                });
+            });
+
+            // Audio play/pause functionality
+            playButton.addEventListener("click", () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.src = "imgs/speak.png"; // Change icon if needed
+                } else {
+                    audio.pause();
+                    playButton.src = "imgs/speak.png"; // Change back to play icon
+                }
+            });
         });
+
+        
+
+     
     </script>
 </body>
 </html>
