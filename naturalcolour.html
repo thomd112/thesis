@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natural Colours & Madhubani Art</title>
+    <title>Natural Colours & Custom Art</title>
     <style>
-
-* {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -14,24 +13,12 @@
 
         body {
             font-family: 'Satoshi medium', sans-serif;
-            /* Use quotes */
-        }
-
-       /* Menu Styles from main page */
-       .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-sizing: border-box;
-
+            height: 100vh;
+            overflow: hidden;
         }
 
+        /* Menu Styles from main page */
         .header {
             position: fixed;
             top: 0;
@@ -46,14 +33,14 @@
         }
 
         .name a {
-          font-family: Satoshi, sans-serif;
-          color: cornsilk;
-          text-decoration: none;
-          position: relative;
-          display: inline-block;
-          padding: 5px 0;
-          cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
-          font-style: normal;
+            font-family: Satoshi, sans-serif;
+            color: cornsilk;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 5px 0;
+            cursor: url('thecursor.png'), pointer;
+            font-style: normal;
         }
 
         .name a::before,
@@ -89,8 +76,8 @@
         .menu-button {
             font-family: Satoshi, sans-serif;
             font-size: 15px;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for menu button */
-            color: cornsilk;
+            cursor: url('thecursor.png'), pointer;
+            color: rgb(0, 0, 0);
             background: none;
             border: none;
             display: flex;
@@ -105,7 +92,7 @@
             position: absolute;
             bottom: -5px;
             height: 2px;
-            background-color: cornsilk;
+            background-color: rgb(0, 0, 0);
             transition: width 0.4s ease;
             width: 0;
         }
@@ -135,7 +122,7 @@
         .menu-icon::before,
         .menu-icon::after,
         .menu-icon span {
-            background-color: cornsilk;
+            background-color: rgb(0, 0, 0);
             content: '';
             display: block;
             height: 2px;
@@ -208,10 +195,9 @@
             position: relative;
             padding: 5px 10px;
             font-style: normal;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for dropdown menu links */
+            cursor: url('thecursor.png'), pointer;
         }
 
-        /* Dual line hover effect */
         .dropdown-content a::before,
         .dropdown-content a::after {
             content: '';
@@ -243,37 +229,145 @@
             width: 50%;
         }
 
+        /* Main Layout Styles */
+        .drawing-section {
+            width: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: 0;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .color-section {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: rgb(0, 0, 0);
+            background-image: url('imgs/smoothcanvas.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 
 
 
 
 
 
+        }
 
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-template-rows: repeat(3, 80px);
+            gap: 20px;
+            margin: 40px 0;
+        }
 
-       
-        body { display: flex; height: 100vh; font-family: Satoshi medium; }
-        .left { width: 50%; background: #f5f5f5; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; transition: background-color 0.5s ease; }
-        .right { width: 50%; overflow-y: scroll; position: relative; padding: 20px; background: #7e1134; }
-        .color-container { display: grid; grid-template-columns: repeat(5, 60px); gap: 10px; margin-bottom: 70px; }
-        .color-box { width: 100px; height: 100px; cursor: pointer; border: 2px solid #7e1134; transition: transform 0.3s; }
-        .color-box:hover { transform: scale(1.1); }
-        .color-info { text-align: center; }
-        .color-name { font-size: 24px; font-weight: bold; color: #CD814E;}
-        .color-subtitle { font-size: 16px; color: #000000; }
-        .sticky-container { position: sticky; display: flex; justify-content: space-between; z-index: 10; }
-        .sticky-top { top: 0; }
-        .sticky-bottom { bottom: 0; }
-        .sticky-text { padding: 10px; background: #fff7fa; text-decoration: none; color: rgb(242, 232, 232); opacity: 0.5; display: inline-block; }
-        .sticky-text:hover { opacity: 1; cursor: grab; }
-        .content { height: 100vh; padding-top: 80px; }
+        .color-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid black;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .color-circle::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: inherit;
+            z-index: 1;
+        }
+
+        .color-circle:hover {
+            transform: scale(1.1);
+        }
+
+        .drawing-container {
+            position: relative;
+            width: 80%;
+            max-width: 400px;
+            z-index: 2;
+        }
+
+        .color-info {
+            text-align: center;
+            max-width: 300px;
+            margin-top: 40px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .color-info p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* Custom Drawing Styling */
+        .custom-drawing {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .drawing-areas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+        }
+
+        .drawing-area {
+            fill: white;
+            stroke: black;
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: fill 0.3s ease;
+        }
+
+        .drawing-area.selected {
+            stroke: #ff6600;
+            stroke-width: 3px;
+        }
     </style>
 </head>
 <body>
-
     <div class="header">
-        <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
-
+        <div class="name"><a href="index.html">The Canvas</a></div>
         <div class="menu-container">
             <button class="menu-button">
                 Menu
@@ -285,109 +379,70 @@
     </div>
 
     <div class="dropdown">
-    
-                <div class="dropdown-content">
-                    <a href="main.html">About</a>
-                    <a href="timeline.html">Timeline</a>
-                    <a href="process.html">Process</a>
-                    <a href="types.html">Types</a>
-                    <a href="symbols.html">Symbols</a>
-                    <a href="naturalcolour.html">Colours</a>
-                    <a href="playfinal.html">Play</a>
-                    <a href="resources.html">Resources</a>
-                </div>
-            </div>
+        <div class="dropdown-content">
+            <a href="main.html">About</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="process.html">Process</a>
+            <a href="types.html">Types</a>
+            <a href="symbols.html">Symbols</a>
+            <a href="naturalcolour.html">Colours</a>
+            <a href="playfinal.html">Play</a>
+            <a href="resources.html">Resources</a>
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="right" id="right-section">
-        <div class="color-container">
-            <div class="color-box" style="background-color: black;" data-color="black"></div>
-            <div class="color-box" style="background-color: white;" data-color="white"></div>
-            <div class="color-box" style="background-color: yellowgreen;" data-color="yellowgreen"></div>
-            <div class="color-box" style="background-color: green;" data-color="green"></div>
-            <div class="color-box" style="background-color: blue;" data-color="blue"></div>
-            <div class="color-box" style="background-color: maroon;" data-color="indianred"></div>
-            <div class="color-box" style="background-color: red;" data-color="red"></div>
-            <div class="color-box" style="background-color: pink;" data-color="pink"></div>
-            <div class="color-box" style="background-color: orange;" data-color="orange"></div>
-            <div class="color-box" style="background-color: yellow;" data-color="yellow"></div>
-        </div>
-        <div class="color-info">
-            <div class="color-name" id="colorName">Each colour you click will turn to the colour of the background and will be highlighted in the painitng on the left. </div>
-            <div class="color-subtitle" id="colorSubtitle">Madhubani Art is famous for its natural paints. Learn how each color is made.</div>
-        </div>
-    </div>
-    <div class="right">
-        <div class="sticky-container sticky-top">
+    <div class="drawing-section">
+        <!-- Background images that will change based on color selection -->
+        <img id="background-orange" class="background-image" src="imgs/deepa.jpg" style="display:none;" alt="Orange background image">
+        <img id="background-green" class="background-image" src="imgs/jdevi.jpg" style="display:none;" alt="Green background image">
+        <img id="background-maroon" class="background-image" src="imgs/earthquake.png" style="display:none;" alt="Maroon background image">
+        <img id="background-yellow" class="background-image" src="images/yellow-bg.jpg" style="display:none;" alt="Yellow background image">
+        <img id="background-magenta" class="background-image" src="images/magenta-bg.jpg" style="display:none;" alt="Magenta background image">
+        <img id="background-white" class="background-image" src="images/white-bg.jpg" style="display:none;" alt="White background image">
+        <img id="background-red" class="background-image" src="images/red-bg.jpg" style="display:none;" alt="Red background image">
+        <img id="background-blue" class="background-image" src="images/blue-bg.jpg" style="display:none;" alt="Blue background image">
+        <img id="background-black" class="background-image" src="images/black-bg.jpg" style="display:none;" alt="Black background image">
+        
+        <div class="drawing-container">
+            <!-- Replace this with your own black and white drawing -->
+            <img id="custom-drawing-image" class="custom-drawing" src="images/custom-drawing.png" alt="Custom black and white drawing">
             
-        </div>
-        <div class="content">
-            <h1 style="font-size: 100px; color: cornsilk;">COLOURS</h1>
-        
-        </div>
-        <div class="sticky-container sticky-bottom">
-           
+            <!-- SVG overlay for clickable regions -->
+            <svg class="drawing-areas" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Replace these paths with your own that match your drawing -->
+                <path id="section1" class="drawing-area" d="M200,70 C220,50 240,40 260,50 C280,60 290,80 280,100 C270,120 250,130 230,120 C210,110 200,90 200,70 Z"/>
+                <path id="section2" class="drawing-area" d="M200,70 C180,50 160,40 140,50 C120,60 110,80 120,100 C130,120 150,130 170,120 C190,110 200,90 200,70 Z"/>
+                <path id="section3" class="drawing-area" d="M200,120 C220,100 240,90 260,100 C280,110 290,130 280,150 C270,170 250,180 230,170 C210,160 200,140 200,120 Z"/>
+                <path id="section4" class="drawing-area" d="M200,120 C180,100 160,90 140,100 C120,110 110,130 120,150 C130,170 150,180 170,170 C190,160 200,140 200,120 Z"/>
+                <!-- Add more paths as needed to match your drawing -->
+            </svg>
         </div>
     </div>
+
+    <div class="color-section">
+        <h1>COLOURS</h1>
+        
+        <div class="color-grid">
+            <div class="color-circle" style="background-color: orange;" data-color="orange"></div>
+            <div class="color-circle" style="background-color: green;" data-color="green"></div>
+            <div class="color-circle" style="background-color: maroon;" data-color="maroon"></div>
+            <div class="color-circle" style="background-color: yellow;" data-color="yellow"></div>
+            <div class="color-circle" style="background-color: magenta;" data-color="magenta"></div>
+            <div class="color-circle" style="background-color: white;" data-color="white"></div>
+            <div class="color-circle" style="background-color: red;" data-color="red"></div>
+            <div class="color-circle" style="background-color: blue;" data-color="blue"></div>
+            <div class="color-circle" style="background-color: black;" data-color="black"></div>
+        </div>
+        
+        <div class="color-info">
+            <p id="color-description">
+                Click on a region of the drawing first, then select a color to apply. Each color displays a different background image.
+            </p>
+        </div>
+    </div>
+
     <script>
-        const colorBoxes = document.querySelectorAll('.color-box');
-        const colorName = document.getElementById('colorName');
-        const colorSubtitle = document.getElementById('colorSubtitle');
-        const rightSection = document.getElementById('right-section');
-        
-        const colorSubtitles = {
-            black: "The black color is made by mixing soot with cow dung. Black is used for borders and outlines.",
-            white: "The white paint is made from rice powder.",
-            yellowgreen: "The yellow color is made from turmeric, marigold flowers, and yellow clay.",
-            green: "Made from flat bean leaves or wood apple leaves.",
-            blue: "Made from indigo or the aparajita flower.",
-            indianred: "Red clay, ground and mixed with oils.",
-            red: "Made from kusum flowers, red sandalwood, beetroot juice, and gulmohar flowers.",
-            pink: "Made from bougainvillea flowers.",
-            orange: "Made from tesu flowers of the palash tree.",
-            yellow: "Made from pevdi, a flower for lemon yellow."
-        };
-        
-        colorBoxes.forEach(box => {
-            box.addEventListener('click', () => {
-                const color = box.getAttribute('data-color');
-                rightSection.style.backgroundColor = color;
-                colorName.textContent = color.charAt(0).toUpperCase() + color.slice(1);
-                colorSubtitle.textContent = colorSubtitles[color];
-            });
-        });
-
-
-
-
-
-
-
-
+        // Handle dropdown menu
         const menuButton = document.querySelector('.menu-button');
         const dropdown = document.querySelector('.dropdown');
 
@@ -395,8 +450,77 @@
             menuButton.classList.toggle('active');
             dropdown.classList.toggle('show');
         });
-    </script>
 
-   
+        // Color information
+        const colorInfo = {
+            'orange': "Made from tesu flowers of the palash tree.",
+            'green': "Made from flat bean leaves or wood apple leaves.",
+            'maroon': "Red clay, ground and mixed with oils.",
+            'yellow': "Made from turmeric, marigold flowers, and yellow clay.",
+            'magenta': "Made from bougainvillea flowers.",
+            'white': "The white paint is made from rice powder.",
+            'red': "Made from kusum flowers, red sandalwood, and beetroot juice.",
+            'blue': "Made from indigo or the aparajita flower.",
+            'black': "The black color is made by mixing soot with cow dung. Used for borders and outlines."
+        };
+
+        // Get all drawing areas and background images
+        const drawingAreas = document.querySelectorAll('.drawing-area');
+        const colorCircles = document.querySelectorAll('.color-circle');
+        const colorDescription = document.getElementById('color-description');
+        const backgroundImages = document.querySelectorAll('.background-image');
+        
+        let selectedArea = null;
+        let currentBackground = null;
+
+        // Add click listeners to drawing areas
+        drawingAreas.forEach(area => {
+            area.addEventListener('click', () => {
+                // Reset previously selected area
+                if (selectedArea) {
+                    selectedArea.classList.remove('selected');
+                }
+                
+                // Highlight the selected area
+                area.classList.add('selected');
+                selectedArea = area;
+            });
+        });
+
+        // Add click listeners to color circles
+        colorCircles.forEach(circle => {
+            circle.addEventListener('click', () => {
+                const color = circle.getAttribute('data-color');
+                
+                // Update the description
+                colorDescription.textContent = colorInfo[color];
+                
+                // Apply color to selected area or default to first area
+                if (selectedArea) {
+                    selectedArea.style.fill = color;
+                } else {
+                    drawingAreas[0].style.fill = color;
+                    drawingAreas[0].classList.add('selected');
+                    selectedArea = drawingAreas[0];
+                }
+                
+                // Hide current background if any
+                if (currentBackground) {
+                    currentBackground.style.display = 'none';
+                }
+                
+                // Show new background image
+                const newBackground = document.getElementById(`background-${color}`);
+                if (newBackground) {
+                    newBackground.style.display = 'block';
+                    currentBackground = newBackground;
+                }
+            });
+        });
+
+        // Default to first section selected
+        drawingAreas[0].classList.add('selected');
+        selectedArea = drawingAreas[0];
+    </script>
 </body>
 </html>
