@@ -64,7 +64,82 @@
         }
 
 
+/* Updated Dropdown Menu */
+.dropdown {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #7e1134;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            z-index: 900;
+        }
 
+        .dropdown.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content a {
+            color: cornsilk;
+            text-decoration: none;
+            font-family: Satoshi, sans-serif;
+            font-size: 32px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding: 5px 10px;
+            font-style: normal;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for dropdown menu links */
+        }
+
+        /* Dual line hover effect */
+        .dropdown-content a::before,
+        .dropdown-content a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            height: 2px;
+            background-color: cornsilk;
+            transition: width 0.4s ease;
+            width: 0;
+            font-style: normal;
+        }
+
+        .dropdown-content a::before {
+            left: 50%;
+            transform: translateX(-100%);
+        }
+
+        .dropdown-content a::after {
+            right: 50%;
+            transform: translateX(100%);
+        }
+
+        .dropdown-content a:hover {
+            transform: translateY(-2px);
+        }
+
+        .dropdown-content a:hover::before,
+        .dropdown-content a:hover::after {
+            width: 50%;
+        }
+
+    
 
 
 
@@ -77,10 +152,14 @@
     <div class="left">Add drawing here</div>
     <div class="right">
         <div class="sticky-container sticky-top">
-            <a href="main.html" class="sticky-text">About</a>
-            <a href="timeline.html" class="sticky-text">Timeline</a>
-            <a href="process.html" class="sticky-text">Process</a>
-            <a href="types.html" class="sticky-text">Types</a>
+            <a href="main.html">About</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="process.html">Process</a>
+            <a href="types.html">Types</a>
+            <a href="symbols.html">Symbols</a>
+            <a href="naturalcolour.html">Colours</a>
+            <a href="playfinal.html">Play</a>
+            <a href="resources.html">Resources</a>
         </div>
 
         <div class="content">
