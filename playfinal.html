@@ -2,21 +2,182 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="path/to/Mithila-Beta6.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madhubani Art</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <title>Create your Madhubani Canvas</title>
     <style>
         body {
             background-color: #7e1134;
             margin: 0;
-            font-family: light, sans-serif;
-            overflow: hidden;
+            font-family: Satoshi,serif;
             color: cornsilk;
-            cursor: url('thecursor.png'), auto; /* Add custom cursor */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Title Styles */
-        .title {
+        .page-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .left-panel, .right-panel {
+            width: 20%;
+            padding: 20px;
+        }
+
+        .center-panel {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .canvas-container {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1.2;
+            background-color: #f0f0f0;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .canvas {
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instruction {
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .print-button {
+            background: none;
+            border: 1px solid cornsilk;
+            color: cornsilk;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: Satoshi, light;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        /* Border slider styles */
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .border-slider {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .slider-container {
+            width: 100%;
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 2px;
+            background: cornsilk;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: cornsilk;
+            cursor: pointer;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* Symbols grid */
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .symbol-item {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 1px solid cornsilk;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Circle buttons for effects and orientation */
+        .circles-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .circle-button {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 1px solid cornsilk;
+            border-radius: 50%;
+            background: none;
+            cursor: pointer;
+        }
+
+        .section-heading {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Dropped elements on canvas */
+        .dropped-element {
+            position: absolute;
+            cursor: move;
+            user-select: none;
+        }
+
+
+         /* Title Styles */
+         .title {
             font-size: 12em;
             font-family: 'Mithila-Beta6';
             position: absolute;
@@ -305,181 +466,122 @@
             width: 50%;
         }
 
-        /* Materials Section Styles */
-        .materials-section {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-            padding: 20px;
-            z-index: 100;
-        }
-
-        .material-item {
-            position: relative;
-            width: 100%;
-            cursor: url('thecursor.png'), pointer;
-            transition: transform 0.3s ease;
-            aspect-ratio: 1;
-        }
-
-        .material-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .material-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid cornsilk;
-            transition: opacity 0.3s ease;
-        }
-
-        .material-name {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(126, 17, 52, 0.8);
-            color: cornsilk;
-            padding: 10px;
-            text-align: center;
-            font-family: Satoshi, sans-serif;
-            font-size: 18px;
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
-            transition: background-color 0.3s ease;
-        }
-
-        .material-item:hover .material-name {
-            background-color: rgba(126, 17, 52, 1);
-        }
-
-        .material-description {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(126, 17, 52, 0.9);
-            color: cornsilk;
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-family: Satoshi light, sans-serif;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            box-sizing: border-box;
-        }
-
-        .material-item:hover .material-description {
-            opacity: 1;
-        }
-
-        .section-title {
-            font-family: 'Mithila-Beta6', sans-serif;
-            color: cornsilk;
-            font-size: 4em;
-            text-align: center;
-            margin-bottom: 40px;
-            grid-column: 1 / -1;
-            letter-spacing: -0.05em;
-        }
-
-        .materials-category {
-            grid-column: 1 / -1;
-            font-family: Satoshi, sans-serif;
-            color: cornsilk;
-            font-size: 2em;
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .materials-section {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                width: 90%;
-                gap: 20px;
-            }
-            
-            .section-title {
-                font-size: 3em;
-            }
-            
-            .materials-category {
-                font-size: 1.5em;
-            }
-            
-            .material-name {
-                font-size: 14px;
-            }
-            
-            .material-description {
-                font-size: 12px;
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .materials-section {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 15px;
-            }
-            
-            .section-title {
-                font-size: 2.5em;
-            }
-            
-            .materials-category {
-                font-size: 1.2em;
-            }
-        }
+        #sketch-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+    
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="name"><a href="index.html">The Madhubani Canvas</a></div>
-        <div class="menu-container">
-            <button class="menu-button">
-                Menu
-                <div class="menu-icon">
-                    <span></span>
+    <div class="page-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <!-- Borders Section -->
+            <div class="section-title">Borders</div>
+            <div class="border-slider">
+                <div class="slider-container">
+                    <input type="range" min="1" max="30" value="1" class="slider" id="border-slider">
+                    <div class="slider-labels">
+                        <span>Thin<br>border</span>
+                        <span>Thick<br>border</span>
+                    </div>
                 </div>
-            </button>
+            </div>
+            <div class="header">
+                <!-- <div class="name">The Madhubani Canvas</div> -->
+                <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
+                <div class="menu-container">
+                    <button class="menu-button">
+                        Menu
+                        <div class="menu-icon">
+                            <span></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+
+            <div id="sketch-container"></div>
+
+
+
+            <div class="dropdown">
+                <div class="dropdown-content">
+                    <a href="main.html">About</a>
+                    <a href="timeline.html">Timeline</a>
+                    <a href="process.html">Process</a>
+                    <a href="types.html">Types</a>
+                    <a href="symbols.html">Symbols</a>
+                    <a href="naturalcolour.html">Colours</a>
+                    <a href="playfinal.html">Play</a>
+                    <a href="resources.html">Resources</a>
+                </div>
+            </div>
+
+
+
+            <!-- Symbols Section -->
+            <div class="section-title">Symbols</div>
+            <div class="symbols-grid">
+                <div class="symbol-item" draggable="true" data-symbol="symbol1"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol2"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol3"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol4"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol5"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol6"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol7"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol8"></div>
+                <div class="symbol-item" draggable="true" data-symbol="symbol9"></div>
+            </div>
+        </div>
+
+        <!-- Center Panel -->
+        <div class="center-panel">
+            <h1>Create your Madhubani Canvas</h1>
+            <div class="canvas-container">
+                <div class="canvas" id="madhubani-canvas"></div>
+            </div>
+            <p class="instruction">Using the knowledge learnt, use the sliders and<br>drag and drop elements to create your own</p>
+            <button class="print-button">Print</button>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <!-- Effects Section -->
+            <div class="section-heading">Effects!!!</div>
+            <div class="circles-container">
+                <button class="circle-button" data-effect="effect1"></button>
+                <button class="circle-button" data-effect="effect2"></button>
+                <button class="circle-button" data-effect="effect3"></button>
+            </div>
+
+            <!-- Canvas Orientation Section -->
+            <div class="section-heading">Horizontal or Vertical Canvas?</div>
+            <div class="circles-container">
+                <button class="circle-button" data-orientation="square"></button>
+                <button class="circle-button" data-orientation="horizontal"></button>
+                <button class="circle-button" data-orientation="vertical"></button>
+            </div>
         </div>
     </div>
 
-    <!-- Full-screen dropdown menu -->
-    <div class="dropdown">
-        <div class="dropdown-content">
-            <a href="main.html">About</a>
-            <a href="timeline.html">Timeline</a>
-            <a href="process.html">Process</a>
-            <a href="types.html">Types</a>
-            <a href="symbols.html">Symbols</a>
-            <a href="naturalcolour.html">Colours</a>
-            <a href="playfinal.html">Play</a>
-            <a href="resources.html">Resources</a>
-            
-        </div>
-    </div>
+    <script src="sketch.js"></script>
+
+
+
+
     <script>
+
+
         document.addEventListener("DOMContentLoaded", () => {
             const menuButton = document.querySelector(".menu-button");
             const dropdown = document.querySelector(".dropdown");
             const titleLetters = document.querySelectorAll(".title span");
+            const audio = document.getElementById("customAudio");
+            const playButton = document.getElementById("customPlayButton");
             let pageLoaded = false;
 
             // Set page as loaded after animations complete
@@ -488,20 +590,18 @@
             }, 3000);
 
             // Hover effect on title letters to show images
-            if (titleLetters) {
-                titleLetters.forEach(letter => {
-                    letter.addEventListener("mouseenter", () => {
-                        if (pageLoaded) {
-                            const imageSrc = letter.getAttribute("data-image");
-                            if (imageSrc) showImage(imageSrc);
-                        }
-                    });
-
-                    letter.addEventListener("mouseleave", () => {
-                        hideImage();
-                    });
+            titleLetters.forEach(letter => {
+                letter.addEventListener("mouseenter", () => {
+                    if (pageLoaded) {
+                        const imageSrc = letter.getAttribute("data-image");
+                        showImage(imageSrc);
+                    }
                 });
-            }
+
+                letter.addEventListener("mouseleave", () => {
+                    hideImage();
+                });
+            });
 
             // Menu toggle
             menuButton.addEventListener("click", () => {
@@ -520,27 +620,311 @@
                 });
             });
 
-            // Function to show image (placeholder)
-            function showImage(src) {
-                if (!src) return;
-                let img = document.querySelector('.madhubani-image');
-                if (!img) {
-                    img = document.createElement('img');
-                    img.className = 'madhubani-image';
-                    document.body.appendChild(img);
+            // Audio play/pause functionality
+            playButton.addEventListener("click", () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.src = "imgs/speak.png"; // Change icon if needed
+                } else {
+                    audio.pause();
+                    playButton.src = "imgs/speak.png"; // Change back to play icon
                 }
-                img.src = src;
-                img.style.opacity = '1';
+            });
+        });
+
+        function showImage(src) {
+            // Remove any existing images first
+            hideImage();
+            
+            // Create and show the new image
+            let img = document.createElement("img");
+            img.src = src;
+            img.classList.add("madhubani-image");
+            document.body.appendChild(img);
+            
+            // Trigger reflow before changing opacity for animation to work
+            img.offsetHeight;
+            
+            // Make image visible
+            img.style.opacity = "1";
+        }
+
+        function hideImage() {
+            const images = document.querySelectorAll(".madhubani-image");
+            images.forEach(img => {
+                img.style.opacity = "0";
+                setTimeout(() => img.remove(), 300); // Remove after fade-out
+            });
+        }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const canvas = document.getElementById("madhubani-canvas");
+            const borderSlider = document.getElementById("border-slider");
+            const symbolItems = document.querySelectorAll(".symbol-item");
+            const effectButtons = document.querySelectorAll("[data-effect]");
+            const orientationButtons = document.querySelectorAll("[data-orientation]");
+            const printButton = document.querySelector(".print-button");
+            
+            let canvasOrientation = "square";
+            let activeEffect = null;
+            let currentBorderWidth = 1;
+            let draggedElement = null;
+            let activeElement = null;
+            let offsetX, offsetY;
+
+            // Update border based on slider
+            borderSlider.addEventListener("input", function() {
+                currentBorderWidth = this.value;
+                canvas.style.border = `${currentBorderWidth}px solid #333`;
+            });
+
+            // Initialize canvas with thin border
+            canvas.style.border = "1px solid #333";
+
+            // Set up drag and drop for symbols
+            symbolItems.forEach(item => {
+                // Add a visual indicator for the symbol
+                item.style.position = "relative";
+                const symbolIndicator = document.createElement("div");
+                symbolIndicator.style.width = "80%";
+                symbolIndicator.style.height = "80%";
+                symbolIndicator.style.border = "1px solid cornsilk";
+                item.appendChild(symbolIndicator);
+
+                // Add drag events
+                item.addEventListener("dragstart", function(e) {
+                    draggedElement = this.getAttribute("data-symbol");
+                    e.dataTransfer.setData("text/plain", draggedElement);
+                });
+            });
+
+            // Set up canvas for drop
+            canvas.addEventListener("dragover", function(e) {
+                e.preventDefault();
+            });
+
+            canvas.addEventListener("drop", function(e) {
+                e.preventDefault();
+                
+                if (draggedElement) {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Create element on canvas
+                    const element = document.createElement("div");
+                    element.className = "dropped-element";
+                    element.setAttribute("data-symbol", draggedElement);
+                    element.style.left = `${x - 25}px`;
+                    element.style.top = `${y - 25}px`;
+                    element.style.width = "50px";
+                    element.style.height = "50px";
+                    element.style.border = "1px solid #333";
+                    
+                    // Make the element draggable on the canvas
+                    element.addEventListener("mousedown", startDrag);
+                    
+                    canvas.appendChild(element);
+                    draggedElement = null;
+                }
+            });
+
+            // Functions for dragging elements on canvas
+            function startDrag(e) {
+                e.preventDefault();
+                activeElement = this;
+                
+                const rect = activeElement.getBoundingClientRect();
+                offsetX = e.clientX - rect.left;
+                offsetY = e.clientY - rect.top;
+                
+                document.addEventListener("mousemove", moveElement);
+                document.addEventListener("mouseup", stopDrag);
             }
 
-            // Function to hide image
-            function hideImage() {
-                const img = document.querySelector('.madhubani-image');
-                if (img) {
-                    img.style.opacity = '0';
+            function moveElement(e) {
+                if (!activeElement) return;
+                
+                const canvasRect = canvas.getBoundingClientRect();
+                const x = e.clientX - canvasRect.left - offsetX;
+                const y = e.clientY - canvasRect.top - offsetY;
+                
+                // Keep element within canvas bounds
+                const maxX = canvasRect.width - activeElement.offsetWidth;
+                const maxY = canvasRect.height - activeElement.offsetHeight;
+                
+                activeElement.style.left = `${Math.max(0, Math.min(maxX, x))}px`;
+                activeElement.style.top = `${Math.max(0, Math.min(maxY, y))}px`;
+            }
+
+            function stopDrag() {
+                activeElement = null;
+                document.removeEventListener("mousemove", moveElement);
+                document.removeEventListener("mouseup", stopDrag);
+            }
+
+            // Effect buttons
+            effectButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const effect = this.getAttribute("data-effect");
+                    activeEffect = effect;
+                    
+                    // Visual feedback for selection
+                    effectButtons.forEach(btn => {
+                        btn.style.backgroundColor = "transparent";
+                    });
+                    this.style.backgroundColor = "rgba(255, 295, 255, 0.3)";
+                    
+                    // Apply effect (placeholder)
+                    applyEffect(effect);
+                });
+            });
+
+            // Orientation buttons
+            orientationButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const orientation = this.getAttribute("data-orientation");
+                    canvasOrientation = orientation;
+                    
+                    // Visual feedback for selection
+                    orientationButtons.forEach(btn => {
+                        btn.style.backgroundColor = "transparent";
+                    });
+                    this.style.backgroundColor = "rgba(255, 248, 220, 0.3)";
+                    
+                    // Change canvas orientation
+                    updateCanvasOrientation(orientation);
+                });
+            });
+
+            // Print button
+            printButton.addEventListener("click", function() {
+                // Placeholder for print functionality
+                alert("Print functionality would be implemented here");
+            });
+
+            // Helper functions
+            function applyEffect(effect) {
+                // Placeholder for applying various effects
+                console.log("Applying effect:", effect);
+                // This would be implemented based on the specific effects needed
+            }
+
+            function updateCanvasOrientation(orientation) {
+                const canvasContainer = document.querySelector(".canvas-container");
+                
+                switch(orientation) {
+                    case "horizontal":
+                        canvasContainer.style.aspectRatio = "1.4 / 1";
+                        break;
+                    case "vertical":
+                        canvasContainer.style.aspectRatio = "0.7 / 1";
+                        break;
+                    default: // square
+                        canvasContainer.style.aspectRatio = "1 / 1";
                 }
             }
         });
+
+//symbols 
+// Add this after the DOMContentLoaded event handler or within it
+
+// Array of image paths for the symbols
+const symbolImages = [
+  'playimgs/anklet.png',  // Replace with your actual image paths
+  'playimgs/bells.png',
+  'playimgs/necklace.png',
+  'playimgs/decorations.png',
+  'playimgs/bud.png',
+  'playimgs/flower.png',
+  'playimgs/fullbloom.png',
+  'path/to/symbol8.jpg',
+  'path/to/symbol9.jpg'
+];
+
+// Function to initialize symbols with images
+function initSymbolImages() {
+  const symbolItems = document.querySelectorAll('.symbol-item');
+  
+  symbolItems.forEach((item, index) => {
+    // Clear any existing content
+    item.innerHTML = '';
+    
+    // Create image element
+    const img = document.createElement('img');
+    img.src = symbolImages[index];
+    img.alt = `Symbol ${index + 1}`;
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.pointerEvents = 'none'; // Prevent image from interfering with drag
+    
+    // Add image to symbol item
+    item.appendChild(img);
+  });
+}
+
+// Initialize images in symbols
+initSymbolImages();
+
+// Modify the drop event handler to include the image
+canvas.addEventListener("drop", function(e) {
+  e.preventDefault();
+  
+  if (draggedElement) {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Find the index of the dragged symbol
+    const symbolIndex = parseInt(draggedElement.replace('symbol', '')) - 1;
+    
+    // Create element on canvas
+    const element = document.createElement("div");
+    element.className = "dropped-element";
+    element.setAttribute("data-symbol", draggedElement);
+    element.style.left = `${x - 25}px`;
+    element.style.top = `${y - 25}px`;
+    element.style.width = "50px";
+    element.style.height = "50px";
+    element.style.border = "1px solid #333";
+    
+    // Add image to the dropped element
+    const img = document.createElement('img');
+    img.src = symbolImages[symbolIndex];
+    img.alt = `Symbol ${symbolIndex + 1}`;
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.pointerEvents = 'none';
+    element.appendChild(img);
+    
+    // Make the element draggable on the canvas
+    element.addEventListener("mousedown", startDrag);
+    
+    canvas.appendChild(element);
+    draggedElement = null;
+  }
+});
+
+
+
+
+
     </script>
 </body>
 </html>
