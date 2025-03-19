@@ -6,59 +6,59 @@
     <title>The Madhubani Canvas</title>
 </head>
     <style>
+
+@font-face {
+    font-family: 'Mithila-BETA6';
+    src: url('Fonts/Mithila-BETA6') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
         body {
-            background-color: #7e1134;
+           background-image: url("imgs/paint.png");
+           background-size: 2000px;
+           background-repeat: no-repeat;
+            font-family: Satoshi;
             margin: 0;
-            font-family: light, sans-serif;
             overflow: hidden;
             color: cornsilk;
             cursor: url('thecursor.png'), auto; /* Add custom cursor */
+
         }
 
-        /* Title Styles */
-        .title {
-            font-family: 'Mithila-BETA6', sans-serif;
-            font-size: 12em;
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            letter-spacing: -0.18em;
-            white-space: nowrap;
-            opacity: 0;
-            animation: fadeIn 1s ease-in forwards;
-            animation-delay: 0.5s;
-        }
+        .image-title {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 0.5s;
+}
 
+.title-image {
+    height: 200px;
+    transition: transform 0.3s ease;
+    cursor: url('thecursor.png'), pointer;
+}
+
+.title-image:hover {
+    transform: scale(1.2);
+}
+
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        .title span {
-            display: inline-block;
-            transition: color 0.3s ease, transform 0.3s ease;
-            position: relative;
-            cursor: url('thecursor.png'), pointer; 
-        }
+       
+      
 
-        .title span:hover {
-            color: cornsilk;
-            transform: scale(1.4);
-        }
-
-        /* Madhubani Image Styles */
-        .madhubani-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            pointer-events: none;
-        }
+       
 
         /* Subtitle Styles */
         .titletwo {
@@ -321,15 +321,36 @@
             transform: scale(1.2);
         }
 
-        @font-face {
-    font-family: 'Mithila-BETA6';
-    src: url('Fonts/Mithila-BETA6') format('ttf'),
-         url('Fonts/Mithila-BETA6') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
+       
 
-
+        .image-container {
+            position: absolute;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .image-container.draggable {
+            box-shadow: none;
+            z-index: 100;
+        }
+        
+        .title-image {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        
+        .status-indicator {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color:none;
+            color: cornsilk;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+     
 
 
 
@@ -349,20 +370,23 @@
         </div>
     </div>
 
-    <div class="title">
-        <span data-image="imgs/wallpainting.jpg">म</span>
-        <span data-image="imgs/009.jpg">धु</span>
-        <span data-image="imgs/003.jpg">ब</span>
-        <span data-image="imgs/image.jpeg">नी</span>
-        <span data-image="imgs/deepa.jpg">क</span>
-        <span data-image="imgs/001.jpg">ला</span>
-    </div>
+   
+    <!-- <div class="image-title">
+        <img src="title/M.png" class="title-image" alt="" style="height: 400px;">
+        <img src="title/dhu.png" class="title-image" alt="" style="height: 400px;">
+        <img src="title/ba.png" class="title-image" alt="" style="height: 400px;">
+        <img src="title/nee.png" class="title-image" alt="" style="height: 500px;">
+    
+    </div> -->
+
+    <div id="status" class="status-indicator">Click a letter to stop moving. Drag the letters to spell the word.</div>
 
     <div class="titletwo">
         <p>Madhubani Art</p>
     </div>
 
     <div class="description">
+        <br>
         <br>
         <br>
         <br>
@@ -456,31 +480,176 @@
                 }
             });
         });
+     
+                
+      
+     
+     
 
-        function showImage(src) {
-            // Remove any existing images first
-            hideImage();
-            
-            // Create and show the new image
-            let img = document.createElement("img");
-            img.src = src;
-            img.classList.add("madhubani-image");
-            document.body.appendChild(img);
-            
-            // Trigger reflow before changing opacity for animation to work
-            img.offsetHeight;
-            
-            // Make image visible
-            img.style.opacity = "1";
-        }
 
-        function hideImage() {
-            const images = document.querySelectorAll(".madhubani-image");
-            images.forEach(img => {
-                img.style.opacity = "0";
-                setTimeout(() => img.remove(), 300); // Remove after fade-out
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = [
+                { src: "title/M.png", maxHeight: 400 },
+                { src: "title/dhu.png", maxHeight: 400 },
+                { src: "title/ba.png", maxHeight: 400 },
+                { src: "title/nee.png", maxHeight: 500 }
+            ];
+            
+            const imageContainers = [];
+            const baseWindowWidth = 1920; // Base width for scaling calculations
+            const baseWindowHeight = 1080; // Base height for scaling calculations
+            
+            // Calculate scaling factor based on window size
+            function calculateScalingFactor() {
+                const widthRatio = window.innerWidth / baseWindowWidth;
+                const heightRatio = window.innerHeight / baseWindowHeight;
+                return Math.min(widthRatio, heightRatio, 1); // Cap at 1 to prevent growing larger than original
+            }
+            
+            // Create image containers
+            images.forEach((imgData, index) => {
+                const container = document.createElement('div');
+                container.className = 'image-container';
+                
+                const img = document.createElement('img');
+                img.src = imgData.src;
+                img.className = 'title-image';
+                img.alt = '';
+                
+                // Set initial image size based on window size
+                const scalingFactor = calculateScalingFactor();
+                img.style.height = (imgData.maxHeight * scalingFactor) + 'px';
+                
+                container.appendChild(img);
+                document.body.appendChild(container);
+                
+                // Store original max height for responsive calculations
+                container.dataset.maxHeight = imgData.maxHeight;
+                
+                // Set initial random positions
+                const maxX = window.innerWidth - img.offsetWidth;
+                const maxY = window.innerHeight - img.offsetHeight;
+                
+                container.style.left = Math.random() * maxX + 'px';
+                container.style.top = Math.random() * maxY + 'px';
+                
+                // Random initial velocity
+                const velocity = {
+                    x: (Math.random() - 0.5) * 2,
+                    y: (Math.random() - 0.5) * 2
+                };
+                
+                imageContainers.push({
+                    element: container,
+                    velocity,
+                    isFloating: true,
+                    isDragging: false,
+                    image: img,
+                    maxHeight: imgData.maxHeight
+                });
+                
+                // Click event
+                container.addEventListener('click', () => {
+                    if (imageContainers[index].isFloating) {
+                        // Stop floating and make draggable
+                        imageContainers[index].isFloating = false;
+                        container.classList.add('draggable');
+                    // } else {
+                    //     // Resume floating
+                    //     imageContainers[index].isFloating = true;
+                    //     container.classList.remove('draggable');
+                    //     imageContainers[index].isDragging = false;
+                    }
+                });
+                
+                // Mouse events for dragging
+                container.addEventListener('mousedown', (e) => {
+                    if (!imageContainers[index].isFloating) {
+                        imageContainers[index].isDragging = true;
+                        
+                        // Store offset between mouse position and container position
+                        imageContainers[index].offsetX = e.clientX - container.getBoundingClientRect().left;
+                        imageContainers[index].offsetY = e.clientY - container.getBoundingClientRect().top;
+                        
+                        e.preventDefault();
+                    }
+                });
             });
-        }
+            
+            // Mouse move and up events
+            document.addEventListener('mousemove', (e) => {
+                imageContainers.forEach(item => {
+                    if (item.isDragging) {
+                        item.element.style.left = (e.clientX - item.offsetX) + 'px';
+                        item.element.style.top = (e.clientY - item.offsetY) + 'px';
+                    }
+                });
+            });
+            
+            document.addEventListener('mouseup', () => {
+                imageContainers.forEach(item => {
+                    item.isDragging = false;
+                });
+            });
+            
+            // Animation loop
+            function animate() {
+                imageContainers.forEach(item => {
+                    if (item.isFloating) {
+                        const rect = item.element.getBoundingClientRect();
+                        let x = rect.left;
+                        let y = rect.top;
+                        
+                        // Update position
+                        x += item.velocity.x;
+                        y += item.velocity.y;
+                        
+                        // Check boundaries and bounce
+                        if (x <= 0 || x + rect.width >= window.innerWidth) {
+                            item.velocity.x = -item.velocity.x;
+                            x = x <= 0 ? 0 : window.innerWidth - rect.width;
+                        }
+                        
+                        if (y <= 0 || y + rect.height >= window.innerHeight) {
+                            item.velocity.y = -item.velocity.y;
+                            y = y <= 0 ? 0 : window.innerHeight - rect.height;
+                        }
+                        
+                        // Apply new position
+                        item.element.style.left = x + 'px';
+                        item.element.style.top = y + 'px';
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start animation
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                // Calculate new scaling factor
+                const scalingFactor = calculateScalingFactor();
+                
+                imageContainers.forEach(item => {
+                    // Resize image based on new scaling factor
+                    item.image.style.height = (item.maxHeight * scalingFactor) + 'px';
+                    
+                    const rect = item.element.getBoundingClientRect();
+                    
+                    // If out of bounds after resize, move inside
+                    if (rect.right > window.innerWidth) {
+                        item.element.style.left = (window.innerWidth - rect.width) + 'px';
+                    }
+                    
+                    if (rect.bottom > window.innerHeight) {
+                        item.element.style.top = (window.innerHeight - rect.height) + 'px';
+                    }
+                });
+            });
+        });
+        
     </script>
 </body>
 </html>
