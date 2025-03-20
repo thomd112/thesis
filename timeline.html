@@ -95,29 +95,9 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            right: -15px;
+            right: -14px;
             background-color: #7e1134;
             border: 4px solid cornsilk;
-            top: 20px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        /* Left side items */
-        .left-item {
-            left: 0;
-            text-align: center;
-        }
-
-        /* Right side items */
-        .right-item {
-            left: 50%;
-            text-align: left;
-        }
-
-        /* Adjust circles position for right items */
-        .right-item::after {
-            left: -15px;
         }
 
         /* Timeline content */
@@ -458,28 +438,56 @@
             }
 
             .timeline-container::after {
-                left: 31px;
+                content: '';
+    position: absolute;
+    width: 3px;
+    background-color: cornsilk;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px; /*  Half of the width to truly center */
             }
 
             .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+              
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
             }
 
             .timeline-item::after {
-                left: 21px;
+                content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    /* right: -15px; originally*/
+    background-color: #7e1134;
+    border: 4px solid cornsilk;
+    top: 50%; /* position the top edge of the circle at the vertical center of the item */
+    transform: translateY(-50%); /* Shift it up by half its height*/
+    border-radius: 50%;
+    z-index: 1;
             }
 
-            .left-item,
+            .left-item {
+    left: 0;
+    text-align: center;
+}
             .right-item {
-                left: 0;
-                text-align: left;
-            }
-        }
+    left: 50%;
+    text-align: left;
+}
 
+
+        .right-item::after {
+    
+    right: auto; 
+    left: -14px; 
+}
         .timeline-item.active::after {
-    background-color: rgb(255, 221, 0); /* Change color when active */
+    background-color: #E4AB24; /* Change color when active */
 }
 
     </style>
