@@ -63,7 +63,7 @@
         /* Subtitle Styles */
         .titletwo {
             font-family: Satoshi light, sans-serif;
-            font-size: 40px;
+            font-size: 50px;
             position: absolute;
             top: 55%;
             left: 50%;
@@ -339,7 +339,7 @@
             -webkit-user-drag: none;
         }
         
-        .status-indicator {
+        /* .status-indicator {
             position: fixed;
             bottom: 250px;
             right: 640px;
@@ -349,7 +349,28 @@
             border-radius: 4px;
             font-size: 14px;
             z-index: 1000;
+            animation: fadeInStatus 1s ease-in forwards;
+        animation-delay: 2s;  /* Added delay to make it appear after Madhubani Art */
+      
+
+
+        #status {
+        position: absolute;
+        top: 70%;  
+        left: 50%;
+        transform: translateX(-50%);
+        color: cornsilk;
+        font-family: Satoshi light, sans-serif;
+        font-size: 14px;
+        opacity: 0;
+        animation: fadeInStatus 1s ease-in forwards;
+        animation-delay: 2s;  
         }
+
+    @keyframes fadeInStatus {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
      
         .background-layer {
     position: fixed;
@@ -367,6 +388,12 @@
 
 .background-layer.fade-in {
     opacity: 1;
+}
+
+
+.dimmed {
+    opacity: 0.3; /* Adjust this value as needed */
+    transition: opacity 0.3s ease-in-out;
 }
 
 
@@ -403,6 +430,8 @@
         <br>
         <p>Madhubani Art</p>
     </div>
+    <br>
+    <br>
     <div id="status" class="status-indicator">Click and Drag the moving letters</div>
 
     <div class="description">
@@ -657,6 +686,15 @@
     document.body.style.height = "100vh";
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const titleImages = document.querySelectorAll(".title-image");
+
+    titleImages.forEach(image => {
+        image.addEventListener("click", () => {
+            image.classList.toggle("dimmed");
+        });
+    });
+});
 
                
     </script>
