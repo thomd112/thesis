@@ -95,10 +95,40 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            right: -14px;
+            right: -15px;
             background-color: #7e1134;
             border: 4px solid cornsilk;
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
         }
+
+        /* Left side items */
+        .left-item {
+            left: 0;
+            text-align: center;
+        }
+
+        /* Right side items */
+        .right-item {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* Adjust circles position for right items */
+        .right-item::after {
+            left: -14px;
+        }
+
+        /* Adjust circles position for right items */
+        .left-item::after {
+            right: -14px;
+        }
+
+
+
+
+
 
         /* Timeline content */
         .timeline-content {
@@ -438,54 +468,26 @@
             }
 
             .timeline-container::after {
-                content: '';
-    position: absolute;
-    width: 3px;
-    background-color: cornsilk;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -1.5px; /*  Half of the width to truly center */
+                left: 31px;
             }
 
             .timeline-item {
-              
-    padding: 10px 40px;
-    position: relative;
-    width: 50%;
-    box-sizing: border-box;
-}
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
             }
 
             .timeline-item::after {
-                content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    /* right: -15px; originally*/
-    background-color: #7e1134;
-    border: 4px solid cornsilk;
-    top: 50%; /* position the top edge of the circle at the vertical center of the item */
-    transform: translateY(-50%); /* Shift it up by half its height*/
-    border-radius: 50%;
-    z-index: 1;
+                left: 21px;
             }
 
-            .left-item {
-    left: 0;
-    text-align: center;
-}
+            .left-item,
             .right-item {
-    left: 50%;
-    text-align: left;
-}
+                left: 0;
+                text-align: left;
+            }
+        }
 
-
-        .right-item::after {
-    
-    right: auto; 
-    left: -14px; 
-}
         .timeline-item.active::after {
     background-color: #E4AB24; /* Change color when active */
 }
@@ -732,7 +734,7 @@
                 <!-- Year 10 - Right -->
                 <div class="timeline-item right-item" data-image="imgs/museum.jpg">
                     <div class="timeline-content">
-                        <h2>1982</h2>
+                        <h3>1982</h3>
                         <p>The Mithila Museum in Tokamachi, Japan, opened in 1982 and houses one of the world’s largest collections of
                             Madhubani art. Japanese curator Tokio Hasegawa founded the museum to protect Madhubani art, which he felt was in
                             danger of being lost to Western influences. Hasegawa invited Madhubani artists to Japan to paint and help establish
