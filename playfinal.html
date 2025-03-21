@@ -9,7 +9,7 @@
         body {
             background-color: #7e1134;
             margin: 0;
-            font-family: Satoshi,serif;
+            font-family: Satoshi;
             color: cornsilk;
             display: flex;
             justify-content: center;
@@ -49,16 +49,16 @@
         .canvas-container {
             width: 100%;
             max-width: 400px;
-            aspect-ratio: 1 / 1.2;
-            background-color: #f0f0f0;
+            aspect-ratio: 1 / 1;
+            background-color: #f5e9dc;
             position: relative;
             margin-bottom: 20px;
+            transition: aspect-ratio 0.3s ease;
         }
 
         .canvas {
             width: 100%;
             height: 100%;
-            background-color: #e0e0e0;
             position: relative;
             overflow: hidden;
         }
@@ -76,7 +76,6 @@
             color: cornsilk;
             padding: 8px 16px;
             cursor: pointer;
-            font-family: Satoshi, light;
             font-size: 16px;
             margin-top: 20px;
         }
@@ -143,6 +142,23 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            background-color: #f5e9dc;
+            overflow: hidden;
+        }
+
+        /* Color palette */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .color-swatch {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 1px solid cornsilk;
+            cursor: pointer;
         }
 
         /* Circle buttons for effects and orientation */
@@ -160,6 +176,11 @@
             border-radius: 50%;
             background: none;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: cornsilk;
         }
 
         .section-heading {
@@ -175,87 +196,6 @@
             user-select: none;
         }
 
-
-         /* Title Styles */
-         .title {
-            font-size: 12em;
-            font-family: 'Mithila-Beta6';
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            letter-spacing: -0.18em;
-            white-space: nowrap;
-            opacity: 0;
-            animation: fadeIn 1s ease-in forwards;
-            animation-delay: 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .title span {
-            display: inline-block;
-            transition: color 0.3s ease, transform 0.3s ease;
-            position: relative;
-            cursor: url('thecursor.png'), pointer; 
-        }
-
-        .title span:hover {
-            color: cornsilk;
-            transform: scale(1.4);
-        }
-
-        /* Madhubani Image Styles */
-        .madhubani-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            pointer-events: none;
-        }
-
-        /* Subtitle Styles */
-        .titletwo {
-            font-family: Satoshi light, sans-serif;
-            font-size: 40px;
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            animation: fadeIntwo 1s ease-in forwards;
-            animation-delay: 1s;
-            max-width: 90%;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        @keyframes fadeIntwo {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .description{
-          font-family: Satoshi light, sans-serif;
-            font-size: 15px;
-            position: absolute;
-            top: 80%;
-            left: 18%;
-            transform: translate(-50%, -50%);
-            opacity: 1;
-            max-width: 100%;
-            line-height: 1.2;
-            text-align: left;
-        }
-
-        /* Menu Styles - Updated */
         .header {
             position: fixed;
             top: 0;
@@ -270,13 +210,11 @@
         }
 
         .name a {
-          font-family: Satoshi, sans-serif;
-          color: cornsilk;
-          text-decoration: none;
-          position: relative;
-          display: inline-block;
-          padding: 5px 0;
-          cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
+            color: cornsilk;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 5px 0;
         }
 
         .name a::before,
@@ -309,173 +247,36 @@
             position: relative;
         }
 
-        .menu-button {
-            font-family: Satoshi, sans-serif;
-            font-size: 15px;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for menu button */
-            color: cornsilk;
-            background: none;
-            border: none;
-            display: flex;
-            align-items: center;
-            padding: 0;
-            position: relative;
-        }
-
-        .menu-button::before,
-        .menu-button::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            height: 2px;
-            background-color: cornsilk;
-            transition: width 0.4s ease;
-            width: 0;
-        }
-
-        .menu-button::before {
-            left: 50%;
-            transform: translateX(-100%);
-        }
-
-        .menu-button::after {
-            right: 50%;
-            transform: translateX(100%);
-        }
-
-        .menu-button:hover::before,
-        .menu-button:hover::after {
-            width: 50%;
-        }
-
-        .menu-icon {
-            width: 24px;
-            height: 24px;
-            margin-left: 8px;
-            position: relative;
-        }
-
-        .menu-icon::before,
-        .menu-icon::after,
-        .menu-icon span {
-            background-color: cornsilk;
-            content: '';
-            display: block;
-            height: 2px;
-            position: absolute;
+        .color-picker {
+            width:50px;
+            height:50px;
+            margin-top: 20px;
             width: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .menu-icon::before {
-            top: 5px;
-        }
-
-        .menu-icon span {
-            top: 11px;
-        }
-
-        .menu-icon::after {
-            top: 17px;
-        }
-
-        .menu-button.active .menu-icon::before {
-            transform: translateY(6px) rotate(45deg);
-        }
-
-        .menu-button.active .menu-icon span {
-            opacity: 0;
-        }
-
-        .menu-button.active .menu-icon::after {
-            transform: translateY(-6px) rotate(-45deg);
-        }
-
-        /* Updated Dropdown Menu */
-        .dropdown {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #7e1134;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            z-index: 900;
-        }
-
-        .dropdown.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dropdown-content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
             text-align: center;
         }
 
-        .dropdown-content a {
+        .reset-button {
+            background: none;
+            border: 1px solid cornsilk;
             color: cornsilk;
-            text-decoration: none;
-            font-family: Satoshi, sans-serif;
-            font-size: 32px;
-            transition: transform 0.3s ease, color 0.3s ease;
-            display: inline-block;
-            position: relative;
-            padding: 5px 10px;
-            font-style: normal;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for dropdown menu links */
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-left: 10px;
         }
 
-        /* Dual line hover effect */
-        .dropdown-content a::before,
-        .dropdown-content a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            height: 2px;
-            background-color: cornsilk;
-            transition: width 0.4s ease;
-            width: 0;
-            font-style: normal;
+        .canvas-controls {
+            display: flex;
+            gap: 10px;
         }
-
-        .dropdown-content a::before {
-            left: 50%;
-            transform: translateX(-100%);
-        }
-
-        .dropdown-content a::after {
-            right: 50%;
-            transform: translateX(100%);
-        }
-
-        .dropdown-content a:hover {
-            transform: translateY(-2px);
-        }
-
-        .dropdown-content a:hover::before,
-        .dropdown-content a:hover::after {
-            width: 50%;
-        }
-
-        #sketch-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-    
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="name"><a href="#">The Madhubani Canvas</a></div>
+    </div>
+
     <div class="page-container">
         <!-- Left Panel -->
         <div class="left-panel">
@@ -490,51 +291,19 @@
                     </div>
                 </div>
             </div>
-            <div class="header">
-                <!-- <div class="name">The Madhubani Canvas</div> -->
-                <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
-                <div class="menu-container">
-                    <button class="menu-button">
-                        Menu
-                        <div class="menu-icon">
-                            <span></span>
-                        </div>
-                    </button>
-                </div>
+
+            <!-- Border Color -->
+            <div class="section-title">Border Color</div>
+            <div class="color-picker">
+                <input type="color" id="border-color" value="#000000">
             </div>
-
-
-            <div id="sketch-container"></div>
-
-
-
-            <div class="dropdown">
-                <div class="dropdown-content">
-                    <a href="main.html">About</a>
-                    <a href="timeline.html">Timeline</a>
-                    <a href="process.html">Process</a>
-                    <a href="types.html">Types</a>
-                    <a href="symbols.html">Symbols</a>
-                    <a href="naturalcolour.html">Colours</a>
-                    <a href="playfinal.html">Play</a>
-                    <a href="resources.html">Resources</a>
-                </div>
-            </div>
-
-
+            <br>
+            <br>
 
             <!-- Symbols Section -->
             <div class="section-title">Symbols</div>
             <div class="symbols-grid">
-                <div class="symbol-item" draggable="true" data-symbol="symbol1"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol2"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol3"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol4"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol5"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol6"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol7"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol8"></div>
-                <div class="symbol-item" draggable="true" data-symbol="symbol9"></div>
+                <!-- Symbol items will be populated by JavaScript -->
             </div>
         </div>
 
@@ -544,172 +313,135 @@
             <div class="canvas-container">
                 <div class="canvas" id="madhubani-canvas"></div>
             </div>
-            <p class="instruction">Using the knowledge learnt, use the sliders and<br>drag and drop elements to create your own</p>
-            <button class="print-button">Print</button>
+            <br>
+            <br>
+            <p class="instruction">Drag and drop elements and create your own Madhubani artwork</p>
+            <div class="canvas-controls">
+                <button class="print-button">Print</button>
+                <button class="reset-button">Reset Canvas</button>
+            </div>
         </div>
 
         <!-- Right Panel -->
         <div class="right-panel">
-            <!-- Effects Section -->
-            <div class="section-heading">Effects!!!</div>
-            <div class="circles-container">
-                <button class="circle-button" data-effect="effect1"></button>
-                <button class="circle-button" data-effect="effect2"></button>
-                <button class="circle-button" data-effect="effect3"></button>
+            <!-- Background Color -->
+            <div class="section-heading">Background Color</div>
+            <div class="color-palette">
+                <div class="color-swatch" style="background-color: #f5e9dc;" data-color="#f5e9dc"></div>
+                <div class="color-swatch" style="background-color: #f0d6c2;" data-color="#f0d6c2"></div>
+                <div class="color-swatch" style="background-color: #e2c8b0;" data-color="#e2c8b0"></div>
+                <div class="color-swatch" style="background-color: #f9f0e6;" data-color="#f9f0e6"></div>
+                <div class="color-swatch" style="background-color: #eddbc7;" data-color="#eddbc7"></div>
+                <div class="color-swatch" style="background-color: #f0e6d5;" data-color="#f0e6d5"></div>
             </div>
 
+            <br>
+            <br>
             <!-- Canvas Orientation Section -->
-            <div class="section-heading">Horizontal or Vertical Canvas?</div>
+            <div class="section-heading">Canvas Shape</div>
             <div class="circles-container">
                 <button class="circle-button" data-orientation="square"></button>
                 <button class="circle-button" data-orientation="horizontal"></button>
                 <button class="circle-button" data-orientation="vertical"></button>
             </div>
+            <br>
+            <br>
+
+            <!-- Element Size -->
+            <div class="section-heading">Element Size</div>
+            <div class="border-slider">
+                <div class="slider-container">
+                    <input type="range" min="30" max="150" value="50" class="slider" id="size-slider">
+                    <div class="slider-labels">
+                        <span>Small</span>
+                        <span>Large</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="sketch.js"></script>
-
-
-
-
     <script>
-
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const menuButton = document.querySelector(".menu-button");
-            const dropdown = document.querySelector(".dropdown");
-            const titleLetters = document.querySelectorAll(".title span");
-            const audio = document.getElementById("customAudio");
-            const playButton = document.getElementById("customPlayButton");
-            let pageLoaded = false;
-
-            // Set page as loaded after animations complete
-            setTimeout(() => {
-                pageLoaded = true;
-            }, 3000);
-
-            // Hover effect on title letters to show images
-            titleLetters.forEach(letter => {
-                letter.addEventListener("mouseenter", () => {
-                    if (pageLoaded) {
-                        const imageSrc = letter.getAttribute("data-image");
-                        showImage(imageSrc);
-                    }
-                });
-
-                letter.addEventListener("mouseleave", () => {
-                    hideImage();
-                });
-            });
-
-            // Menu toggle
-            menuButton.addEventListener("click", () => {
-                menuButton.classList.toggle("active");
-                dropdown.classList.toggle("show");
-                document.body.style.overflow = dropdown.classList.contains("show") ? "hidden" : "";
-            });
-
-            // Close menu when clicking a menu item
-            const menuItems = document.querySelectorAll(".dropdown-content a");
-            menuItems.forEach(item => {
-                item.addEventListener("click", () => {
-                    menuButton.classList.remove("active");
-                    dropdown.classList.remove("show");
-                    document.body.style.overflow = "";
-                });
-            });
-
-            // Audio play/pause functionality
-            playButton.addEventListener("click", () => {
-                if (audio.paused) {
-                    audio.play();
-                    playButton.src = "imgs/speak.png"; // Change icon if needed
-                } else {
-                    audio.pause();
-                    playButton.src = "imgs/speak.png"; // Change back to play icon
-                }
-            });
-        });
-
-        function showImage(src) {
-            // Remove any existing images first
-            hideImage();
-            
-            // Create and show the new image
-            let img = document.createElement("img");
-            img.src = src;
-            img.classList.add("madhubani-image");
-            document.body.appendChild(img);
-            
-            // Trigger reflow before changing opacity for animation to work
-            img.offsetHeight;
-            
-            // Make image visible
-            img.style.opacity = "1";
-        }
-
-        function hideImage() {
-            const images = document.querySelectorAll(".madhubani-image");
-            images.forEach(img => {
-                img.style.opacity = "0";
-                setTimeout(() => img.remove(), 300); // Remove after fade-out
-            });
-        }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         document.addEventListener("DOMContentLoaded", function() {
             const canvas = document.getElementById("madhubani-canvas");
             const borderSlider = document.getElementById("border-slider");
-            const symbolItems = document.querySelectorAll(".symbol-item");
-            const effectButtons = document.querySelectorAll("[data-effect]");
+            const borderColorPicker = document.getElementById("border-color");
+            const sizeSlider = document.getElementById("size-slider");
+            const colorSwatches = document.querySelectorAll(".color-swatch");
             const orientationButtons = document.querySelectorAll("[data-orientation]");
             const printButton = document.querySelector(".print-button");
+            const resetButton = document.querySelector(".reset-button");
             
             let canvasOrientation = "square";
-            let activeEffect = null;
             let currentBorderWidth = 1;
+            let currentBorderColor = "#000000";
+            let currentElementSize = 50;
             let draggedElement = null;
             let activeElement = null;
             let offsetX, offsetY;
 
+            // Array of image paths for the symbols (replace with actual PNG paths)
+            const madhubaniPatterns = [
+                'playimgs/anklet.png', // Replace with actual PNG image paths
+                'playimgs/bells.png',
+                'playimgs/bud.png',
+                'playimgs/decorations.png',
+                'playimgs/earrings.png',
+                'playimgs/flower.png',
+                'playimgs/fruit.png',
+                'playimgs/necklace.png',
+                'playimgs/fullbloom.png',
+                
+            ];
+
+            // Initialize symbols with PNG images
+            function initSymbols() {
+                const symbolsGrid = document.querySelector('.symbols-grid');
+                symbolsGrid.innerHTML = ''; // Clear existing content
+                
+                madhubaniPatterns.forEach((pattern, index) => {
+                    const symbolItem = document.createElement('div');
+                    symbolItem.className = 'symbol-item';
+                    symbolItem.setAttribute('draggable', 'true');
+                    symbolItem.setAttribute('data-symbol', `symbol${index + 1}`);
+                    
+                    // Create an image element instead of using SVG
+                    const img = document.createElement('img');
+                    img.src = pattern;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'contain';
+                    
+                    symbolItem.appendChild(img);
+                    
+                    // Add drag events
+                    symbolItem.addEventListener("dragstart", function(e) {
+                        draggedElement = this.getAttribute("data-symbol");
+                        e.dataTransfer.setData("text/plain", draggedElement);
+                    });
+                    
+                    symbolsGrid.appendChild(symbolItem);
+                });
+            }
+
+            // Initialize canvas with thin border
+            canvas.style.border = "1px solid #000000";
+
             // Update border based on slider
             borderSlider.addEventListener("input", function() {
                 currentBorderWidth = this.value;
-                canvas.style.border = `${currentBorderWidth}px solid #333`;
+                canvas.style.borderWidth = `${currentBorderWidth}px`;
             });
 
-            // Initialize canvas with thin border
-            canvas.style.border = "1px solid #333";
+            // Update border color
+            borderColorPicker.addEventListener("input", function() {
+                currentBorderColor = this.value;
+                canvas.style.borderColor = currentBorderColor;
+            });
 
-            // Set up drag and drop for symbols
-            symbolItems.forEach(item => {
-                // Add a visual indicator for the symbol
-                item.style.position = "relative";
-                const symbolIndicator = document.createElement("div");
-                symbolIndicator.style.width = "80%";
-                symbolIndicator.style.height = "80%";
-                symbolIndicator.style.border = "1px solid cornsilk";
-                item.appendChild(symbolIndicator);
-
-                // Add drag events
-                item.addEventListener("dragstart", function(e) {
-                    draggedElement = this.getAttribute("data-symbol");
-                    e.dataTransfer.setData("text/plain", draggedElement);
-                });
+            // Update element size
+            sizeSlider.addEventListener("input", function() {
+                currentElementSize = this.value;
             });
 
             // Set up canvas for drop
@@ -725,15 +457,25 @@
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
                     
+                    // Get the symbol index
+                    const symbolIndex = parseInt(draggedElement.replace('symbol', '')) - 1;
+                    
                     // Create element on canvas
                     const element = document.createElement("div");
                     element.className = "dropped-element";
                     element.setAttribute("data-symbol", draggedElement);
-                    element.style.left = `${x - 25}px`;
-                    element.style.top = `${y - 25}px`;
-                    element.style.width = "50px";
-                    element.style.height = "50px";
-                    element.style.border = "1px solid #333";
+                    element.style.left = `${x - (currentElementSize/2)}px`;
+                    element.style.top = `${y - (currentElementSize/2)}px`;
+                    element.style.width = `${currentElementSize}px`;
+                    element.style.height = `${currentElementSize}px`;
+                    
+                    // Create and add the image to the dropped element
+                    const img = document.createElement('img');
+                    img.src = madhubaniPatterns[symbolIndex];
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'contain';
+                    element.appendChild(img);
                     
                     // Make the element draggable on the canvas
                     element.addEventListener("mousedown", startDrag);
@@ -746,7 +488,15 @@
             // Functions for dragging elements on canvas
             function startDrag(e) {
                 e.preventDefault();
+                
+                // Bring to front
+                const allElements = document.querySelectorAll(".dropped-element");
+                allElements.forEach(el => {
+                    el.style.zIndex = "1";
+                });
+                
                 activeElement = this;
+                activeElement.style.zIndex = "10";
                 
                 const rect = activeElement.getBoundingClientRect();
                 offsetX = e.clientX - rect.left;
@@ -777,20 +527,17 @@
                 document.removeEventListener("mouseup", stopDrag);
             }
 
-            // Effect buttons
-            effectButtons.forEach(button => {
-                button.addEventListener("click", function() {
-                    const effect = this.getAttribute("data-effect");
-                    activeEffect = effect;
+            // Background color swatches
+            colorSwatches.forEach(swatch => {
+                swatch.addEventListener("click", function() {
+                    const color = this.getAttribute("data-color");
+                    canvas.style.backgroundColor = color;
                     
                     // Visual feedback for selection
-                    effectButtons.forEach(btn => {
-                        btn.style.backgroundColor = "transparent";
+                    colorSwatches.forEach(s => {
+                        s.style.border = "1px solid cornsilk";
                     });
-                    this.style.backgroundColor = "rgba(255, 295, 255, 0.3)";
-                    
-                    // Apply effect (placeholder)
-                    applyEffect(effect);
+                    this.style.border = "3px solid cornsilk";
                 });
             });
 
@@ -813,16 +560,40 @@
 
             // Print button
             printButton.addEventListener("click", function() {
-                // Placeholder for print functionality
-                alert("Print functionality would be implemented here");
+                window.print();
             });
 
-            // Helper functions
-            function applyEffect(effect) {
-                // Placeholder for applying various effects
-                console.log("Applying effect:", effect);
-                // This would be implemented based on the specific effects needed
-            }
+            // Reset button
+            resetButton.addEventListener("click", function() {
+                // Remove all elements
+                const allElements = document.querySelectorAll(".dropped-element");
+                allElements.forEach(el => {
+                    el.remove();
+                });
+                
+                // Reset canvas
+                canvas.style.backgroundColor = "#f5e9dc";
+                canvas.style.border = "1px solid #000000";
+                borderSlider.value = 1;
+                sizeSlider.value = 50;
+                currentBorderWidth = 1;
+                currentElementSize = 50;
+                borderColorPicker.value = "#000000";
+                
+                // Reset swatches
+                colorSwatches.forEach(s => {
+                    s.style.border = "1px solid cornsilk";
+                });
+                colorSwatches[0].style.border = "3px solid cornsilk";
+                
+                // Reset orientation
+                canvasOrientation = "square";
+                updateCanvasOrientation("square");
+                orientationButtons.forEach(btn => {
+                    btn.style.backgroundColor = "transparent";
+                });
+                orientationButtons[0].style.backgroundColor = "rgba(255, 248, 220, 0.3)";
+            });
 
             function updateCanvasOrientation(orientation) {
                 const canvasContainer = document.querySelector(".canvas-container");
@@ -838,93 +609,14 @@
                         canvasContainer.style.aspectRatio = "1 / 1";
                 }
             }
+
+            // Initialize everything
+            initSymbols();
+            updateCanvasOrientation("square");
+            canvas.style.backgroundColor = "#f5e9dc";
+            colorSwatches[0].style.border = "3px solid cornsilk";
+            orientationButtons[0].style.backgroundColor = "rgba(255, 248, 220, 0.3)";
         });
-
-//symbols 
-// Add this after the DOMContentLoaded event handler or within it
-
-// Array of image paths for the symbols
-const symbolImages = [
-  'playimgs/anklet.png',  // Replace with your actual image paths
-  'playimgs/bells.png',
-  'playimgs/necklace.png',
-  'playimgs/decorations.png',
-  'playimgs/bud.png',
-  'playimgs/flower.png',
-  'playimgs/fullbloom.png',
-  'path/to/symbol8.jpg',
-  'path/to/symbol9.jpg'
-];
-
-// Function to initialize symbols with images
-function initSymbolImages() {
-  const symbolItems = document.querySelectorAll('.symbol-item');
-  
-  symbolItems.forEach((item, index) => {
-    // Clear any existing content
-    item.innerHTML = '';
-    
-    // Create image element
-    const img = document.createElement('img');
-    img.src = symbolImages[index];
-    img.alt = `Symbol ${index + 1}`;
-    img.style.width = '100%';
-    img.style.height = '100%';
-    img.style.objectFit = 'cover';
-    img.style.pointerEvents = 'none'; // Prevent image from interfering with drag
-    
-    // Add image to symbol item
-    item.appendChild(img);
-  });
-}
-
-// Initialize images in symbols
-initSymbolImages();
-
-// Modify the drop event handler to include the image
-canvas.addEventListener("drop", function(e) {
-  e.preventDefault();
-  
-  if (draggedElement) {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Find the index of the dragged symbol
-    const symbolIndex = parseInt(draggedElement.replace('symbol', '')) - 1;
-    
-    // Create element on canvas
-    const element = document.createElement("div");
-    element.className = "dropped-element";
-    element.setAttribute("data-symbol", draggedElement);
-    element.style.left = `${x - 25}px`;
-    element.style.top = `${y - 25}px`;
-    element.style.width = "50px";
-    element.style.height = "50px";
-    element.style.border = "1px solid #333";
-    
-    // Add image to the dropped element
-    const img = document.createElement('img');
-    img.src = symbolImages[symbolIndex];
-    img.alt = `Symbol ${symbolIndex + 1}`;
-    img.style.width = '100%';
-    img.style.height = '100%';
-    img.style.objectFit = 'cover';
-    img.style.pointerEvents = 'none';
-    element.appendChild(img);
-    
-    // Make the element draggable on the canvas
-    element.addEventListener("mousedown", startDrag);
-    
-    canvas.appendChild(element);
-    draggedElement = null;
-  }
-});
-
-
-
-
-
     </script>
 </body>
 </html>
