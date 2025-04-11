@@ -9,10 +9,10 @@
         body {
             background-color: #7e1134;
             margin: 0;
-            font-family: light, sans-serif;
-            overflow: hidden;
+            font-family: Satoshi light, sans-serif;
             color: cornsilk;
             cursor: url('thecursor.png'), auto; /* Add custom cursor */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         /* Title Styles */
@@ -81,8 +81,8 @@
             to { opacity: 1; }
         }
 
-        .description{
-          font-family: Satoshi light, sans-serif;
+        .description {
+            font-family: Satoshi light, sans-serif;
             font-size: 15px;
             position: absolute;
             top: 80%;
@@ -96,6 +96,7 @@
 
         /* Menu Styles - Updated */
         .header {
+            font-family: Satoshi light, sans-serif;
             position: fixed;
             top: 0;
             left: 0;
@@ -109,13 +110,13 @@
         }
 
         .name a {
-          font-family: Satoshi, sans-serif;
-          color: cornsilk;
-          text-decoration: none;
-          position: relative;
-          display: inline-block;
-          padding: 5px 0;
-          cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
+            font-family: Satoshi, sans-serif;
+            color: cornsilk;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 5px 0;
+            cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
         }
 
         .name a::before,
@@ -305,19 +306,19 @@
             width: 50%;
         }
 
-        /* Materials Section Styles */
+        /* Materials Section Styles - UPDATED */
         .materials-section {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            font-family: Satoshi light, sans-serif;
+            position: relative;
             width: 80%;
             max-width: 1200px;
+            margin: 100px auto;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 30px;
             padding: 20px;
             z-index: 100;
+            overflow-y: visible;
         }
 
         .material-item {
@@ -325,20 +326,34 @@
             width: 100%;
             cursor: url('thecursor.png'), pointer;
             transition: transform 0.3s ease;
-            aspect-ratio: 1;
+            margin-bottom: 30px; /* Add bottom margin for spacing */
         }
 
         .material-item:hover {
             transform: translateY(-10px);
         }
 
+        .material-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect ratio */
+            overflow: hidden;
+            border-radius: 10px;
+            border: 2px solid cornsilk;
+        }
+
         .material-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid cornsilk;
-            transition: opacity 0.3s ease;
+            transition: transform 0.3s ease;
+        }
+
+        .material-item:hover .material-image {
+            transform: scale(1.05);
         }
 
         .material-name {
@@ -350,10 +365,10 @@
             color: cornsilk;
             padding: 10px;
             text-align: center;
-            font-family: Satoshi, sans-serif;
+            font-family: Satoshi light, sans-serif;
             font-size: 18px;
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
             transition: background-color 0.3s ease;
         }
 
@@ -370,7 +385,7 @@
             background-color: rgba(126, 17, 52, 0.9);
             color: cornsilk;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -387,7 +402,7 @@
         }
 
         .section-title {
-            font-family: 'Mithila-Beta6', sans-serif;
+            font-family: Satoshi light, sans-serif;
             color: cornsilk;
             font-size: 4em;
             text-align: center;
@@ -472,81 +487,95 @@
             <a href="naturalcolour.html">Colours</a>
             <a href="playfinal.html">Play</a>
             <a href="resources.html">Resources</a>
-            
         </div>
     </div>
 
     <!-- Materials Section -->
     <div class="materials-section">
-        <h1 class="section-title">Madhubani Art Materials</h1>
-        <br>
-        <br>
-        <h2 class="materials-category">Tools - Traditional and Modern</h2>
- 
-        
-        <div class="material-item">
-            <img src="playimgs/bamboo.png" alt="Bamboo stick" class="material-image">
-            <div class="material-name">Bamboo Stick</div>
-            <div class="material-description">Used to create the intricate black outline of the painting</div>
-        </div>
-        
-        
-        <div class="material-item">
-            <img src="playimgs/pencil.png" alt="Nib pen" class="material-image">
-            <div class="material-name">Nib Pen</div>
-            <div class="material-description">Used to sketch on the outline drawn by the pencil</div>
-        </div>
-        
-        <div class="material-item">
-            <img src="playimgs/palette.jpeg" alt="Paint pallete" class="material-image">
-            <div class="material-name">Paint Pallete</div>
-            <div class="material-description">Used to mix paints to a required density for painting</div>
-        </div>
-        
-        <div class="material-item">
-            <img src="playimgs/nib.jpeg" alt="nib" class="material-image">
-            <div class="material-name">Nib</div>
-            <div class="material-description">Tool to draw detailed patterns</div>
-        </div>
-        
-        <div class="material-item">
-            <img src="playimgs/brush.jpg" alt="Paintbrush" class="material-image">
-            <div class="material-name">Paintbrush</div>
-            <div class="material-description">Used to paint with different colors over the sketch</div>
-        </div>
-        
-        <h2 class="materials-category">Base Materials - Traditional and Modern</h2>
+        <h4 class="section-title">Madhubani Art Materials</h4>
 
-        
+        <h4 class="materials-category">Tools - Traditional and Modern</h4>
+ 
         <div class="material-item">
-            <img src="playimgs/paper.png" alt="Handmade paper" class="material-image">
-            <div class="material-name">Handmade Paper</div>
-            <div class="material-description">The basic material used for painting</div>
+            <div class="material-image-container">
+                <img src="playimgs/bamboo.png" alt="Bamboo stick" class="material-image">
+                <div class="material-name">Bamboo Stick</div>
+                <div class="material-description">Used to create the intricate black outline of the painting</div>
+            </div>
         </div>
         
         <div class="material-item">
-            <img src="playimgs/cloth.png" alt="Canvas cloth" class="material-image">
-            <div class="material-name">Canvas Cloth</div>
-            <div class="material-description">An alternative base material used for painting</div>
-        </div>
-        
-        <!-- <h2 class="materials-category">Colors</h2> -->
-        
-        <div class="material-item">
-            <img src="playimgs/acrylic.jpg" alt="Acrylic colors" class="material-image">
-            <div class="material-name">Acrylic Colors</div>
-            <div class="material-description">Used to paint on handmade paper or canvas cloth</div>
+            <div class="material-image-container">
+                <img src="playimgs/pencil.png" alt="Nib pen" class="material-image">
+                <div class="material-name">Nib Pen</div>
+                <div class="material-description">Used to sketch on the outline drawn by the pencil</div>
+            </div>
         </div>
         
         <div class="material-item">
-            <img src="playimgs/naturaldye.png" alt="Natural dyes" class="material-image">
-            <div class="material-name">Natural Dyes</div>
-            <div class="material-description">Used to create the paint, such as ochre and lampblack</div>
+            <div class="material-image-container">
+                <img src="playimgs/palette.jpeg" alt="Paint pallete" class="material-image">
+                <div class="material-name">Paint Pallete</div>
+                <div class="material-description">Used to mix paints to a required density for painting</div>
+            </div>
         </div>
+        
         <div class="material-item">
-            <img src="playimgs/bind.png" alt="Binding Agent" class="material-image">
-            <div class="material-name">Binding Agents</div>
-            <div class="material-description">Used to mix the dyes together</div>
+            <div class="material-image-container">
+                <img src="playimgs/nib.jpeg" alt="nib" class="material-image">
+                <div class="material-name">Nib</div>
+                <div class="material-description">Tool to draw detailed patterns</div>
+            </div>
+        </div>
+        
+        <div class="material-item">
+            <div class="material-image-container">
+                <img src="playimgs/brush.jpg" alt="Paintbrush" class="material-image">
+                <div class="material-name">Paintbrush</div>
+                <div class="material-description">Used to paint with different colors over the sketch</div>
+            </div>
+        </div>
+        
+        <h3 class="materials-category">Base Materials - Traditional and Modern</h3>
+
+        <div class="material-item">
+            <div class="material-image-container">
+                <img src="playimgs/paper.png" alt="Handmade paper" class="material-image">
+                <div class="material-name">Handmade Paper</div>
+                <div class="material-description">The basic material used for painting</div>
+            </div>
+        </div>
+        
+        <div class="material-item">
+            <div class="material-image-container">
+                <img src="playimgs/cloth.png" alt="Canvas cloth" class="material-image">
+                <div class="material-name">Canvas Cloth</div>
+                <div class="material-description">An alternative base material used for painting</div>
+            </div>
+        </div>
+        
+        <div class="material-item">
+            <div class="material-image-container">
+                <img src="playimgs/acrylic.jpg" alt="Acrylic colors" class="material-image">
+                <div class="material-name">Acrylic Colors</div>
+                <div class="material-description">Used to paint on handmade paper or canvas cloth</div>
+            </div>
+        </div>
+        
+        <div class="material-item">
+            <div class="material-image-container">
+                <img src="playimgs/naturaldye.png" alt="Natural dyes" class="material-image">
+                <div class="material-name">Natural Dyes</div>
+                <div class="material-description">Used to create the paint, such as ochre and lampblack</div>
+            </div>
+        </div>
+        
+        <div class="material-item">
+            <div class="material-image-container">
+                <img src="playimgs/bind.png" alt="Binding Agent" class="material-image">
+                <div class="material-name">Binding Agents</div>
+                <div class="material-description">Used to mix the dyes together</div>
+            </div>
         </div>
     </div>
 
