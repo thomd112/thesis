@@ -248,7 +248,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.9;
+            opacity: 0.6;
             z-index: 0;
             object-fit: cover;
             transition: opacity 0.5s ease;
@@ -263,15 +263,9 @@
             padding: 20px;
             color: rgb(0, 0, 0);
             background-image: url('imgs/actualcanvas.jpeg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-
-
-
-
-
-
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .color-grid {
@@ -311,9 +305,10 @@ background-repeat: no-repeat;
 
         .drawing-container {
             position: relative;
-            width: 80%;
-            max-width: 400px;
+            width: 90%;
+            max-width: 450px;
             z-index: 2;
+            margin-top: 40px;
         }
 
         .color-info {
@@ -336,10 +331,10 @@ background-repeat: no-repeat;
         .custom-drawing {
             width: 100%;
             height: auto;
-            max-width: 400px;
+            max-width: 450px;
             display: block;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
         .drawing-areas {
@@ -352,22 +347,22 @@ background-repeat: no-repeat;
         }
 
         .drawing-area {
-            fill: white;
-            stroke: black;
-            stroke-width: 2px;
+            fill: transparent;
+            stroke: rgba(0, 0, 0, 0.2);
+            stroke-width: 1px;
             cursor: pointer;
             transition: fill 0.3s ease;
         }
 
         .drawing-area.selected {
             stroke: #ff6600;
-            stroke-width: 3px;
+            stroke-width: 2px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="name"><a href="index.html">The Canvas</a></div>
+        <div class="name"><a href="index.html">The Madhubani Canvas</a></div>
         <div class="menu-container">
             <button class="menu-button">
                 Menu
@@ -404,17 +399,39 @@ background-repeat: no-repeat;
         <img id="background-black" class="background-image" src="imgs/charcoaljpeg.jpeg" style="display:none;" alt="Black background image">
         
         <div class="drawing-container">
-            <!-- Replace this with your own black and white drawing -->
-            <img id="custom-drawing-image" class="custom-drawing" src="images/custom-drawing.png" alt="Custom black and white drawing">
+            <!-- Your lotus drawing -->
+            <img id="custom-drawing-image" class="custom-drawing" src="playimgs/flower.png" alt="Lotus drawing">
             
-            <!-- SVG overlay for clickable regions -->
-            <svg class="drawing-areas" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-                <!-- Replace these paths with your own that match your drawing -->
-                <path id="section1" class="drawing-area" d="M200,70 C220,50 240,40 260,50 C280,60 290,80 280,100 C270,120 250,130 230,120 C210,110 200,90 200,70 Z"/>
-                <path id="section2" class="drawing-area" d="M200,70 C180,50 160,40 140,50 C120,60 110,80 120,100 C130,120 150,130 170,120 C190,110 200,90 200,70 Z"/>
-                <path id="section3" class="drawing-area" d="M200,120 C220,100 240,90 260,100 C280,110 290,130 280,150 C270,170 250,180 230,170 C210,160 200,140 200,120 Z"/>
-                <path id="section4" class="drawing-area" d="M200,120 C180,100 160,90 140,100 C120,110 110,130 120,150 C130,170 150,180 170,170 C190,160 200,140 200,120 Z"/>
-                <!-- Add more paths as needed to match your drawing -->
+            <!-- SVG overlay for clickable regions that match the lotus pattern -->
+            <svg class="drawing-areas" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                <!-- Upper petals (crown) -->
+                <path id="upper-petal-1" class="drawing-area" d="M300,100 L330,50 L370,70 L350,120 Z" />
+                <path id="upper-petal-2" class="drawing-area" d="M300,100 L270,50 L230,70 L250,120 Z" />
+                <path id="upper-petal-3" class="drawing-area" d="M300,100 L350,120 L370,90 L320,80 Z" />
+                <path id="upper-petal-4" class="drawing-area" d="M300,100 L250,120 L230,90 L280,80 Z" />
+                <path id="upper-petal-5" class="drawing-area" d="M300,100 L320,80 L300,50 L280,80 Z" />
+                
+                <!-- Middle ring petals -->
+                <path id="middle-petal-1" class="drawing-area" d="M300,200 C340,180 380,190 400,220 C420,250 410,290 380,310 C350,330 310,320 290,290 C280,260 290,210 300,200 Z" />
+                <path id="middle-petal-2" class="drawing-area" d="M300,200 C260,180 220,190 200,220 C180,250 190,290 220,310 C250,330 290,320 310,290 C320,260 310,210 300,200 Z" />
+                <path id="middle-petal-3" class="drawing-area" d="M300,200 C330,170 350,150 340,130 C330,110 300,100 270,110 C240,120 230,150 260,180 C280,190 290,195 300,200 Z" />
+                
+                <!-- Inner lotus petals -->
+                <path id="inner-petal-1" class="drawing-area" d="M300,250 C320,230 335,220 340,240 C345,260 330,280 310,290 C290,280 280,260 300,250 Z" />
+                <path id="inner-petal-2" class="drawing-area" d="M300,250 C280,230 265,220 260,240 C255,260 270,280 290,290 C310,280 320,260 300,250 Z" />
+                <path id="inner-petal-3" class="drawing-area" d="M300,270 C320,260 330,280 325,300 C320,320 300,325 280,320 C260,315 280,280 300,270 Z" />
+                
+                <!-- Center of flower -->
+                <circle id="center" class="drawing-area" cx="300" cy="260" r="20" />
+                
+                <!-- Decorative curls -->
+                <path id="curl-left" class="drawing-area" d="M220,290 C180,300 150,330 170,350 C190,370 220,350 230,330 C240,310 220,300 220,290 Z" />
+                <path id="curl-right" class="drawing-area" d="M380,290 C420,300 450,330 430,350 C410,370 380,350 370,330 C360,310 380,300 380,290 Z" />
+                
+                <!-- Lower leaves and stem -->
+                <path id="lower-leaf-left" class="drawing-area" d="M290,330 C270,340 255,360 265,380 C275,400 295,390 305,370 C310,350 300,330 290,330 Z" />
+                <path id="lower-leaf-right" class="drawing-area" d="M310,330 C330,340 345,360 335,380 C325,400 305,390 295,370 C290,350 300,330 310,330 Z" />
+                <path id="stem" class="drawing-area" d="M300,290 L300,400 C300,410 295,420 290,430 C285,440 295,450 300,450 C305,450 315,440 310,430 C305,420 300,410 300,400 Z" />
             </svg>
         </div>
     </div>
@@ -436,7 +453,7 @@ background-repeat: no-repeat;
         
         <div class="color-info">
             <p id="color-description">
-                Click on a region of the drawing first, then select a color to apply. Each color displays a different background image.
+                Click on a section of the lotus first, then select a natural color to apply. Each color displays its source in the background.
             </p>
         </div>
     </div>
@@ -473,6 +490,23 @@ background-repeat: no-repeat;
         let selectedArea = null;
         let currentBackground = null;
 
+        // Initialize the drawing with proper positioning
+        window.addEventListener('DOMContentLoaded', () => {
+            // Set the first area as selected by default
+            drawingAreas[0].classList.add('selected');
+            selectedArea = drawingAreas[0];
+            
+            // Adjust SVG overlay position to match the drawing if needed
+            const drawingImg = document.getElementById('custom-drawing-image');
+            const svgOverlay = document.querySelector('.drawing-areas');
+            
+            // Wait for image to load to get accurate dimensions
+            drawingImg.onload = function() {
+                svgOverlay.style.width = drawingImg.clientWidth + 'px';
+                svgOverlay.style.height = drawingImg.clientHeight + 'px';
+            };
+        });
+
         // Add click listeners to drawing areas
         drawingAreas.forEach(area => {
             area.addEventListener('click', () => {
@@ -484,6 +518,9 @@ background-repeat: no-repeat;
                 // Highlight the selected area
                 area.classList.add('selected');
                 selectedArea = area;
+                
+                // Show instruction to select a color
+                colorDescription.textContent = "Now select a color to apply to the highlighted section.";
             });
         });
 
@@ -498,9 +535,12 @@ background-repeat: no-repeat;
                 // Apply color to selected area or default to first area
                 if (selectedArea) {
                     selectedArea.style.fill = color;
+                    // Add a class to mark this area as colored
+                    selectedArea.classList.add('colored');
                 } else {
                     drawingAreas[0].style.fill = color;
                     drawingAreas[0].classList.add('selected');
+                    drawingAreas[0].classList.add('colored');
                     selectedArea = drawingAreas[0];
                 }
                 
@@ -517,10 +557,23 @@ background-repeat: no-repeat;
                 }
             });
         });
-
-        // Default to first section selected
-        drawingAreas[0].classList.add('selected');
-        selectedArea = drawingAreas[0];
+        
+        // Reset button functionality - uncomment if you want to add a reset button
+        /*
+        document.getElementById('reset-button').addEventListener('click', () => {
+            drawingAreas.forEach(area => {
+                area.style.fill = 'transparent';
+                area.classList.remove('colored');
+            });
+            
+            if (currentBackground) {
+                currentBackground.style.display = 'none';
+                currentBackground = null;
+            }
+            
+            colorDescription.textContent = "Click on a section of the lotus first, then select a natural color to apply.";
+        });
+        */
     </script>
 </body>
 </html>
