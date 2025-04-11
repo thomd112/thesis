@@ -10,9 +10,9 @@
             background-color: #7e1134;
             margin: 0;
             font-family: Satoshi light, sans-serif;
-            overflow: hidden;
             color: cornsilk;
-            cursor: url('thecursor.png'), auto; /* Add custom cursor */
+            cursor: url('thecursor.png'), auto;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         /* Title Styles */
@@ -81,8 +81,8 @@
             to { opacity: 1; }
         }
 
-        .description{
-          font-family: Satoshi light, sans-serif;
+        .description {
+            font-family: Satoshi light, sans-serif;
             font-size: 15px;
             position: absolute;
             top: 80%;
@@ -109,13 +109,13 @@
         }
 
         .name a {
-          font-family: Satoshi, sans-serif;
-          color: cornsilk;
-          text-decoration: none;
-          position: relative;
-          display: inline-block;
-          padding: 5px 0;
-          cursor: url('thecursor.png'), pointer; /* Custom cursor for links */
+            font-family: Satoshi, sans-serif;
+            color: cornsilk;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 5px 0;
+            cursor: url('thecursor.png'), pointer;
         }
 
         .name a::before,
@@ -151,7 +151,7 @@
         .menu-button {
             font-family: Satoshi, sans-serif;
             font-size: 15px;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for menu button */
+            cursor: url('thecursor.png'), pointer;
             color: cornsilk;
             background: none;
             border: none;
@@ -270,7 +270,7 @@
             position: relative;
             padding: 5px 10px;
             font-style: normal;
-            cursor: url('thecursor.png'), pointer; /* Custom cursor for dropdown menu links */
+            cursor: url('thecursor.png'), pointer;
         }
 
         /* Dual line hover effect */
@@ -305,13 +305,48 @@
             width: 50%;
         }
 
-    
+        /* Content container styles - ADDED */
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px; /* Space for fixed header */
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Video container styles - ADDED */
+        .video-container {
+            width: 100%;
+            max-width: 640px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            max-height: 360px;
+            object-fit: contain;
+        }
+
+        /* Text container styles - ADDED */
+        .text-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            line-height: 1.6;
+            font-size: 16px;
+            color: cornsilk;
+            text-align: justify;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <!-- <div class="name">The Madhubani Canvas</div> -->
-        <div class="name"><a href="index.html">The Madhubani Canvas</a> </div>
+        <div class="name"><a href="index.html">The Madhubani Canvas</a></div>
         <div class="menu-container">
             <button class="menu-button">
                 Menu
@@ -322,7 +357,6 @@
         </div>
     </div>
 
-   
     <!-- Full-screen dropdown menu -->
     <div class="dropdown">
         <div class="dropdown-content">
@@ -337,24 +371,37 @@
         </div>
     </div>
 
+    <!-- Content container - ADDED -->
+    <div class="content-container">
+        <!-- Video container - ADDED -->
+        <div class="video-container">
+            <video controls autoplay>
+                <source src="recording.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
 
-<div> <video controls autoplay width="640" height="360">
-    <source src="recording.mp4" type="video/mp4">
-  </video></div>
-
-
-
-
-
-
+        <!-- Text container - ADDED -->
+        <div class="text-container">
+            <p>Madhubani or Mithila painting is a traditional folk art form rooted in the Mithila region and extends across northern Bihar in India and the eastern Terai of Nepal. For centuries, this art has been integral to the region's cultural heritage.</p>
+            
+            <p>"Madhu" translates to honey, and "bani" translates to forest. In Sanskrit, "Madhubani" completely translates to "forest of honey." This highlights its extensive connections with nature by using Painting Motifs; flora and fauna in most paintings.</p>
+            
+            <p>Traditionally, women have been the primary practitioners of this art, passing down their techniques and stories through generations, ensuring its continuity within families and communities, which is a significant part of Mithila's community heritage.</p>
+            
+            <p>Madhubani folk art is passed down "From mothers to daughters and from mother-in-laws to daughter-in-laws." Madhubani paintings were used to decorate homes for special occasions such as weddings, religious festivals, and birth celebrations. Artists created these works on the mud walls and floors of huts.</p>
+            
+            <p>Upper-class women initially practiced this art form, but it has now spread across various communities. Women would paint their walls (known as Bhitti Chitra) and floors (known as Aripana) of their homes with these vibrant artworks.</p>
+            
+            <p>The themes often revolve around Hindu mythology, nature, and daily life in the village, frequently depicting scenes from epics like the Ramayana and Mahabharata. The folk art also includes weddings and festivals featuring Hindu deities such as Vishnu, Kali, Durga, and Krishna. It continues to play a vital role in preserving the cultural identity of the Mithila region.</p>
+        </div>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const menuButton = document.querySelector(".menu-button");
             const dropdown = document.querySelector(".dropdown");
             const titleLetters = document.querySelectorAll(".title span");
-            const audio = document.getElementById("customAudio");
-            const playButton = document.getElementById("customPlayButton");
             let pageLoaded = false;
 
             // Set page as loaded after animations complete
@@ -363,18 +410,22 @@
             }, 3000);
 
             // Hover effect on title letters to show images
-            titleLetters.forEach(letter => {
-                letter.addEventListener("mouseenter", () => {
-                    if (pageLoaded) {
-                        const imageSrc = letter.getAttribute("data-image");
-                        showImage(imageSrc);
-                    }
-                });
+            if (titleLetters.length > 0) {
+                titleLetters.forEach(letter => {
+                    letter.addEventListener("mouseenter", () => {
+                        if (pageLoaded) {
+                            const imageSrc = letter.getAttribute("data-image");
+                            if (imageSrc) {
+                                showImage(imageSrc);
+                            }
+                        }
+                    });
 
-                letter.addEventListener("mouseleave", () => {
-                    hideImage();
+                    letter.addEventListener("mouseleave", () => {
+                        hideImage();
+                    });
                 });
-            });
+            }
 
             // Menu toggle
             menuButton.addEventListener("click", () => {
@@ -393,21 +444,24 @@
                 });
             });
 
-            // Audio play/pause functionality
-            playButton.addEventListener("click", () => {
-                if (audio.paused) {
-                    audio.play();
-                    playButton.src = "imgs/speak.png"; // Change icon if needed
-                } else {
-                    audio.pause();
-                    playButton.src = "imgs/speak.png"; // Change back to play icon
+            // Function to show image if implemented elsewhere
+            function showImage(src) {
+                const imageElements = document.querySelectorAll('.madhubani-image');
+                if (imageElements.length > 0) {
+                    const imageElement = imageElements[0];
+                    imageElement.src = src;
+                    imageElement.style.opacity = "1";
                 }
-            });
+            }
+
+            // Function to hide image
+            function hideImage() {
+                const imageElements = document.querySelectorAll('.madhubani-image');
+                if (imageElements.length > 0) {
+                    imageElements[0].style.opacity = "0";
+                }
+            }
         });
-
-        
-
-     
     </script>
 </body>
 </html>
