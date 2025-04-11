@@ -402,36 +402,40 @@
             <!-- Your lotus drawing -->
             <img id="custom-drawing-image" class="custom-drawing" src="playimgs/flower.png" alt="Lotus drawing">
             
-            <!-- SVG overlay for clickable regions that match the lotus pattern -->
-            <svg class="drawing-areas" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-                <!-- Upper petals (crown) -->
-                <path id="upper-petal-1" class="drawing-area" d="M300,100 L330,50 L370,70 L350,120 Z" />
-                <path id="upper-petal-2" class="drawing-area" d="M300,100 L270,50 L230,70 L250,120 Z" />
-                <path id="upper-petal-3" class="drawing-area" d="M300,100 L350,120 L370,90 L320,80 Z" />
-                <path id="upper-petal-4" class="drawing-area" d="M300,100 L250,120 L230,90 L280,80 Z" />
-                <path id="upper-petal-5" class="drawing-area" d="M300,100 L320,80 L300,50 L280,80 Z" />
+            <svg class="drawing-areas" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                <!-- Top crown petals -->
+                <path id="top-crown-1" class="drawing-area" d="M300,120 C310,100 330,80 350,90 C370,100 360,120 340,130 C320,140 290,140 300,120" />
+                <path id="top-crown-2" class="drawing-area" d="M300,120 C290,100 270,80 250,90 C230,100 240,120 260,130 C280,140 310,140 300,120" />
+                <path id="top-crown-3" class="drawing-area" d="M300,120 C320,110 340,90 330,70 C320,50 290,60 280,80 C270,100 280,130 300,120" />
+                <path id="top-crown-4" class="drawing-area" d="M300,120 C280,110 260,90 270,70 C280,50 310,60 320,80 C330,100 320,130 300,120" />
+                <path id="top-crown-5" class="drawing-area" d="M300,120 C310,100 315,70 300,60 C285,70 290,100 300,120" />
                 
-                <!-- Middle ring petals -->
-                <path id="middle-petal-1" class="drawing-area" d="M300,200 C340,180 380,190 400,220 C420,250 410,290 380,310 C350,330 310,320 290,290 C280,260 290,210 300,200 Z" />
-                <path id="middle-petal-2" class="drawing-area" d="M300,200 C260,180 220,190 200,220 C180,250 190,290 220,310 C250,330 290,320 310,290 C320,260 310,210 300,200 Z" />
-                <path id="middle-petal-3" class="drawing-area" d="M300,200 C330,170 350,150 340,130 C330,110 300,100 270,110 C240,120 230,150 260,180 C280,190 290,195 300,200 Z" />
+                <!-- Middle layer petals -->
+                <path id="middle-petal-1" class="drawing-area" d="M300,200 C340,180 370,190 380,220 C390,250 370,280 340,290 C320,300 300,290 290,270 C280,240 280,210 300,200" />
+                <path id="middle-petal-2" class="drawing-area" d="M300,200 C260,180 230,190 220,220 C210,250 230,280 260,290 C280,300 300,290 310,270 C320,240 320,210 300,200" />
+                <path id="middle-petal-3" class="drawing-area" d="M300,200 C330,170 350,140 340,120 C330,100 300,110 270,120 C250,130 260,170 300,200" />
                 
-                <!-- Inner lotus petals -->
-                <path id="inner-petal-1" class="drawing-area" d="M300,250 C320,230 335,220 340,240 C345,260 330,280 310,290 C290,280 280,260 300,250 Z" />
-                <path id="inner-petal-2" class="drawing-area" d="M300,250 C280,230 265,220 260,240 C255,260 270,280 290,290 C310,280 320,260 300,250 Z" />
-                <path id="inner-petal-3" class="drawing-area" d="M300,270 C320,260 330,280 325,300 C320,320 300,325 280,320 C260,315 280,280 300,270 Z" />
+                <!-- Inner petals -->
+                <path id="inner-petal-1" class="drawing-area" d="M300,240 C320,230 340,240 345,260 C350,280 330,290 310,295 C290,290 280,280 285,260 C290,240 290,245 300,240" />
+                <path id="inner-petal-2" class="drawing-area" d="M300,240 C280,230 260,240 255,260 C250,280 270,290 290,295 C310,290 320,280 315,260 C310,240 310,245 300,240" />
+                <path id="inner-petal-3" class="drawing-area" d="M300,260 C320,260 330,280 330,300 C330,320 310,330 300,330 C290,330 270,320 270,300 C270,280 280,260 300,260" />
                 
                 <!-- Center of flower -->
                 <circle id="center" class="drawing-area" cx="300" cy="260" r="20" />
                 
                 <!-- Decorative curls -->
-                <path id="curl-left" class="drawing-area" d="M220,290 C180,300 150,330 170,350 C190,370 220,350 230,330 C240,310 220,300 220,290 Z" />
-                <path id="curl-right" class="drawing-area" d="M380,290 C420,300 450,330 430,350 C410,370 380,350 370,330 C360,310 380,300 380,290 Z" />
+                <path id="curl-left" class="drawing-area" d="M240,250 C210,260 190,290 200,310 C210,330 240,320 250,300 C260,280 250,260 240,250" />
+                <path id="curl-right" class="drawing-area" d="M360,250 C390,260 410,290 400,310 C390,330 360,320 350,300 C340,280 350,260 360,250" />
                 
-                <!-- Lower leaves and stem -->
-                <path id="lower-leaf-left" class="drawing-area" d="M290,330 C270,340 255,360 265,380 C275,400 295,390 305,370 C310,350 300,330 290,330 Z" />
-                <path id="lower-leaf-right" class="drawing-area" d="M310,330 C330,340 345,360 335,380 C325,400 305,390 295,370 C290,350 300,330 310,330 Z" />
-                <path id="stem" class="drawing-area" d="M300,290 L300,400 C300,410 295,420 290,430 C285,440 295,450 300,450 C305,450 315,440 310,430 C305,420 300,410 300,400 Z" />
+                <!-- Bottom leaves -->
+                <path id="lower-leaf-left" class="drawing-area" d="M290,330 C270,340 250,370 260,390 C270,410 290,405 300,390 C310,375 305,350 290,330" />
+                <path id="lower-leaf-right" class="drawing-area" d="M310,330 C330,340 350,370 340,390 C330,410 310,405 300,390 C290,375 295,350 310,330" />
+                
+                <!-- Stem -->
+                <path id="stem" class="drawing-area" d="M300,330 L300,450 C300,470 295,490 300,510 C305,490 300,470 300,450 Z" />
+                
+                <!-- Decorative dots/patterns - optional -->
+                <path id="pattern-1" class="drawing-area" d="M280,180 C285,175 295,175 300,180 C305,175 315,175 320,180 C325,185 325,195 320,200 C315,205 305,205 300,200 C295,205 285,205 280,200 C275,195 275,185 280,180" />
             </svg>
         </div>
     </div>
